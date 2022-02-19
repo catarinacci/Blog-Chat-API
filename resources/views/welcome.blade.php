@@ -29,7 +29,7 @@
                <div class="px-6 py-4">
                 <h1 class="text-gray-900 text-3xl font-bold mb-2 underline">    Note API  </h1>
                 <p class="text-gray-700 text-base">
-                    Note Api es un sistema que realiza los métodos básicos de una red social, los mismos son crear un post con contenido de texto e imágenes, realizar comentarios y aplicar una reacción (me gusta, no me gusta, etc.). Cuenta con un sistema de login mediante token y la posibilidad de subir y descargar una imagen.
+                    Note Api s un sistema que realiza los métodos básicos de una red social, los mismos son crear un post con contenido de texto e imágenes, realizar comentarios y aplicar una reacción (me gusta, no me gusta, etc.). Cuenta con un sistema de login mediante token y la posibilidad de subir y descargar una imagen.
                 </p>
                </div>
             </div>
