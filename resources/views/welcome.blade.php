@@ -40,36 +40,15 @@
                     <div class="font-bold text-xl mb-2">
                         <h2 class="text-gray-900">REGISTER</h2>
                     </div>
-
                     <p class="text-gray-700 text-base">
                         Crea un nuevo usuario
                     </p>
                     <br>
                     <p class="font-bold"> POST&nbsp;&nbsp;&nbsp;&nbsp; https://catarinacci.herokuapp.com/api/register</p>
                     <br>
-                    <p>
-                        Enviar: <br>
-                        <textarea disabled name="" id="" cols="30" rows="7">
-                            {
-                                "name": "tito",
-                                "email": "tito@tito.com",
-                                "password": "12345678"
-                           }
-                        </textarea>
-                        <br>
-                          Respuesta:<br>
-                          <textarea disabled name="" id="" cols="30" rows="10">
-                            {
-                                "name": "tito",
-                                "email": "tito@tito.com",
-                                "password": "12345678"
-                            }
-                            {
-                                "res": true,
-                                "msg": "Usuario registrado  correctamente"
-                            }
-                          </textarea>
-                    </p>
+
+                        <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/register1.jpg" width="900" height="500" alt="">
+
                 </div>
             </div>
 
@@ -85,26 +64,25 @@
                     <br>
                     <p class="font-bold">  POST&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/login</p>
                     <br>
-                    <p>
-                        Enviar: <br>
-                       <textarea disabled name="" id="" cols="30" rows="5">
-                        {
-                            "email": "tito@tito.com",
-                            "password": "12345678"
-                        }
-                       </textarea>
-                        <br>
-                        Respuesta:<br>
-                        <textarea disabled name="" id="" cols="70" rows="5">
-                        }
-                        "res": true,
-                        "token":  "8|Vtv8aBDlZe0Tpz2CXMoLIam0frraAc7iXiwRId6j"
-                        }
-
-                        </textarea>
-                    </p>
+                   <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/login.jpg" width="900" height="500" alt="">
                 </div>
             </div>
+
+            <div class="container mt-9 bg-violet-100 max-w-30rem rounded overflow-hidden shadow-lg">
+                <div class="px-6 py-4 ">
+                    <div class="font-bold text-xl mb-2">
+                        <h2 class="text-gray-900">LOGOUT</h2>
+                    </div>
+                    <p class="text-gray-700 text-base">
+                        El usuario cierra seción y se le elimina el token asignado.
+                    </p>
+                    <br>
+                    <p class="font-bold">  POST&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/logout</p>
+                    <br>
+                   <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/logout.jpg" width="900" height="500" alt="">
+                </div>
+            </div>
+
             <div class="container bg-lime-100 mt-9 max-w-30rem rounded overflow-hidden shadow-lg mb-9">
                 <div class="px-6 py-4 text-center">
                  <h1 class="text-gray-900 text-3xl font-bold mb-2 ">   NOTAS  </h1>
@@ -120,14 +98,7 @@
                         Se crea un listado de todas las notas realizadas por los usuarios, las mismas están ordenadas en forma descendente por fecha de actualización y también están paginades de 10 en 10.
                     </p>
                     <br>
-                    <p class="font-bold">  GET&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/note</p>
-                    <br>
-                    <p>
-                        Respuesta:<br>
-                       <textarea disabled name="" id="" cols="90" rows="20"></textarea>
-                        <br>
-                    </p>
-
+                    <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_get_all.jpg"width="900" height="500" alt="">
 
                 </div>
             </div>
