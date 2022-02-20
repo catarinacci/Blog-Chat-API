@@ -49,10 +49,25 @@
                     <br>
                     <p>
                         Enviar: <br>
-                        <textarea disabled name="" id="" cols="30" rows="7"></textarea>
+                        <textarea disabled name="" id="" cols="30" rows="7">
+                            {
+                                "name": "tito",
+                                "email": "tito@tito.com",
+                                "password": "12345678"
+                           }
+                        </textarea>
                         <br>
                           Respuesta:<br>
                           <textarea disabled name="" id="" cols="30" rows="10">
+                            {
+                                "name": "tito",
+                                "email": "tito@tito.com",
+                                "password": "12345678"
+                            }
+                            {
+                                "res": true,
+                                "msg": "Usuario registrado  correctamente"
+                            }
                           </textarea>
                     </p>
                 </div>
@@ -72,10 +87,21 @@
                     <br>
                     <p>
                         Enviar: <br>
-                       <textarea disabled name="" id="" cols="30" rows="5"></textarea>
+                       <textarea disabled name="" id="" cols="30" rows="5">
+                        {
+                            "email": "tito@tito.com",
+                            "password": "12345678"
+                        }
+                       </textarea>
                         <br>
                         Respuesta:<br>
-                        <textarea disabled name="" id="" cols="30" rows="5"></textarea>
+                        <textarea disabled name="" id="" cols="70" rows="5">
+                        }
+                        "res": true,
+                        "token":  "8|Vtv8aBDlZe0Tpz2CXMoLIam0frraAc7iXiwRId6j"
+                        }
+
+                        </textarea>
                     </p>
                 </div>
             </div>
