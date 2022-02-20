@@ -6,6 +6,9 @@ use Monolog\Handler\SyslogUdpHandler;
 
 return [
 
+    'default' => env('LOG_CHANNEL', 'stack'),
+
+ 
     /*
     |--------------------------------------------------------------------------
     | Default Log Channel
