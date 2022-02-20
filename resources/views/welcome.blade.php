@@ -17,10 +17,13 @@
         </style>
 
         <style>
-            body {
+            <style>
+            .pre1{border:1px solid #ccc;padding:10px;margin:12px 0 10px;font-size:0,9em;
+            }
+            .body {
                 font-family: 'Nunito', sans-serif;
             }
-        </style>
+             </style>
     </head>
     <body >
 
@@ -46,8 +49,27 @@
                     <br>
                     <p class="font-bold"> POST&nbsp;&nbsp;&nbsp;&nbsp; https://catarinacci.herokuapp.com/api/register</p>
                     <br>
-
-                        <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/register1.jpg" width="900" height="500" alt="">
+<pre>
+    Enviar:
+    {
+            "name": "tito",
+            "email": "tito@tito.com",
+            "password": "12345678"
+    }
+    ---------------------------------------------------------------------
+    Respuesta:
+    {
+        "user": {
+            "name": "tito",
+            "email": "tito@tito.com",
+            "updated_at": "2022-02-20T21:04:15.000000Z",
+            "created_at": "2022-02-20T21:04:15.000000Z",
+            "id": 12
+        },
+        "res": true,
+        "msg": "Usuario registrado correctamente"
+    }
+</pre>
 
                 </div>
             </div>
@@ -64,7 +86,21 @@
                     <br>
                     <p class="font-bold">  POST&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/login</p>
                     <br>
-                   <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/login.jpg" width="900" height="500" alt="">
+<pre>
+    Enviar:
+    {
+
+         "email": "tito@tito.com",
+         "password": "12345678"
+    }
+    --------------------------------------------------------------------
+    Respuesta:
+    {
+        "res": true,
+        "token": "8|Vtv8aBDlZe0Tpz2CXMoLIam0frraAc7iXiwRId6j"
+    }
+
+</pre>
                 </div>
             </div>
 
@@ -79,7 +115,15 @@
                     <br>
                     <p class="font-bold">  POST&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/logout</p>
                     <br>
-                   <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/logout.jpg" width="900" height="500" alt="">
+<pre>
+    Respuesta:
+
+    {
+        "res": true,
+        "msg": "Token Eliminado Correctamente"
+    }
+
+</pre>
                 </div>
             </div>
 
@@ -88,7 +132,6 @@
                  <h1 class="text-gray-900 text-3xl font-bold mb-2 ">   NOTAS  </h1>
                 </div>
              </div>
-
              <div class="container mt-9 bg-violet-100 max-w-30rem rounded overflow-hidden shadow-lg">
                 <div class="px-6 py-4 ">
                     <div class="font-bold text-xl mb-2">
@@ -98,7 +141,87 @@
                         Se crea un listado de todas las notas realizadas por los usuarios, las mismas están ordenadas en forma descendente por fecha de actualización y también están paginades de 10 en 10.
                     </p>
                     <br>
-                    <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_get_all.jpg"width="900" height="500" alt="">
+                    <p class="font-bold">  GET&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/note</p>
+                    <br>
+<pre>
+    {
+        "id": 6,
+        "creador de la nota": "Judd Veum",
+        "email": "bernice.deckow@example.org",
+        "user_id": "/api/user/3",
+        "content": "Porro accusantium tempora quas iste velit. Aut esse dicta natus ducimus autem ipsum. Praesentium dolore sunt quas culpa ex soluta enim.",
+        "image": "public/notas/g2WsbIXDxjI8liw4h0HzbqQggsAMf9RSeNK8Ap1z.jpg", //imagen de la nota tambien puede ser null
+        "comentarios 2": [    // tiene dos comentarios
+            {
+                "usuario": "Maximilian Glover",
+                "user_id": 8,
+                "comentario": "Magnam eligendi ducimus laboriosam eaque qui. Culpa velit dolore sit vel ullam et. Ullam aut enim rem provident placeat molestias voluptatum. Quo doloribus sit totam aliquid."
+            },
+            {
+                "usuario": "Shanon Macejkovic III",
+                "user_id": 2,
+                "comentario": "Voluptatum cumque ea error accusantium illum est. Aliquam accusantium velit facilis ea ad nostrum. Consequuntur ullam exercitationem eos nisi inventore cumque est."
+            }
+        ],
+        "reacciones 1": [       //tiene una reación
+            {
+                "id": 5,
+                "usuario": "Judd Veum",
+                "user_id": 3,
+                "reaction": "Me divierte",
+                "typereaction_id": 3
+            }
+        ],
+        "nota creada ": "Hace 5 horas" // cuanto tiempo hace desde que se creó la nota
+    },
+//*
+    ................. //las demás notas
+//*
+
+"links": {                      //paginación
+    "self": "link-value",
+    "first": "http://localhost/api/note?page=1",
+    "last": "http://localhost/api/note?page=3",
+    "prev": null,
+    "next": "http://localhost/api/note?page=2"
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 3,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Anterior",
+                "active": false
+            },
+            {
+                "url": "http://localhost/api/note?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": "http://localhost/api/note?page=2",
+                "label": "2",
+                "active": false
+            },
+            {
+                "url": "http://localhost/api/note?page=3",
+                "label": "3",
+                "active": false
+            },
+            {
+                "url": "http://localhost/api/note?page=2",
+                "label": "Siguiente &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http://localhost/api/note",
+        "per_page": 10,
+        "to": 10,
+        "total": 22
+    }
+</pre>
 
                 </div>
             </div>

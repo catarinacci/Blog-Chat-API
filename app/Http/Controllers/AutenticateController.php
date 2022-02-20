@@ -22,6 +22,7 @@ class AutenticateController extends Controller
         $user->save();
 
         return response()->json([
+            'user'=> $user,
             'res' => true,
             'msg' => 'Usuario registrado correctamente'
         ],200);
