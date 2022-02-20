@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        {{-- <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet"> --}}
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         <!-- Styles -->
         <style>
 
@@ -34,17 +34,79 @@
                 </p>
                </div>
             </div>
+
             <div class="container mt-9 bg-violet-100 max-w-30rem rounded overflow-hidden shadow-lg">
                 <div class="px-6 py-4 ">
-                <div class="font-bold text-xl mb-2">
-                    <h2 class="text-gray-900">The Coldest Sunset</h2>
-                </div>
-                <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                </p>
-                <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains">
+                    <div class="font-bold text-xl mb-2">
+                        <h2 class="text-gray-900">REGISTER</h2>
+                    </div>
+
+                    <p class="text-gray-700 text-base">
+                        Crea un nuevo usuario
+                    </p>
+                    <br>
+                    <p class="font-bold"> POST&nbsp;&nbsp;&nbsp;&nbsp; https://catarinacci.herokuapp.com/api/register</p>
+                    <br>
+                    <p>
+                        Enviar: <br>
+                        <textarea disabled name="" id="" cols="30" rows="7"></textarea>
+                        <br>
+                          Respuesta:<br>
+                          <textarea disabled name="" id="" cols="30" rows="10">
+                          </textarea>
+                    </p>
                 </div>
             </div>
+
+
+            <div class="container mt-9 bg-violet-100 max-w-30rem rounded overflow-hidden shadow-lg">
+                <div class="px-6 py-4 ">
+                    <div class="font-bold text-xl mb-2">
+                        <h2 class="text-gray-900">LOGIN</h2>
+                    </div>
+                    <p class="text-gray-700 text-base">
+                        El usuario se loguea en el sistema y se le asigna un token de seguridad
+                    </p>
+                    <br>
+                    <p class="font-bold">  POST&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/login</p>
+                    <br>
+                    <p>
+                        Enviar: <br>
+                       <textarea disabled name="" id="" cols="30" rows="5"></textarea>
+                        <br>
+                        Respuesta:<br>
+                        <textarea disabled name="" id="" cols="30" rows="5"></textarea>
+                    </p>
+                </div>
+            </div>
+            <div class="container bg-lime-100 mt-9 max-w-30rem rounded overflow-hidden shadow-lg mb-9">
+                <div class="px-6 py-4 text-center">
+                 <h1 class="text-gray-900 text-3xl font-bold mb-2 ">   NOTAS  </h1>
+                </div>
+             </div>
+
+             <div class="container mt-9 bg-violet-100 max-w-30rem rounded overflow-hidden shadow-lg">
+                <div class="px-6 py-4 ">
+                    <div class="font-bold text-xl mb-2">
+                        <h2 class="text-gray-900">Todas las notas</h2>
+                    </div>
+                    <p class="text-gray-700 text-base">
+                        Se crea un listado de todas las notas realizadas por los usuarios, las mismas están ordenadas en forma descendente por fecha de actualización y también están paginades de 10 en 10.
+                    </p>
+                    <br>
+                    <p class="font-bold">  GET&nbsp;&nbsp;&nbsp;&nbsp;https://catarinacci.herokuapp.com/api/note</p>
+                    <br>
+                    <p>
+                        Respuesta:<br>
+                       <textarea disabled name="" id="" cols="90" rows="20"></textarea>
+                        <br>
+                    </p>
+
+
+                </div>
+            </div>
+
         </div>
+    </div>
     </body>
 </html>
