@@ -35,10 +35,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // Route::get('notas', [NoteController::class, 'index']);
     // Route::post('nota', [NoteController::class, 'store']);
     // Route::get('nota/{nota}', [NoteController::class, 'show']);
-    // Route::delete('nota/{nota}', [NoteController::class, 'destroy']);
+    Route::delete('note/{note}', [NoteController::class, 'destroy']);
     Route::post('note/{note}', [NoteController::class, 'update']);
-    Route::get('nota/{nota}/image', [NoteController::class, 'image']);
-    Route::get('nota_user', [NoteController::class, 'noteUser']);
+    Route::get('note/{note}/image', [NoteController::class, 'image']);
+    Route::get('note_user', [NoteController::class, 'noteUser']);
 
     //Comments
     Route::apiResource('comment', CommentController::class);

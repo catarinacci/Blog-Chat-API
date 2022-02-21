@@ -77,8 +77,9 @@ class NoteController extends Controller
 
     }
 
-    public function destroy(Request $request, Note $nota)
+    public function destroy($nota_id)
     {
+        $nota = Note::findOrFail($nota_id);
 
          if (Auth::user()->id == $nota->user_id) {
 
@@ -86,7 +87,7 @@ class NoteController extends Controller
 
             return response()->json([
 
-                "res"=>"La nota" .$nota->id." se eliminó correctamente"], 200);
+                "res"=>"La nota " .$nota->id." se eliminó correctamente"], 200);
         } else {
             return response()->json([
                 'res' => 'Usted no es el propietario de ésta nota, no la puede borrar',
