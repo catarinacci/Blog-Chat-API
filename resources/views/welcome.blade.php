@@ -38,7 +38,14 @@
                </div>
 
             </div>
-<a href="#notas_user">Las notas del usuario</a>
+            <a href="#register">Regiter</a>
+            <a href="#loging">Login</a>
+            <a href="#logout">logout</a>
+            <a href="#notas_all">Todas las notas</a>
+            <a href="#notas_user">Las notas del usuario</a>
+            <a href="#notas_create">Crear una nota</a>
+            <a href="#notas_update">Modificar una nota</a>
+            <a href="#notas_delete">Eliminar una nota</a>
             <div class="container mt-9 bg-violet-100 max-w-30rem rounded overflow-hidden shadow-lg">
                 <div class="px-6 py-4 ">
                     <div class="font-bold text-xl mb-2">
