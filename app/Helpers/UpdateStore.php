@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\NoteResource;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\ReactionResource;
+use Illuminate\Support\Facades\Storage;
+use Aws\S3\S3Client;
+
 class UpdateStoreFiles{
 
     public static function UpdateNote($request, $nota_id){
@@ -40,8 +43,31 @@ class UpdateStoreFiles{
 
      public static function storeNote($request){
 
+        $option = [
+            'version'     => 'latest',
+            'region'      => 'sa-east-1',
+            'credentials' => [
+                'key' => 'AKIA45PMW6UWF6ND2P34',
+                'secret' => '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'
+            ]
+        ];
+
+        $client = new S3Client($option);
+
+        $imagen = $request->image;
+        $nameimage = $request->image->getClientOriginalName();
+        //$a=Storage::disk('s3')->put($nameimage,file_get_contents($imagen));
+
+        $result = $client->putObject([
+            'Bucket' => 'note-api-catarinacci',
+            'Key' => $nameimage,
+            'SourceFile' => $imagen,
+        ]);
+        return $result;
         if($request->image){
-           $imagen =$request->image->store('public/notas');
+           $imagen =$request->image;
+           $imagenname = $imagen->getClientOriginalName();
+           $imagen->store('noteapi/'. Auth::user()->id, $imagenname,'s3');
         }else{
             $imagen = null;
         }

@@ -31,10 +31,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // Route::delete('user/{user}', [UserController::class, 'destroy']);
 
     //Notes
-    Route::apiResource('note', NoteController::class);
-    // Route::get('notas', [NoteController::class, 'index']);
-    // Route::post('nota', [NoteController::class, 'store']);
-    // Route::get('nota/{nota}', [NoteController::class, 'show']);
+    //Route::apiResource('note', NoteController::class);
+    Route::get('notes', [NoteController::class, 'index']);
+    Route::post('note', [NoteController::class, 'store']);
+    Route::get('note/{note}', [NoteController::class, 'show']);
     Route::delete('note/{note}', [NoteController::class, 'destroy']);
     Route::post('note/{note}', [NoteController::class, 'update']);
     Route::get('note/{note}/image', [NoteController::class, 'image']);
