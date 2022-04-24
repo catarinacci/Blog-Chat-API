@@ -43,27 +43,39 @@ class UpdateStoreFiles{
 
      public static function storeNote($request){
 
-        $option = [
-            'version'     => 'latest',
-            'region'      => 'sa-east-1',
-            'credentials' => [
-                'key' => 'AKIA45PMW6UWF6ND2P34',
-                'secret' => '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'
-            ]
-        ];
 
-        $client = new S3Client($option);
+        $base_location = 'noteapi';
 
-        $imagen = $request->image;
-        $nameimage = $request->image->getClientOriginalName();
+        // Handle File Upload
+        if($request->hasFile('image')) {
+            return $request;
+            $documentPath = $request->file('image')->store($base_location, 's3');
+
+        } else {
+            return response()->json(['success' => false, 'message' => 'No file uploaded'], 400);
+        }
+
+        // $option = [
+        //     'version'     => 'latest',
+        //     'region'      => 'sa-east-1',
+        //     'credentials' => [
+        //         'key' => 'AKIA45PMW6UWF6ND2P34',
+        //         'secret' => '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'
+        //     ]
+        // ];
+
+        // $client = new S3Client($option);
+
+        // $imagen = $request->image;
+        // $nameimage = $request->image->getClientOriginalName();
         //$a=Storage::disk('s3')->put($nameimage,file_get_contents($imagen));
 
-        $result = $client->putObject([
-            'Bucket' => 'note-api-catarinacci',
-            'Key' => $nameimage,
-            'SourceFile' => $imagen,
-        ]);
-        return $result;
+        // $result = $client->putObject([
+        //     'Bucket' => 'note-api-catarinacci',
+        //     'Key' => $nameimage,
+        //     'SourceFile' => $imagen,
+        // ]);
+        // return $result;
         if($request->image){
            $imagen =$request->image;
            $imagenname = $imagen->getClientOriginalName();

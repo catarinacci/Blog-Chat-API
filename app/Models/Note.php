@@ -32,5 +32,9 @@ class Note extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Relación uno a uno polimorfica
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
     use HasFactory;
 }
