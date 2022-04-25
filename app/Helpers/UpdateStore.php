@@ -43,52 +43,29 @@ class UpdateStoreFiles{
 
      public static function storeNote($request){
 
-
         $base_location = 'noteapi';
 
         // Handle File Upload
         if($request->hasFile('image')) {
-            return $request;
-            $documentPath = $request->file('image')->store($base_location, 's3');
+
+            $documentPath = $request->file('image')->store('noteapi', 's3');
+
+            $path = Storage::disk('s3')->url($documentPath);
 
         } else {
-            return response()->json(['success' => false, 'message' => 'No file uploaded'], 400);
-        }
-
-        // $option = [
-        //     'version'     => 'latest',
-        //     'region'      => 'sa-east-1',
-        //     'credentials' => [
-        //         'key' => 'AKIA45PMW6UWF6ND2P34',
-        //         'secret' => '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'
-        //     ]
-        // ];
-
-        // $client = new S3Client($option);
-
-        // $imagen = $request->image;
-        // $nameimage = $request->image->getClientOriginalName();
-        //$a=Storage::disk('s3')->put($nameimage,file_get_contents($imagen));
-
-        // $result = $client->putObject([
-        //     'Bucket' => 'note-api-catarinacci',
-        //     'Key' => $nameimage,
-        //     'SourceFile' => $imagen,
-        // ]);
-        // return $result;
-        if($request->image){
-           $imagen =$request->image;
-           $imagenname = $imagen->getClientOriginalName();
-           $imagen->store('noteapi/'. Auth::user()->id, $imagenname,'s3');
-        }else{
-            $imagen = null;
+            $path = null;
         }
 
         $nota = Note::create([
             'content' => $request->content,
             'user_id' => Auth::user()->id,
-            'image' => $imagen
+            'image' => $path
         ]);
+
+        if($path){
+            $nota->image()->create(['url' => $path]);
+        }
+
         $nota_creada= new NoteResource($nota);
         return response()->json([
             'nota' => $nota_creada,
