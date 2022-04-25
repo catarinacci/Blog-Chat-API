@@ -49,6 +49,7 @@ class NoteResource extends JsonResource
             'creador de la nota'=> $this->user->name,
             'email' => $this->user->email,
             'user_id'=> "/api/user/".$this->user_id,
+            'title' => $this->title,
             'content'=> $this->content,
             'image' => $this->image,
             'comentarios '.$this->comments->count() => $comments,

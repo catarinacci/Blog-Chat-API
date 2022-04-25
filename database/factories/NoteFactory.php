@@ -18,6 +18,7 @@ class NoteFactory extends Factory
     {
         //$content = $this->faker->sentence(20);
         return [
+            'title' => $this->faker->sentence(3),
             'content' => $this->faker->text(),
             //'image' => $this->faker->image('public/storage/notas'),
             'user_id' => User::all()->random()->id
