@@ -3,6 +3,7 @@ namespace App\Helpers;
 use App\Models\Note;
 use App\Models\Comment;
 use App\Models\Reaction;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\NoteResource;
 use App\Http\Resources\CommentResource;
@@ -18,14 +19,30 @@ class UpdateStoreFiles{
 
         if($nota_exists){
             $nota = Note::findOrFail($nota_id);
+            $image_object = Image::where('imageable_id', $nota_id)->first();
+            $oldimage_path = $image_object->url;
+            //$nota->image;
+            //$oldimage = Image::where($oldimage_path, 'url')->first();
+
+
             if($request->image){
-                $imagen =$request->image->store('public/notas');
+
+                $image_object_save = $request->file('image')->store('noteapi', 's3');
+                $imagen = Storage::disk('s3')->url($image_object_save);
+                //$prueba = 'noteapi/Z46Ys95nJ5qMJR3wuxuBZiBQc5tPXe3NHtPgDKuH.jpg';
+                Storage::disk('s3')->delete($oldimage_path);
+                $image_object->update([
+                    'url' => $imagen,
+                ]);
+
+
              }else{
-                 $imagen = null;
+                 $imagen = $oldimage_path;
              }
 
             if(Auth::user()->id == $nota->user_id){
                 $nota->update([
+                    'title' => $request->title,
                     'content' => $request->content,
                     'user_id' => Auth::user()->id,
                     'image' => $imagen]);
