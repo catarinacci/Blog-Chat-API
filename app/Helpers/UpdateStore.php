@@ -11,6 +11,7 @@ use App\Http\Resources\ReactionResource;
 use Illuminate\Support\Facades\Storage;
 use Aws\S3\S3Client;
 
+
 class UpdateStoreFiles{
 
     public static function UpdateNote($request, $nota_id){
@@ -19,18 +20,19 @@ class UpdateStoreFiles{
 
         if($nota_exists){
             $nota = Note::findOrFail($nota_id);
+
             $image_object = Image::where('imageable_id', $nota_id)->first();
             $oldimage_path = $image_object->url;
-            //$nota->image;
-            //$oldimage = Image::where($oldimage_path, 'url')->first();
 
+            $path_filter = Url::filterUrl($oldimage_path );
 
             if($request->image){
 
                 $image_object_save = $request->file('image')->store('noteapi', 's3');
                 $imagen = Storage::disk('s3')->url($image_object_save);
-                //$prueba = 'noteapi/Z46Ys95nJ5qMJR3wuxuBZiBQc5tPXe3NHtPgDKuH.jpg';
-                Storage::disk('s3')->delete($oldimage_path);
+
+                Storage::disk('s3')->delete($path_filter);
+
                 $image_object->update([
                     'url' => $imagen,
                 ]);
@@ -67,7 +69,7 @@ class UpdateStoreFiles{
 
             $documentPath = $request->file('image')->store('noteapi', 's3');
 
-            $path = Storage::disk('s3')->url($documentPath);
+            $path = Storage::disk('s3')->url($path);
 
         } else {
             $path = null;

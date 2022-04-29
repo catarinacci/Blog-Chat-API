@@ -7,16 +7,15 @@ use Illuminate\Support\Facades\Storage;
 class Url{
     public static function filterUrl($url_image){
 
-                $url = public_path(Storage::url($url_image));
-                $url_array = explode('/', $url);
-                $array_unique = array_unique($url_array);
-                $array_string = implode('/', $array_unique);
-                if(count($url_array) > count($array_unique)){
-                    $url = $array_string;
-                }else{
-                    $url = public_path(Storage::url($url_image));
-                }
+                $url_array = explode('/', $url_image);
 
-                return $url;
+                $array_unique = array_unique($url_array);
+
+                for($i=0; $i<3; $i++){
+                    unset($array_unique[$i]);
+                }
+                $array_string = implode('/', $array_unique);
+
+                return $array_string;
     }
 }
