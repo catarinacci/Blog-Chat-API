@@ -18,25 +18,41 @@ class UpdateStoreFiles{
 
         $nota_exists = Note::where('id', $nota_id)->exists();
 
+        $image_object = Image::where('imageable_id', $nota_id)->first();
+
+        if( empty($image_object)){
+            $oldimage_path = 1;
+        }else{
+            $oldimage_path = $image_object->url;
+        }
+
         if($nota_exists){
             $nota = Note::findOrFail($nota_id);
 
-            $image_object = Image::where('imageable_id', $nota_id)->first();
-            $oldimage_path = $image_object->url;
-
-            $path_filter = Url::filterUrl($oldimage_path );
-
             if($request->image){
+
+                if($oldimage_path <> 1){
+
+                   $path_filter = Url::filterUrl($oldimage_path );
+                   Storage::disk('s3')->delete($path_filter);
+                }
+
 
                 $image_object_save = $request->file('image')->store('noteapi', 's3');
                 $imagen = Storage::disk('s3')->url($image_object_save);
 
-                Storage::disk('s3')->delete($path_filter);
+                if( $image_object <> 1){
 
-                $image_object->update([
-                    'url' => $imagen,
-                ]);
+                    $nota->image()->create([
+                        'url' => $imagen,
+                    ]);
 
+                }else{
+
+                    $image_object->update([
+                        'url' => $imagen,
+                    ]);
+                }
 
              }else{
                  $imagen = $oldimage_path;
@@ -64,12 +80,11 @@ class UpdateStoreFiles{
 
         $base_location = 'noteapi';
 
-        // Handle File Upload
         if($request->hasFile('image')) {
 
             $documentPath = $request->file('image')->store('noteapi', 's3');
 
-            $path = Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->url($documentPath);
 
         } else {
             $path = null;
