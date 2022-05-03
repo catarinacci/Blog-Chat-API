@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTitleToNotes extends Migration
+class AddImageToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTitleToNotes extends Migration
      */
     public function up()
     {
-        Schema::table('notes', function (Blueprint $table) {
-            $table->string('title', 50)->after('content')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('image')->after('email')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddTitleToNotes extends Migration
      */
     public function down()
     {
-        Schema::table('notes', function (Blueprint $table) {
-            $table->dropColumn('title');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('image');
         });
     }
 }

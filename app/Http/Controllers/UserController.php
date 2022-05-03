@@ -10,24 +10,18 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 class UserController extends Controller
 {
-    public function index()
-    {
-        $users = User::paginate(10);
-        return new UserCollection($users);
-    }
+    // public function index()
+    // {
+    //     $users = User::paginate(10);
+    //     return new UserCollection($users);
+    // }
 
-    public function store(Request $request)
-    {
-        // $user = User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => bcrypt($request->password)
-        // ]);
-
-        return response()->json([
-            'msg' => 'No puede realizar ésta acción'
-        ],200);
-    }
+    // public function store(Request $request)
+    // {
+    //     return response()->json([
+    //         'msg' => 'No puede realizar ésta acción'
+    //     ],200);
+    // }
 
     public function show($user_id)
     {

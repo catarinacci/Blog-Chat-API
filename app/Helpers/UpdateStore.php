@@ -9,7 +9,7 @@ use App\Http\Resources\NoteResource;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\ReactionResource;
 use Illuminate\Support\Facades\Storage;
-use Aws\S3\S3Client;
+
 
 
 class UpdateStoreFiles{
@@ -20,60 +20,87 @@ class UpdateStoreFiles{
 
         $image_object = Image::where('imageable_id', $nota_id)->first();
 
-        if( empty($image_object)){
+        if( !is_object($image_object)){
+            //return "1";
             $oldimage_path = 1;
         }else{
+            //return "2";
             $oldimage_path = $image_object->url;
         }
 
         if($nota_exists){
-            $nota = Note::findOrFail($nota_id);
 
-            if($request->image){
-
-                if($oldimage_path <> 1){
-
-                   $path_filter = Url::filterUrl($oldimage_path );
-                   Storage::disk('s3')->delete($path_filter);
-                }
-
-
-                $image_object_save = $request->file('image')->store('noteapi', 's3');
-                $imagen = Storage::disk('s3')->url($image_object_save);
-
-                if( $image_object <> 1){
-
-                    $nota->image()->create([
-                        'url' => $imagen,
-                    ]);
-
-                }else{
-
-                    $image_object->update([
-                        'url' => $imagen,
-                    ]);
-                }
-
-             }else{
-                 $imagen = $oldimage_path;
-             }
+            $nota = Note::where('id', $nota_id)->first();
 
             if(Auth::user()->id == $nota->user_id){
-                $nota->update([
-                    'title' => $request->title,
-                    'content' => $request->content,
-                    'user_id' => Auth::user()->id,
-                    'image' => $imagen]);
 
-                    return new NoteResource($nota);
+                $nota_exists = Note::where('id', $nota_id)->exists();
+
+                $image_object = Image::where('imageable_id', $nota_id)->first();
+
+                if( !is_object($image_object)){
+                    $oldimage_path = 1;
+                }else{
+                    $oldimage_path = $image_object->url;
+                }
+
+                if($nota_exists){
+                    $nota = Note::findOrFail($nota_id);
+
+                    if($request->image){
+
+                        if($oldimage_path <> 1){
+
+                        $path_filter = Url::filterUrl($oldimage_path );
+                        Storage::disk('s3')->delete($path_filter);
+                        }
+
+                        if( !is_object($image_object)){
+
+                            $image_object_save = $request->file('image')->store('noteapi', 's3');
+                            $imagen = Storage::disk('s3')->url($image_object_save);
+                            $nota->image()->create([
+                                'url' => $imagen,
+                            ]);
+
+                        }else{
+                            $image_object_save = $request->file('image')->store('noteapi', 's3');
+                            $imagen = Storage::disk('s3')->url($image_object_save);
+                            $image_object->update([
+                                'url' => $imagen,
+                            ]);
+                        }
+
+                    }else{
+                        $imagen = $oldimage_path;
+                    }
+
+                    if(Auth::user()->id == $nota->user_id){
+                        $nota->update([
+                            'title' => $request->title,
+                            'content' => $request->content,
+                            'user_id' => Auth::user()->id,
+                            'image' => $imagen]);
+
+                            return new NoteResource($nota);
+                    }else{
+                        return response()->json([
+                            'res' => 'Usted no es el propietario de ésta nota, no la puede modificar',
+                        ], 400);
+                    }
+                }return response()->json([
+                    'res' => 'La nota '.$nota_id.' no existe',
+                ], 400);
             }else{
                 return response()->json([
                     'res' => 'Usted no es el propietario de ésta nota, no la puede modificar',
                 ], 400);
             }
-        }return response()->json([
-            'res' => 'La nota '.$nota_id.' no existe',
-        ], 400);
+        }else{
+            return response()->json([
+                'res' => 'La nota '.$nota_id.' no existe',
+            ], 400);
+        }
      }
 
      public static function storeNote($request){
