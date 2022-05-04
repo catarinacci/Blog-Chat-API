@@ -75,8 +75,16 @@ class NoteController extends Controller
 
     public function update(ActualizarNotaRequest $request, $nota_id)
     {
-        $nota = UpdateStoreFiles::UpdateNote($request, $nota_id);
-        return $nota;
+        $nota = Note::where('id', $nota_id)->first();
+        if($nota){
+            $nota_object = UpdateStoreFiles::UpdateNote($request, $nota);
+        }else{
+            return response()->json([
+            'res' => 'La nota '.$nota_id.' no existe',
+            ], 400);
+        }
+
+        return $nota_object;
 
     }
 
