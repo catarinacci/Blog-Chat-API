@@ -23,11 +23,11 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('logout', [AutenticateController::class, 'logout']);
 
     //Users
-    Route::apiResource('user', UserController::class);
+    //Route::apiResource('user', UserController::class);
     // Route::get('users', [UserController::class, 'index']);
     // Route::post('user', [UserController::class, 'store']);
-    // Route::get('user/{user}', [UserController::class, 'show']);
-    // Route::put('user/{user}', [UserController::class, 'update']);
+    Route::get('user/{user}', [UserController::class, 'show']);
+    Route::post('user/{user}', [UserController::class, 'update']);
     // Route::delete('user/{user}', [UserController::class, 'destroy']);
 
     //Notes

@@ -77,6 +77,8 @@ class NoteController extends Controller
     {
         $nota = Note::where('id', $nota_id)->first();
         if($nota){
+
+            // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
             $nota_object = UpdateStoreFiles::UpdateNote($request, $nota);
         }else{
             return response()->json([
