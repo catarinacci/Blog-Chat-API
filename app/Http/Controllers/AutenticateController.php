@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
-
+use MohamedGaber\SanctumRefreshToken\Traits\HasApiTokens;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
@@ -56,11 +56,15 @@ class AutenticateController extends Controller
             ]);
         }
 
-        $token = $user->createToken($request->email)->plainTextToken;
+        //$token = $user->createToken($request->email)->plainTextToken;
+        $user_authtoken = $user->createAuthToken('web',20);
+        $user_refreshtoken = $user->createRefreshToken('web', 120);
 
         return response()->json([
             'res' => true,
-            'token' => $token
+            //'token' => $token,
+            'user_authtoken' => $user_authtoken,
+            'user_refreshtoken' => $user_refreshtoken
         ], 200);
     }
 
