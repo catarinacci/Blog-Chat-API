@@ -9,11 +9,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\Api\NewPasswordController;
 
 
 Route::post('register', [AutenticateController::class, 'register']);
 Route::post('login', [AutenticateController::class, 'login']);
 
+Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
+Route::post('reset-password', [NewPasswordController::class, 'reset']);
 // Route::post('/', [ImageController::class, 'store']);
 // Route::get('/{image}', [ImageController::class, 'show']);
 
@@ -21,6 +24,12 @@ Route::post('login', [AutenticateController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::post('logout', [AutenticateController::class, 'logout']);
+
+    Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware('auth:sanctum');
+    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware('auth:sanctum');
+
+    // Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
+    // Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
     //Users
     //Route::apiResource('user', UserController::class);

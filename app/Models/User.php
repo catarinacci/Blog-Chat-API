@@ -6,11 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordNotification;
 //use Laravel\Sanctum\HasApiTokens;
 use MohamedGaber\SanctumRefreshToken\Traits\HasApiTokens;
 use App\Models\Note;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -59,5 +60,13 @@ class User extends Authenticatable
     // Relación uno a uno polimorfica
     public function image(){
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+
+        $url = 'https://spa.test/reset-password?token=' . $token;
+
+        $this->notify(new ResetPasswordNotification($url));
     }
 }
