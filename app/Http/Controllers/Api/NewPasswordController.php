@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\ValidationException;
 
 class NewPasswordController extends Controller
 {
     public function forgotPassword(Request $request)
     {
+        // return $request->email;
         $request->validate([
             'email' => 'required|email',
         ]);
