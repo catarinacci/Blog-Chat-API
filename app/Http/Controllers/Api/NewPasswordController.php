@@ -10,28 +10,44 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Validation\Rules\Password as RulesPassword;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class NewPasswordController extends Controller
 {
     public function forgotPassword(Request $request)
     {
         // return $request->email;
+
+
+        //return $user;
+
+        // $token = $user->sendPasswordResetNotification('hola');
+        // return $token;
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users',
         ]);
 
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+        $user = User::where('email', $request->email)->first();
 
-        if ($status == Password::RESET_LINK_SENT) {
+        $token_create = $user->createToken('authtoken');
+        $token = $token_create->plainTextToken;
+
+
+        $data = $user->sendPasswordResetNotification($token);
+
+        // $status = Password::sendResetLink(
+        //     $request->only('email')
+        // );
+
+        if (Password::RESET_LINK_SENT) {
             return [
-                'status' => __($status)
+                'status' => ' El email para el restablecimiento de su contraceña fue enviado con èxito ',
+                'email_password_reset' => $data
             ];
         }
 
         throw ValidationException::withMessages([
-            'email' => [trans($status)],
+            // 'email' => [trans($status)],
         ]);
     }
 

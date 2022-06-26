@@ -61,12 +61,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function image(){
         return $this->morphOne(Image::class, 'imageable');
     }
+    // public $token;
+    // public  $token_create;
+    // public $token_create = $this->createToken('authtoken');
+    // public $token = $token_create->plainTextToken;
 
     public function sendPasswordResetNotification($token)
     {
-
-        $url = 'https://spa.test/reset-password?token=' . $token;
+        // $token_id = makeRandomToken();
+        $url = 'https://catarinacci.herokuapp.com/api/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
+
+        $data = [
+            'url' => 'https://catarinacci.herokuapp.com/api/reset-password?token=',
+            'token' => $token
+        ];
+        return $data;
+
     }
 }
