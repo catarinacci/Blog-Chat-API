@@ -10,6 +10,7 @@ use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Api\NewPasswordController;
+use App\Http\Controllers\Api\EmailVerificationController;
 
 
 Route::post('register', [AutenticateController::class, 'register']);
@@ -25,8 +26,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::post('logout', [AutenticateController::class, 'logout']);
 
-    Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware('auth:sanctum');
-    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware('auth:sanctum');
+    Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
+    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 
     // Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
     // Route::post('reset-password', [NewPasswordController::class, 'reset']);

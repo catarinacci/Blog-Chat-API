@@ -43,7 +43,7 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hello')
+                    ->greeting('Hello' . ' '. $notifiable->name)
                     ->line('Forgot Password?')
                     ->line('Please enter the code below in your password reset page')
                     ->line( $this->url)
