@@ -69,13 +69,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         // $token_id = makeRandomToken();
-        $url = 'https://catarinacci.herokuapp.com/api/reset-password?token=' . $token;
+        $url =  $token;
+        //return $url;
 
         $this->notify(new ResetPasswordNotification($url));
 
         $data = [
-            'url' => 'https://catarinacci.herokuapp.com/api/reset-password?token=',
-            'token' => $token
+            // 'status' => ''
+            // 'url' => 'https://catarinacci.herokuapp.com/api/reset-password?token='
+            // 'token' => $token
         ];
         return $data;
 

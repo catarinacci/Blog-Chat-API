@@ -16,33 +16,33 @@ class NewPasswordController extends Controller
 {
     public function forgotPassword(Request $request)
     {
-        // return $request->email;
+         //return $request->email;
 
 
         //return $user;
-
+        // $user = User::where('email', $request->email)->first();
+        // // $user = 'a';
+        // return $user;
         // $token = $user->sendPasswordResetNotification('hola');
         // return $token;
         $request->validate([
             'email' => 'required|email|exists:users',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        // $user = User::where('email', $request->email)->first();
 
-        $token_create = $user->createToken('authtoken');
-        $token = $token_create->plainTextToken;
+        // $code = Str::random(6);
+        // $token = strtoupper($code);
 
+        // $data = $user->sendPasswordResetNotification($token);
 
-        $data = $user->sendPasswordResetNotification($token);
-
-        // $status = Password::sendResetLink(
-        //     $request->only('email')
-        // );
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
 
         if (Password::RESET_LINK_SENT) {
             return [
-                'status' => ' El email para el restablecimiento de su contraceña fue enviado con èxito ',
-                'email_password_reset' => $data
+                'status' => ' El email para el restablecimiento de su contraceña fue enviado con èxito '
             ];
         }
 
@@ -58,7 +58,7 @@ class NewPasswordController extends Controller
             'email' => 'required|email',
             'password' => ['required', 'confirmed', RulesPassword::defaults()],
         ]);
-
+        //return $request->token;
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
