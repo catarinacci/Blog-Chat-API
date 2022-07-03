@@ -24,6 +24,8 @@ class EmailVerificationController extends Controller
 
     public function verify(EmailVerificationRequest $request)
     {
+        dd($request);
+
         if ($request->user()->hasVerifiedEmail()) {
             return [
                 'message' => 'Email already verified'

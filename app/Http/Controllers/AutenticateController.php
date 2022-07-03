@@ -10,6 +10,9 @@ use App\Models\User;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class AutenticateController extends Controller
 {
@@ -38,6 +41,9 @@ class AutenticateController extends Controller
         if($path){
             $user->image()->create(['url' => $path]);
         }
+
+        event(new Registered($user));
+
         return response()->json([
             'user'=> $user,
             'res' => true,

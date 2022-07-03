@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\EmailVerificationController;
 
 
 Route::post('register', [AutenticateController::class, 'register']);
+Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
+Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
+
 Route::post('login', [AutenticateController::class, 'login']);
 
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
@@ -22,12 +25,13 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 // Route::get('/{image}', [ImageController::class, 'show']);
 
 
+// Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::post('logout', [AutenticateController::class, 'logout']);
 
     Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
-    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
+    Route::post('verify-email', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 
     // Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
     // Route::post('reset-password', [NewPasswordController::class, 'reset']);
@@ -38,7 +42,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // Route::post('user', [UserController::class, 'store']);
     Route::get('user/{user}', [UserController::class, 'show']);
     Route::post('user/{user}', [UserController::class, 'update']);
-    // Route::delete('user/{user}', [UserController::class, 'destroy']);
+    Route::delete('user/{user}', [UserController::class, 'destroy']);
 
     //Notes
     //Route::apiResource('note', NoteController::class);
