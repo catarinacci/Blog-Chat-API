@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
+use App\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -57,18 +58,17 @@ class AuthServiceProvider extends ServiceProvider
         };
 
         VerifyEmail::$createUrlCallback = function($notifiable){
-            // return URL::temporarySignedRoute(
-            //     'verification.verify',
-            //     Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
-            //     [
-            //         'id' => $notifiable->getKey(),
-            //         'hash' => sha1($notifiable->getEmailForVerification()),
-            //         // 'hash' => Str::random(6),
-            // //     ]
-            // );
+
             $code_string = Str::random(6);
             $code = mb_strtoupper($code_string);
-            return $code;
+
+            $user = User::where('id', $notifiable->id)->first();
+
+            $user->forceFill([
+                'code_verify_email' => $code,
+            ])->save();
+
+            return $code ;
         };
 
 

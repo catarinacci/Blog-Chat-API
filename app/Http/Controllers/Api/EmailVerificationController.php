@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\Constraint\IsEmpty;
 
 class EmailVerificationController extends Controller
 {
@@ -22,22 +24,36 @@ class EmailVerificationController extends Controller
         return ['status' => 'verification-link-sent'];
     }
 
-    public function verify(EmailVerificationRequest $request)
+    public function verify(Request $request)
     {
-        dd($request);
+        //return($request->code);
+        $user = Auth::user();
 
-        if ($request->user()->hasVerifiedEmail()) {
+        // return $request->user();
+        if ($user->hasVerifiedEmail()) {
             return [
                 'message' => 'Email already verified'
             ];
         }
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
+        //return $user->code_verify_email . $request->code;
 
-        return [
-            'message'=>'Email has been verified'
-        ];
+        $code1 = (string)$user->code_verify_email;
+        $code2 = (string)$request->code;
+
+        if($code1 == $code2 ){
+
+            if ($user->markEmailAsVerified()) {
+                event(new Verified($request->user()));
+            }
+
+            return [
+                'message'=>'Email has been verified'
+            ];
+        }else{
+            return [
+                'message' => 'El código ingresado es incorrecto '
+            ];
+        }
     }
 }

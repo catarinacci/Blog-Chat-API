@@ -8,33 +8,24 @@ use App\Http\Controllers\TypeReactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ImageController;
+//use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Api\NewPasswordController;
 use App\Http\Controllers\Api\EmailVerificationController;
 
 
 Route::post('register', [AutenticateController::class, 'register']);
-Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
-Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
-
 Route::post('login', [AutenticateController::class, 'login']);
 
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
-// Route::post('/', [ImageController::class, 'store']);
-// Route::get('/{image}', [ImageController::class, 'show']);
+
+Route::post('logout', [AutenticateController::class, 'logout'])->middleware('auth:sanctum');
+
+Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
+Route::post('verify-email', [EmailVerificationController::class, 'verify'])->middleware('auth:sanctum');
 
 
-// Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
-Route::group(['middleware' => ['auth:sanctum']], function(){
-
-    Route::post('logout', [AutenticateController::class, 'logout']);
-
-    Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
-    Route::post('verify-email', [EmailVerificationController::class, 'verify'])->name('verification.verify');
-
-    // Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
-    // Route::post('reset-password', [NewPasswordController::class, 'reset']);
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     //Users
     //Route::apiResource('user', UserController::class);

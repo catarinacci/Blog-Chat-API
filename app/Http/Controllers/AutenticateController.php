@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use Illuminate\Support\Facades\Auth;
 
 class AutenticateController extends Controller
 {
@@ -81,5 +83,6 @@ class AutenticateController extends Controller
             'res' => true,
             'msg' => 'Token Eliminado Correctamente'
         ], 200);
+
     }
 }
