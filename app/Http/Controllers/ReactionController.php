@@ -12,6 +12,7 @@ use App\Models\Reaction;
 use App\Models\Note;
 
 use Illuminate\Support\Facades\Auth;
+use App\Events\ReactionEvent;
 
 class ReactionController extends Controller
 {
@@ -63,6 +64,7 @@ class ReactionController extends Controller
                     'note_id' => $request->note_id,
                     'typereaction_id' => $request->typereaction_id
                 ]);
+                event(new ReactionEvent($reaction));
                 return new ReactionResource($reaction);
     }
 

@@ -8,6 +8,9 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\CommentEvent;
 use App\Listeners\CommentListener;
+use App\Events\ReactionEvent;
+use App\Listeners\ReactionListener;
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CommentEvent::class =>[
             CommentListener::class,
+        ],
+        ReactionEvent::class =>[
+            ReactionListener::class,
         ],
     ];
 
