@@ -42,10 +42,6 @@ class AuthServiceProvider extends ServiceProvider
         //         ->action('Verify Email Address', $spaUrl);
         // });
 
-
-        // $this->registerPolicies();
-        //$verificationUrl = Str::random(6);
-
         VerifyEmail::$toMailCallback = function($notifiable, $verificationUrl){
 
          return (new MailMessage)

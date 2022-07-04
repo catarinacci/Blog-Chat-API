@@ -28,10 +28,10 @@ class NoteController extends Controller
 
         $url = Url::filterUrl($nota->image);
         //$ruta = Storage::disk('s3')->put($url, 'public');
-        return $nota;
-        return $url;
-        return $nota->image;
-        return $ruta;
+        // return $nota;
+        // return $url;
+        // return $nota->image;
+        // return $ruta;
         // return response()->download(($url),$nota->content);
     }
 

@@ -11,6 +11,7 @@ use App\Http\Resources\CommentCollection;
 use App\Http\Requests\Comments\GuardarComentarioRequest;
 use App\Http\Requests\Comments\ActualizarComentarioRequest;
 use App\Http\Resources\CommentResource;
+use App\Events\CommentEvent;
 
 class CommentController extends Controller
 {
@@ -62,7 +63,7 @@ class CommentController extends Controller
                 'user_id' => Auth::user()->id,
                 'note_id' => $request->note_id
             ]);
-
+            event(new CommentEvent($coment));
             return new CommentResource($coment);
     }
 
