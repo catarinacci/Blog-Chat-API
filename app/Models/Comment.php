@@ -25,4 +25,15 @@ class Comment extends Model
     public function note(){
         return $this->belongsTo(Note::class);
     }
+
+    // Relación uno a muchos
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
+    }
+    // Relación polimórfica uno a mucho
+
+    public function reactionmorph(){
+
+        return $this->morphToMany(ReactionMorph::class,'reactionmorphable');
+    }
 }

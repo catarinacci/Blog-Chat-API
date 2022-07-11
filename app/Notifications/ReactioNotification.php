@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notification;
 use App\Models\Reaction;
 use App\Models\User;
 use App\Helpers\FormatTime;
+use App\Models\ReactionMorph;
 
 class ReactioNotification extends Notification
 {
@@ -19,7 +20,7 @@ class ReactioNotification extends Notification
      *
      * @return void
      */
-    public function __construct(Reaction $reaction)
+    public function __construct(ReactionMorph $reaction)
     {
         $this->reaction = $reaction;
     }
@@ -58,18 +59,18 @@ class ReactioNotification extends Notification
     public function toArray($notifiable)
     {
         $reaction = Reaction::where('id', $this->reaction->typereaction_id)->first();
-        $name = $reaction->name;
+       // $name = User:: $reaction->name;
         $time = FormatTime::LongTimeFilter($this->reaction->created_at);
         return [
             'reaction_id' => $this->reaction->id,
-            'note_id' => "/api/note/" . $this->reaction->note_id,
-            'user_id' => "/api/user/" . $this->reaction->user_id,
-            'content' => $this->reaction->content,
-            'typereaction_name' => $name,
+            // 'note_id' => "/api/note/" . $this->reaction->note_id,
+            // 'user_id' => "/api/user/" . $this->reaction->user_id,
+            // 'content' => $this->reaction->content,
+            // 'typereaction_name' => $name,
             // "id" => $this->id,
             // 'note_id' =>"/api/note/". $this->note_id,
             // 'user_id' => "/api/user/".$this->user_id,
-            "name" => User::find($this->reaction->user_id)->name,
+            // "name" => User::find($this->reaction->user_id)->name,
             'typereaction_id' => $this->reaction->typereaction_id,
             //'typereaction' => TypeReaction::find($this->typereaction_id)->name,
             //"type" => $this->typereaction->name,

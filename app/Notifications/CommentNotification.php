@@ -57,13 +57,14 @@ class CommentNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        $time = FormatTime::LongTimeFilter($this->created_at);
+        // return $notifiable;
+        // $time = FormatTime::LongTimeFilter($this->created_at);
         return [
             'comment_id' => $this->comment->id,
             'note_id' => $this->comment->note_id,
             'user_id' => $this->comment->user_id,
             'content' => $this->comment->content,
-            'created_at' => $time,
+            'created_at' => $this->comment->create_at,
         ];
     }
 }

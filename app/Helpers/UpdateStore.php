@@ -100,7 +100,7 @@ class UpdateStoreFiles{
 
                             $image_object_save = $request->file('image')->store('noteapi', 's3');
                             $imagen = Storage::disk('s3')->url($image_object_save);
-                            $user_object->image()->create([
+                            $user->image()->create([
                                 'url' => $imagen,
                             ]);
 

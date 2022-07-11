@@ -27,6 +27,10 @@ class Reaction extends Model
         return $this->belongsTo(Note::class);
     }
 
+    public function comment(){
+        return $this->belongsTo(Comment::class);
+    }
+
     // Relación de muchos a uno
     public function typereaction() {
         return $this->belongsTo(TypeReaction::class);

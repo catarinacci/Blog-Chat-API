@@ -59,7 +59,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     //Reactions
     Route::apiResource('reaction', ReactionController::class);
     // Route::get('reactions', [ReactionController::class, 'index']);
-    // Route::post('reaction', [ReactionController::class, 'store']);
+    Route::post('reaction-note', [ReactionController::class, 'storeNote']);
+    Route::post('reaction-comment', [ReactionController::class, 'storeComment']);
     // Route::get('reaction/{reaction}', [ReactionController::class, 'show']);
     // Route::put('reaction/{reaction}', [ReactionController::class, 'update']);
     // Route::delete('reaction/{reaction}', [ReactionController::class, 'destroy']);
@@ -70,7 +71,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     //TypeReactions
     Route::apiResource('typereaction', TypeReactionController::class);
     // Route::get('typereactions', [TypeReactionController::class, 'index']);
-    // Route::post('typereaction', [TypeReactionController::class, 'store']);
+    Route::post('typereaction', [TypeReactionController::class, 'store']);
     // Route::get('typereaction/{typereaction}', [TypeReactionController::class, 'show']);
     // Route::put('typereaction/{typereaction}', [TypeReactionController::class, 'update']);
     // Route::delete('typereaction/{typereaction}', [TypeReactionController::class, 'destroy']);

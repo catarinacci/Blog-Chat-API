@@ -13,6 +13,8 @@ use App\Models\Note;
 
 use Illuminate\Support\Facades\Auth;
 use App\Events\ReactionEvent;
+use App\Models\ReactionMorph;
+use App\Models\TypeReaction;
 
 class ReactionController extends Controller
 {
@@ -57,15 +59,27 @@ class ReactionController extends Controller
 
     }
 
-    public function store(GuardarReaccionRequest $request)
+    public function storeNote(GuardarReaccionRequest $request)
     {
-                $reaction = Reaction::create([
-                    'user_id' => Auth::user()->id,
-                    'note_id' => $request->note_id,
-                    'typereaction_id' => $request->typereaction_id
+       // return $request->typereaction_id;
+        $typereaction = TypeReaction::where('id', $request->typereaction_id)->find(1);
+                $messaje = 'El usuario '. Auth::user()->name .' reaccionó a la nota, con un ';
+                $nota = Note::where('id', $request->note_id)->find(1);
+                // return $nota->reactionmorphs;
+                 $reaction = $nota->reactionmorphs()->create([
+
+                    'mensaje' => $typereaction->name
+
                 ]);
+                // $reaction = ReactionMorph::create([
+                //     'messaje' => $messaje
+                // ]);
+                // return $nota ;
                 event(new ReactionEvent($reaction));
+                // $nota = Note::where('id', $reaction->reactionmorphable_id)->first();
+                // return $nota;
                 return new ReactionResource($reaction);
+                //return $reaction;
     }
 
     public function show($reaction_id)

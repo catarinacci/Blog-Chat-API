@@ -37,5 +37,11 @@ class Note extends Model
     public function image(){
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    // Relación polimórfica uno a mucho
+
+    public function reactionmorphs(){
+        return $this->morphMany(ReactionMorph::class,'reactionmorphable');
+    }
     use HasFactory;
 }
