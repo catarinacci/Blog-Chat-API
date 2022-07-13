@@ -1,7 +1,13 @@
 .container{
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
-/* .bg-lime-700{
-    --tw-bg-opacity: 1;
-    background-color: ;
+/* .text-green-400{
+    --tw-text-opacity: 0.5;
+    background-color:#4ADE80 ;
 } */
+.text-opacity-80{
+    --tw-text-opacity: 0.8
+}
+.text-opacity-70{
+    --tw-text-opacity: 0.7
+}

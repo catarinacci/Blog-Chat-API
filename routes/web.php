@@ -14,7 +14,7 @@ use App\Http\Controllers\ImageController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
 
