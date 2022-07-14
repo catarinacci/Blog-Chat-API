@@ -25,7 +25,4 @@
             </div>
 
     </div>
-    <nav class="bg-indigo-900 bg-opacity-40 absolute ">
-
-    </nav>
 </header>
