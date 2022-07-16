@@ -20,7 +20,7 @@
             <img class="w-50 h-20" src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/Free_Sample_By_Wix(4).jpg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
             </a>
         </div>
-            <div class="flex flex-col items-center order-last justify-center text-green-400 cursor-pointer hover:text-indigo-400 font-semibold ">
+            <div class="flex flex-col items-center order-last justify-center text-green-400 cursor-pointer rounded-lg hover:bg-indigo-400 font-semibold ">
                 <button class="outline outline-offset-4 outline-1 outline-indigo-500 rounded-lg   ">DEJA TU <br>COMENTARIO</button>
             </div>
 

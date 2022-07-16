@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('note/{note}', [NoteController::class, 'show']);
     Route::delete('note/{note}', [NoteController::class, 'destroy']);
     Route::post('note/{note}', [NoteController::class, 'update']);
-    Route::get('note/{note}/image', [NoteController::class, 'image']);
+    //Route::get('note/{note}/image', [NoteController::class, 'image']);
     Route::get('note_user', [NoteController::class, 'noteUser']);
 
     //Comments

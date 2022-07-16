@@ -15,6 +15,9 @@ class CreateMethodsTable extends Migration
     {
         Schema::create('methods', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('module_id');
+            $table->foreign('module_id')->references('id')->on('modules');
             $table->timestamps();
         });
     }

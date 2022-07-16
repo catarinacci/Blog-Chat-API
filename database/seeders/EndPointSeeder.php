@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Reaction;
 
-class ReactionSeeder extends Seeder
+class EndPointSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +13,6 @@ class ReactionSeeder extends Seeder
      */
     public function run()
     {
-        Reaction::factory(10)->create();
 
     }
 }

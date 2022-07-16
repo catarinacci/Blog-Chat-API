@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Module extends Model
 {
     use HasFactory;
+
+    protected $fillable =['name', 'icon'];
+
+    // Relación de uno a muchos
+    public function methods(){
+        return $this->hasMany(Method::class);
+    }
 }

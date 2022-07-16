@@ -15,6 +15,9 @@ class CreateEndPointsTable extends Migration
     {
         Schema::create('end_points', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('method_id');
+            $table->foreign('method_id')->references('id')->on('methods');
             $table->timestamps();
         });
     }
