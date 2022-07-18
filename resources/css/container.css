@@ -37,3 +37,9 @@
 .-mr-111{
         margin-right: -3.5rem;
 }
+.mr-113 {
+    margin-right: -0.25rem;
+}
+.text-shadow-lg {
+    text-shadow: 0 15px 30px rgba(0,0,0,0.11), 0 5px 15px rgba(0,0,0,0.08);
+  }
