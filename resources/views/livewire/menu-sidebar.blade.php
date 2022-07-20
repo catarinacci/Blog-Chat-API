@@ -43,8 +43,8 @@
             <nav
             {{-- x-show = "open" --}}
             {{-- :class="{'block' : open, 'hidden' : !open }" --}}
-            :class="{'block' : open, 'hidden' : !open, 'w-0':!open }"
-            class=" fixed top-0 bottom-0 lg:left-0 p-2 overflow-y-auto duration-300 w-80 text-center bg-gray-900 hidden ">
+            :class="{'block' : open, 'hidden' : !open }"
+            class=" fixed top-0 bottom-0 lg:left-0 p-2 overflow-y-auto transition duration-700 ease-in w-80  text-center bg-gray-900 hidden ">
 
             <div >
                 <div class="grid grid-cols-3 items-center ">
@@ -55,7 +55,7 @@
                         <p class="font-extrabold text-green-400 text-xl ">MENU</p>
                     </div>
                     <a x-on:click="open = false">
-                        <div class="col-span-1 w-full  text-2xl text-gray-300 hover:text-indigo-700">
+                        <div class="col-span-1 w-full transition duration-700 ease-in text-2xl text-gray-300 hover:text-indigo-700">
                             <i class="bi bi-x-circle cursor-pointer -mr-111 "></i>
                         </div>
                     </a>
@@ -63,20 +63,20 @@
 
                 <hr class="my-3  ">
 
-                <div  class=" mt-6 flex items-center text-2xl rounded-md duration-300 cursor-pointer hover:bg-indigo-700">
+                <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
                     <i class="bi bi-house-door-fill mr-4 ml-4 text-gray-300"></i>
                     <p class="font-extrabold text-gray-300 text-xl">Home</p>
                 </div>
                 {{-- USER --}}
                 <div x-data ="{user : false}">
                     <a x-on:click = "user = !user">
-                        <div  class=" mt-6 flex items-center text-2xl rounded-md duration-300 cursor-pointer hover:bg-indigo-700">
+                        <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
                             {{-- <i class="bi bi-house-door-fill mr-4 ml-4 text-gray-300"></i> --}}
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(1)->icon!!}</div>
 
                             <p class="font-extrabold text-gray-300 text-lg">{{ $modules->find(1)->name }}</p>
 
-                                <span  x-ref="arrow" :class="{'block' : user, 'rotate-0' : !user}" class="text-xl text-gray-300 ml-2 rotate-180">
+                                <span x-ref="arrow" :class="{'block' : user, 'rotate-0' : !user,}" class="text-xl text-gray-300 ml-2 rotate-180">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                         </div>
@@ -84,7 +84,7 @@
                         <div x-ref="submenu">
                             @foreach ( $modules->find(1)->methods as $method )
                             <div :class="{'block' : user, 'hidden' : !user}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
-                                <li class="cursor-pointer p-2 hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
                             </div>
                         @endforeach
                         </div>
@@ -93,7 +93,7 @@
                 {{-- NOTE --}}
                 <div x-data ="{note : false}">
                     <a x-on:click = "note = !note">
-                        <div  class=" mt-6 flex items-center text-2xl rounded-md duration-300 cursor-pointer hover:bg-indigo-700">
+                        <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(2)->icon!!}</div>
 
@@ -107,7 +107,7 @@
                         <div x-ref="submenu">
                             @foreach ( $modules->find(2)->methods as $method )
                             <div :class="{'block' : note, 'hidden' : !note}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
-                                <li class="cursor-pointer p-2 hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
                             </div>
                         @endforeach
                         </div>
@@ -116,7 +116,7 @@
                 {{-- COMMENT --}}
                 <div x-data ="{comment : false}">
                     <a x-on:click = "comment = !comment">
-                        <div  class=" mt-6 flex items-center text-2xl rounded-md duration-300 cursor-pointer hover:bg-indigo-700">
+                        <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(3)->icon!!}</div>
 
@@ -130,7 +130,7 @@
                         <div x-ref="submenu">
                             @foreach ( $modules->find(3)->methods as $method )
                             <div :class="{'block' : comment, 'hidden' : !comment}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
-                                <li class="cursor-pointer p-2 hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
                             </div>
                         @endforeach
                         </div>
@@ -139,7 +139,7 @@
                 {{-- REACTION --}}
                 <div x-data ="{reaction : false}">
                     <a x-on:click = "reaction = !reaction">
-                        <div  class=" mt-6 flex items-center text-2xl rounded-md duration-300 cursor-pointer hover:bg-indigo-700">
+                        <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(4)->icon!!}</div>
 
@@ -153,7 +153,7 @@
                         <div x-ref="submenu">
                             @foreach ( $modules->find(4)->methods as $method )
                             <div :class="{'block' : reaction, 'hidden' : !reaction}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
-                                <li class="cursor-pointer p-2 hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
                             </div>
                         @endforeach
                         </div>
@@ -162,7 +162,7 @@
                 {{-- NOTIFICATION --}}
                 <div x-data ="{notification : false}">
                     <a x-on:click = "notification = !notification">
-                        <div  class=" mt-6 flex items-center text-2xl rounded-md duration-300 cursor-pointer hover:bg-indigo-700">
+                        <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(5)->icon!!}</div>
 
@@ -176,7 +176,7 @@
                         <div x-ref="submenu">
                             @foreach ( $modules->find(5)->methods as $method )
                             <div :class="{'block' : notification, 'hidden' : !notification}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
-                                <li class="cursor-pointer p-2 hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
                             </div>
                         @endforeach
                         </div>
@@ -191,8 +191,5 @@
 </header>
 
 <script>
-    function dropdown(){
-        document.querySelector('#submenu').classList.toggle('block')
-    }
-    dropdown()
+
 </script>

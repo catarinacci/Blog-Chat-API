@@ -12,6 +12,10 @@ module.exports = {
 
     theme: {
         extend: {
+            transitionDuration: {
+                '700': '700ms',
+                '500': '500ms',
+              },
             fontFamily: {
                 sans: ['Nunito', ],
                 sarp: ['Sarpanch' ],
