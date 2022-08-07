@@ -7,7 +7,7 @@
 <header x-data="{ open: false}">
 
     {{-- Menu --}}
-    <div x-on:click.away="open=false" class="bg-indigo-900 sticky top-0">
+    <div x-on:click.away="open=false" class="flex bg-indigo-900 sticky top-0">
         <div class="container flex items-center h-20 justify-between ">
             {{-- <a x-on:click="$ref.sidebar.classList.remove('hidden')"> --}}
             <a x-on:click="open = !open" >
@@ -43,12 +43,12 @@
             <nav
             {{-- x-show = "open" --}}
             {{-- :class="{'block' : open, 'hidden' : !open }" --}}
-            :class="{'block' : open, 'hidden' : !open }"
-            class=" fixed top-0 bottom-0 lg:left-0 p-2 overflow-y-auto transition duration-700 ease-in w-80 text-center bg-gray-900 hidden ">
+            :class="{ 'hidden' : !open }"
+            class=" fixed w-80 sm:flex top-0 bottom-0 lg:left-0 p-2 overflow-y-auto transition duration-700 ease-in  text-center bg-gray-900 hidden ">
 
-            <div >
+            <div class="sm:flex-1">
                 <div class="grid grid-cols-3 items-center ">
-                    <div class="  w-full">
+                    <div class="">
                         <img class="w-12 h-12" src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/Free_Sample_By_Wix(6)logo.jpg" alt="">
                     </div>
                     <div class="col-span-1 w-full  ">
