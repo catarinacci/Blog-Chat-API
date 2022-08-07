@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 // use Laravel\Sanctum\HasApiTokens;
 use MohamedGaber\SanctumRefreshToken\Traits\HasApiTokens;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -26,9 +27,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
+        'nickname',
         'email',
-        'password',
         'image',
+        'password',
+        'email_verified_at'
     ];
 
     /**
@@ -61,8 +65,24 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-        // Relación uno a uno polimorfica
-        public function image(){
-            return $this->morphOne(Image::class, 'imageable');
-        }
+        //Relacion de uno a muchos
+    public function notes(){
+        return $this->hasMany(Note::class);
+    }
+
+    // Relación uno a uno polimorfica
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+
+    public function sendPasswordResetNotification($token)
+    {
+        // $token_id = makeRandomToken();
+        $url =  $token;
+        //return $url;
+
+        $this->notify(new ResetPasswordNotification($url));
+    }
+
 }
