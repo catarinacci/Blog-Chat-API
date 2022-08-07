@@ -11,8 +11,9 @@ use Laravel\Jetstream\HasProfilePhoto;
 // use Laravel\Sanctum\HasApiTokens;
 use MohamedGaber\SanctumRefreshToken\Traits\HasApiTokens;
 use App\Notifications\ResetPasswordNotification;
+use App\Models\Note;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -25,6 +26,8 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'surname',
