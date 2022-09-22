@@ -44,15 +44,15 @@
             {{-- x-show = "open" --}}
             {{-- :class="{'block' : open, 'hidden' : !open }" --}}
             :class="{ 'hidden' : !open }"
-            class=" fixed w-80 sm:flex top-0 bottom-0 lg:left-0 p-2 overflow-y-auto transition duration-700 ease-in  text-center bg-gray-900 hidden ">
+            class=" fixed w-full sm:w-80 top-0 bottom-0 lg:left-0 p-2 overflow-y-auto transition duration-700 ease-in  text-center bg-gray-900 hidden ">
 
-            <div class="sm:flex-1">
+            <div class="">
                 <div class="grid grid-cols-3 items-center ">
                     <div class="">
                         <img class="w-12 h-12" src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/Free_Sample_By_Wix(6)logo.jpg" alt="">
                     </div>
                     <div class="col-span-1 w-full  ">
-                        <p class="font-extrabold text-green-400 text-xl ">MENU</p>
+                        <p class="font-extrabold text-green-400 text-lg ">MENU</p>
                     </div>
                     <a x-on:click="open = false">
                         <div class="col-span-1 w-full transition duration-700 ease-in text-2xl text-gray-300 hover:text-indigo-700">
@@ -65,7 +65,7 @@
 
                 <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
                     <i class="bi bi-house-door-fill mr-4 ml-4 text-gray-300"></i>
-                    <p class="font-extrabold text-gray-300 text-xl">Home</p>
+                    <p class="font-extrabold text-gray-300 text-lg">Home</p>
                 </div>
                 {{-- USER --}}
                 <div x-data ="{user : false}">
@@ -74,9 +74,9 @@
                             {{-- <i class="bi bi-house-door-fill mr-4 ml-4 text-gray-300"></i> --}}
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(1)->icon!!}</div>
 
-                            <p class="font-extrabold text-gray-300 text-lg">{{ $modules->find(1)->name }}</p>
+                            <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(1)->name }}</p>
 
-                                <span x-ref="arrow" :class="{'block' : user, 'rotate-0' : !user,}" class="text-xl text-gray-300 ml-2 rotate-180">
+                                <span x-ref="arrow" :class="{'block' : user, 'rotate-180' : user,}" class="text-xl text-gray-300 ml-2 rotate-0">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                         </div>
@@ -97,9 +97,9 @@
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(2)->icon!!}</div>
 
-                            <p class="font-extrabold text-gray-300 text-lg">{{ $modules->find(2)->name }}</p>
+                            <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(2)->name }}</p>
 
-                                <span  x-ref="arrow" :class="{'block' : note, 'rotate-0' : !note}" class="text-xl text-gray-300 ml-2 rotate-180">
+                                <span  x-ref="arrow" :class="{'block' : note, 'rotate-180' : note}" class="text-xl text-gray-300 ml-2 rotate-0">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                         </div>
@@ -120,9 +120,9 @@
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(3)->icon!!}</div>
 
-                            <p class="font-extrabold text-gray-300 text-lg">{{ $modules->find(3)->name }}</p>
+                            <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(3)->name }}</p>
 
-                                <span  x-ref="arrow" :class="{'block' : comment, 'rotate-0' : !comment}" class="text-xl text-gray-300 ml-2 rotate-180">
+                                <span  x-ref="arrow" :class="{'block' : comment, 'rotate-180' : comment}" class="text-xl text-gray-300 ml-2 rotate-0">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                         </div>
@@ -143,9 +143,9 @@
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(4)->icon!!}</div>
 
-                            <p class="font-extrabold text-gray-300 text-lg">{{ $modules->find(4)->name }}</p>
+                            <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(4)->name }}</p>
 
-                                <span  x-ref="arrow" :class="{'block' : reaction, 'rotate-0' : !reaction}" class="text-xl text-gray-300 ml-2 rotate-180">
+                                <span  x-ref="arrow" :class="{'block' : reaction, 'rotate-180' : reaction}" class="text-xl text-gray-300 ml-2 rotate-0">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                         </div>
@@ -166,9 +166,9 @@
 
                             <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(5)->icon!!}</div>
 
-                            <p class="font-extrabold text-gray-300 text-lg">{{ $modules->find(5)->name }}</p>
+                            <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(5)->name }}</p>
 
-                                <span  x-ref="arrow" :class="{'block' : notification, 'rotate-0' : !notification}" class="text-xl text-gray-300 ml-2 rotate-180">
+                                <span  x-ref="arrow" :class="{'block' : notification, 'rotate-180' : notification}" class="text-xl text-gray-300 ml-2 rotate-0">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                         </div>
