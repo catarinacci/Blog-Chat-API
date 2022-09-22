@@ -44,7 +44,7 @@
             {{-- x-show = "open" --}}
             {{-- :class="{'block' : open, 'hidden' : !open }" --}}
             :class="{ 'hidden' : !open }"
-            class=" fixed w-full sm:w-80 top-0 bottom-0 lg:left-0 p-2 overflow-y-auto transition duration-700 ease-in  text-center bg-gray-900 hidden ">
+            class=" fixed w-80 sm:w-full top-0 bottom-0 lg:left-0 p-2 overflow-y-auto transition duration-700 ease-in  text-center bg-gray-900 hidden ">
 
             <div class="">
                 <div class="grid grid-cols-3 items-center ">
@@ -76,7 +76,7 @@
 
                             <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(1)->name }}</p>
 
-                                <span x-ref="arrow" :class="{'block' : user, 'rotate-180' : user,}" class="text-xl text-gray-300 ml-2 rotate-0">
+                                <span x-ref="arrow" :class="{'block' : user, 'rotate-0' : user,}" class="text-xl text-gray-300 ml-2 rotate-180">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                         </div>
