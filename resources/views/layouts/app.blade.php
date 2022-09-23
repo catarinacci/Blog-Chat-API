@@ -23,7 +23,7 @@
 
         <div class="min-h-screen bg-gray-100">
 
-            @livewire('menu-sidebar')
+            @livewire('navigation')
 
             <!-- Page Heading -->
             {{-- @if (isset($header))

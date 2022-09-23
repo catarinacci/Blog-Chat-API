@@ -635,6 +635,9 @@ video {
 .order-last{
   order: 9999;
 }
+.order-first{
+  order: -9999;
+}
 .col-span-6{
   grid-column: span 6 / span 6;
 }
@@ -1613,6 +1616,18 @@ video {
 }
 @media (min-width: 640px){
 
+  .sm\:order-first{
+    order: -9999;
+  }
+
+  .sm\:order-1{
+    order: 1;
+  }
+
+  .sm\:order-3{
+    order: 3;
+  }
+
   .sm\:col-span-4{
     grid-column: span 4 / span 4;
   }
@@ -1666,6 +1681,10 @@ video {
 
   .sm\:flex{
     display: flex;
+  }
+
+  .sm\:inline-flex{
+    display: inline-flex;
   }
 
   .sm\:hidden{
@@ -1854,6 +1873,10 @@ video {
 
   .lg\:left-0{
     left: 0px;
+  }
+
+  .lg\:hidden{
+    display: none;
   }
 
   .lg\:px-8{
