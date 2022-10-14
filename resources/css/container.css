@@ -1,6 +1,9 @@
 .container{
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
+.container1{
+    @apply max-w-7xl mx-auto px-2 sm:px-4 lg:px-6;
+}
 /* .text-green-400{
     --tw-text-opacity: 0.5;
     background-color:#4ADE80 ;

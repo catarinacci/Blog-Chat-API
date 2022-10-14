@@ -1,5 +1,5 @@
 <style>
-    #content{
+    #navigation-menu{
         height: calc(100vh - 5rem);
     }
 </style>
@@ -16,4 +16,149 @@
         </a>
         <button class=" hidden sm:block text-green-400 cursor-pointer hover:text-indigo-400 font-semibold outline outline-offset-4 outline-1 outline-indigo-500 rounded-lg   ">DEJA TU <br>COMENTARIO</button>
     </div>
+    <nav id="navigation-menu" class="bg-indigo-700 bg-opacity-25 w-full absolute">
+        <div class="container1 h-full">
+            <div class="grid grid-cols-5 h-full">
+                <ul class="bg-gray-900 col-start-1 col-end-6 sm:col-span-2 ">
+                    <div class="grid grid-cols-3 items-center justify-items-center ">
+                        <div class="justify-items-center">
+                            <img class="w-12 h-12" src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/Free_Sample_By_Wix(6)logo.jpg" alt="">
+                        </div>
+                        <div class="col-span-1 w-full text-center  ">
+                            <p class="font-extrabold text-green-400 text-lg ">MENU</p>
+                        </div>
+                        <a x-on:click="open = false">
+                            <div class="col-span-1 w-full transition duration-700 ease-in text-2xl text-gray-300 hover:text-indigo-700">
+                                <i class="bi bi-x-circle cursor-pointer -mr-111 "></i>
+                            </div>
+                        </a>
+                    </div>
+                    <hr class="my-3  ">
+
+                    <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+                        <i class="bi bi-house-door-fill mr-4 ml-4 text-gray-300"></i>
+                        <p class="font-extrabold text-gray-300 text-lg">Home</p>
+                    </div>
+                    {{-- USER --}}
+                    <div x-data ="{user : false}">
+                        <a x-on:click = "user = !user">
+                            <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+                                {{-- <i class="bi bi-house-door-fill mr-4 ml-4 text-gray-300"></i> --}}
+                                <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(1)->icon!!}</div>
+
+                                <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(1)->name }}</p>
+
+                                    <span x-ref="arrow" :class="{'block' : user, 'rotate-180' : user,}" class="text-xl text-gray-300 ml-2 rotate-0">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                            </div>
+                        </a>
+                            <div x-ref="submenu">
+                                @foreach ( $modules->find(1)->methods as $method )
+                                <div :class="{'block' : user, 'hidden' : !user}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
+                                    <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                </div>
+                                @endforeach
+                            </div>
+                        {{-- @endforeach --}}
+                    </div>
+                        {{-- NOTE --}}
+                    <div x-data ="{note : false}">
+                        <a x-on:click = "note = !note">
+                            <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+
+                                <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(2)->icon!!}</div>
+
+                                <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(2)->name }}</p>
+
+                                    <span  x-ref="arrow" :class="{'block' : note, 'rotate-180' : note}" class="text-xl text-gray-300 ml-2 rotate-0">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                            </div>
+                        </a>
+                            <div x-ref="submenu">
+                                @foreach ( $modules->find(2)->methods as $method )
+                                <div :class="{'block' : note, 'hidden' : !note}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
+                                    <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                </div>
+                            @endforeach
+                            </div>
+                        {{-- @endforeach --}}
+                    </div>
+                    {{-- COMMENT --}}
+                    <div x-data ="{comment : false}">
+                        <a x-on:click = "comment = !comment">
+                            <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+
+                                <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(3)->icon!!}</div>
+
+                                <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(3)->name }}</p>
+
+                                    <span  x-ref="arrow" :class="{'block' : comment, 'rotate-180' : comment}" class="text-xl text-gray-300 ml-2 rotate-0">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                            </div>
+                        </a>
+                            <div x-ref="submenu">
+                                @foreach ( $modules->find(3)->methods as $method )
+                                <div :class="{'block' : comment, 'hidden' : !comment}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
+                                    <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                </div>
+                            @endforeach
+                            </div>
+                        {{-- @endforeach --}}
+                    </div>
+                    {{-- REACTION --}}
+                    <div x-data ="{reaction : false}">
+                        <a x-on:click = "reaction = !reaction">
+                            <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+
+                                <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(4)->icon!!}</div>
+
+                                <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(4)->name }}</p>
+
+                                    <span  x-ref="arrow" :class="{'block' : reaction, 'rotate-180' : reaction}" class="text-xl text-gray-300 ml-2 rotate-0">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                            </div>
+                        </a>
+                            <div x-ref="submenu">
+                                @foreach ( $modules->find(4)->methods as $method )
+                                <div :class="{'block' : reaction, 'hidden' : !reaction}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
+                                    <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                </div>
+                            @endforeach
+                            </div>
+                        {{-- @endforeach --}}
+                    </div>
+                    {{-- NOTIFICATION --}}
+                    <div x-data ="{notification : false}">
+                        <a x-on:click = "notification = !notification">
+                            <div  class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+
+                                <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(5)->icon!!}</div>
+
+                                <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(5)->name }}</p>
+
+                                    <span  x-ref="arrow" :class="{'block' : notification, 'rotate-180' : notification}" class="text-xl text-gray-300 ml-2 rotate-0">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                            </div>
+                        </a>
+                            <div x-ref="submenu">
+                                @foreach ( $modules->find(5)->methods as $method )
+                                <div :class="{'block' : notification, 'hidden' : !notification}"  class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
+                                    <li class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">{{ $method->name }}</li>
+                                </div>
+                            @endforeach
+                            </div>
+                        {{-- @endforeach --}}
+                    </div>
+                </ul>
+                <div class=" hidden col-span-3 bg-slate-600">
+                    <h1>Home</h1>
+                </div>
+            </div>
+        </div>
+    </nav>
 </header>
