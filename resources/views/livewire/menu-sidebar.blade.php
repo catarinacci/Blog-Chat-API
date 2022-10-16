@@ -40,7 +40,7 @@
 
         </div>
         {{-- Sidebar --}}
-            <nav
+        <nav
             {{-- x-show = "open" --}}
             {{-- :class="{'block' : open, 'hidden' : !open }" --}}
             :class="{ 'hidden' : !open }"

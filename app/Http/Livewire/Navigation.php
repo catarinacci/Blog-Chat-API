@@ -10,6 +10,7 @@ class Navigation extends Component
     public function render()
     {
         $modules = Module::all();
+
         return view('livewire.navigation', compact('modules'));
     }
 }
