@@ -1043,8 +1043,14 @@ video {
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
+.overflow-auto{
+  overflow: auto;
+}
 .overflow-hidden{
   overflow: hidden;
+}
+.overflow-scroll{
+  overflow: scroll;
 }
 .overflow-y-auto{
   overflow-y: auto;
@@ -1381,6 +1387,9 @@ video {
 }
 .leading-normal{
   line-height: 1.5;
+}
+.leading-10{
+  line-height: 2.5rem;
 }
 .tracking-widest{
   letter-spacing: 0.1em;
