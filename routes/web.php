@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ShowMethods;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 /*
@@ -12,10 +13,9 @@ use App\Http\Controllers\ImageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('inicio');
-});
+// Route::get('/',[ ShowMethods::class, 'home']);
+//Route::get('/{module}', ['ShowMethods@modules']);
+ Route::get('/{module?}', ShowMethods::class);
 
 
 // Route::get('/', [ImageController::class, 'create']);

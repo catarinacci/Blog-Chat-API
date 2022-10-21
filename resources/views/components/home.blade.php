@@ -1,7 +1,5 @@
 <div class="p-6 sm:px-20 sm:rounded-t-lg bg-white border-b border-gray-200">
-    {{-- <div>
-        <x-jet-application-logo class="block h-12 w-auto" />
-    </div> --}}
+
 
     <div class="mt-6 text-2xl flex items-center">
         <div class="">
@@ -17,13 +15,12 @@
     </div>
 </div>
 
-<div class="bg-gray-200 bg-opacity-25 ">
+<div class="bg-indigo-200 bg-opacity-40 ">
      <div class="p-6">
         <div class="flex items-center">
             <div class="text-gray-600">
                 <i class="bi bi-gear-fill"></i>
             </div>
-
             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Configuación inicial</div>
         </div>
         <div class="ml-4 text-sm text-gray-600 leading-7 font-semibold">
