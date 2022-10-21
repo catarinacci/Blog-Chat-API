@@ -58,7 +58,7 @@
                 <p class="font-extrabold text-gray-300 text-lg"><a href="/">Home</a></p>
             </div>
             {{-- USER --}}
-            <div x-data="{user : false}">
+            <div x-data="{ user: false }">
                 <a x-on:click="user = !user">
                     <div
                         class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
@@ -74,22 +74,21 @@
                     </div>
                 </a>
 
-                    <div>
-                        @foreach ($modules->find(1)->methods as $method)
-                            <a x-on:click="open = false" href="/{{ $method->name }}">
-                                <div :class="{ 'block': user, 'hidden': !user }"
+                <div>
+                    @foreach ($modules->find(1)->methods as $method)
+                        <a x-on:click="open = false" href="/{{ $method->name }}">
+                            <div :class="{ 'block': user, 'hidden': !user }"
                                 class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
                                 <li
                                     class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">
                                     {{ $method->name }}</li>
                             </div>
-
-                        @endforeach
-                    </div>
+                    @endforeach
+                </div>
                 </a>
             </div>
             {{-- NOTE --}}
-            <div x-data="{note : false}">
+            <div x-data="{ note: false }">
                 <a x-on:click="note = !note">
                     <div
                         class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
@@ -119,7 +118,7 @@
                 </a>
             </div>
             {{-- COMMENT --}}
-            <div x-data="{comment : false}">
+            <div x-data="{ comment: false }">
                 <a x-on:click="comment = !comment">
                     <div
                         class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
@@ -149,7 +148,7 @@
                 </a>
             </div>
             {{-- REACTION --}}
-            <div x-data="{reaction : false}">
+            <div x-data="{ reaction: false }">
                 <a x-on:click="reaction = !reaction">
                     <div
                         class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
@@ -179,7 +178,7 @@
                 </a>
             </div>
             {{-- NOTIFICATION --}}
-            <div x-data="{notification : false}">
+            <div x-data="{ notification: false }">
                 <a x-on:click="notification = !notification">
                     <div
                         class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">

@@ -4,23 +4,29 @@
             <div class="text-gray-900 mr-4 ml-4  ">
                 <i class=" bi-person-fill"></i>
             </div>
-           <div class=" font-bold  ">
-               USER
-           </div>
+            <div class=" font-bold  ">
+                USER
+            </div>
 
         </div>
 
-        <div class="mt-6 text-xl flex items-center">
-            REGISTER
+        <div class="mt-6 text-xl lg:grid grid-cols-2 gap-2 items-center  ">
+            <div class="  bg-indigo-400 rounded-lg ">
+                <p class="ml-6">REGISTER</p>
+            </div>
+            <div class="flex mt-2 overflow-auto bg-blue-400 rounded-lg ">
+                <p class="ml-6">POST</p>
+                <p class=" ml-6 text-lg ">https://catarinacci.herokuapp.com/api/register</p>
+            </div>
         </div>
 
-        <div class="mt-6 leading-7 text-gray-500">
-      aaaaaaaaaaaaaaa
+        <div class="mt-6 leading-7 text-gray-600">
+            aaaaaaaaaaaaaaa
         </div>
     </div>
 </div>
 <style>
-    .size_icon{
+    .size_icon {
         width: 30px;
         height: 30px;
     }
