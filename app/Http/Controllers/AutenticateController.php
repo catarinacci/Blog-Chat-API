@@ -49,7 +49,8 @@ class AutenticateController extends Controller
         return response()->json([
             'user'=> $user,
             'res' => true,
-            'msg' => 'Usuario registrado correctamente'
+            'msg' => 'Usuario registrado correctamente',
+            'email verification' => 'Se envió un email con un código de verificación'
         ],200);
     }
 
