@@ -1,4 +1,4 @@
-<div class="p-6 sm:px-20 sm:rounded-t-lg bg-white border-b border-gray-200">
+<div class="p-6 sm:px-6 lg:px-12 sm:rounded-t-lg bg-white border-b border-gray-200">
     <div class="flex text-opacity-25 items-center justify-center text-2xl bg-green-200 shadow-xl rounded-lg">
         <div class="text-gray-900 mr-4 ml-4  ">
             <i class=" bi-person-fill"></i>
@@ -35,7 +35,7 @@
         </div>
 </div>
 
-<div class="p-6 sm:px-20  bg-indigo-200 border-b border-gray-400 ">
+<div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
     <div class="flex items-center">
         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR</div>
     </div>
@@ -47,7 +47,7 @@
 
 </div>
 
-<div class="p-6 sm:px-20  bg-indigo-200 border-b border-gray-400 ">
+<div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
     <div class="flex items-center">
         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">RESPUESTA</div>
     </div>
@@ -77,7 +77,7 @@
 
 </div>
 
-<div class="p-6 sm:px-20 sm:rounded-b-lg bg-indigo-200 border-b border-gray-300 ">
+<div class="p-6 sm:px-10 sm:rounded-b-lg bg-indigo-200 border-b border-gray-300 ">
     <div class="flex items-center">
         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">EMAIL</div>
     </div>
@@ -87,6 +87,7 @@
         </div>
     </div>
 </div>
+
 <style>
     .size {
         height: 314px;
