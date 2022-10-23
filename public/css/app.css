@@ -1784,6 +1784,10 @@ video {
     margin-left: 1rem;
   }
 
+  .sm\:ml-20{
+    margin-left: 5rem;
+  }
+
   .sm\:block{
     display: block;
   }
