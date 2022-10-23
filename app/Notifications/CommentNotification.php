@@ -14,6 +14,7 @@ class CommentNotification extends Notification
 {
     use Queueable;
 
+    public $comment;
     /**
      * Create a new notification instance.
      *

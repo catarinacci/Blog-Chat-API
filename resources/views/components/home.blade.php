@@ -1,3 +1,4 @@
+
 <div class="p-6 sm:px-20 sm:rounded-t-lg bg-white border-b border-gray-200">
 
 
@@ -11,15 +12,18 @@
     </div>
 
     <div class="mt-6 leading-7 text-gray-500">
-        NoteApi es un sistema que realiza las funciones básicas de una red social. Los mismos son registro de usuario,
-        login,
-        crear un post con un título, contenido e imagen, realizar comentarios,
-        aplicar una reacción (me gusta, no me gusta, etc.) y recibir notificaciones.
+        NoteApi es un sistema que realiza las funcionalidades de un blog.
+        Permite que las aplicaciones cliente vean y actualicen su contenido.
+        Su aplicación cliente puede usar NoteAPI para registrar un usuario, crear nuevas
+        publicaciones de blog, editar o eliminar publicaciones existentes.
+        También permite consultar, comentar y reaccionar a las publicaciones.
+        Y postriomente recibir las notificaciones de sus publicaciones.
+
     </div>
 </div>
 
-<div class="bg-indigo-200 bg-opacity-40 ">
-    <div class="p-6 ">
+<div class="p-6 sm:px-20 sm:rounded-b-lg bg-indigo-200 border-b border-gray-200 ">
+    <div class=" ">
         <div class="flex items-center">
             <div class="text-gray-600">
                 <i class="bi bi-gear-fill"></i>

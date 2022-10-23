@@ -64,9 +64,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $appends = [
+   /*  protected $appends = [
         'profile_photo_url',
-    ];
+    ]; */
 
         //Relacion de uno a muchos
     public function notes(){

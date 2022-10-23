@@ -15,6 +15,7 @@ class ReactioNotification extends Notification
 {
     use Queueable;
 
+    public $reaction;
     /**
      * Create a new notification instance.
      *

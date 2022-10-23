@@ -27,7 +27,7 @@ class AutenticateController extends Controller
             $path = Storage::disk('s3')->url($documentPath);
 
         } else {
-            $path = null;
+            $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png';
         }
 
         $user = new User();

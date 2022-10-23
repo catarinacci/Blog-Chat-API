@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 
 class CommentEvent
 {
-    public $coment;
+    public $comment;
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
