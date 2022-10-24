@@ -6,11 +6,18 @@
                 <x-home />
             </x-contenedor>
         @break
+
         @case('Register')
         <x-contenedor>
-            <x-registro />
+            <x-user.registro />
         </x-contenedor>
-    @break
+        @break
+
+        @case('Login')
+        <x-contenedor>
+            <x-user.login />
+        </x-contenedor>
+        @break
 
         @default
     @endswitch

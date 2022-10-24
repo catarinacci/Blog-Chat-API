@@ -21,15 +21,15 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '1',
+                'name' => 'Login'
+            ],
+            [
+                'module_id' => '1',
                 'name' => 'Email Verification'
             ],
             [
                 'module_id' => '1',
                 'name' => 'Resending Email Verification'
-            ],
-            [
-                'module_id' => '1',
-                'name' => 'Login'
             ],
             [
                 'module_id' => '1',

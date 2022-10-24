@@ -14,10 +14,12 @@
     <div class="mt-6 leading-7 text-gray-500">
         NoteApi es un sistema que realiza las funcionalidades de un blog.
         Permite que las aplicaciones cliente vean y actualicen su contenido.
-        Su aplicación cliente puede usar NoteAPI para registrar un usuario, crear nuevas
-        publicaciones de blog, editar o eliminar publicaciones existentes.
-        También permite consultar, comentar y reaccionar a las publicaciones.
-        Y postriomente recibir las notificaciones de sus publicaciones.
+        Su aplicación cliente puede usar NoteAPI para crear un perfil de usuario,
+        realizar nuevas publicaciones de blog, editar o eliminar publicaciones existentes.
+        También permite realizar consultas mediante un criterio específico, comentar cualquier publicación
+        y reaccionar a las publicaciones.
+        Y si algún usuario comentó o reaccionó a alguna de sus publicaciones le llegará
+        una notificación.
 
     </div>
 </div>

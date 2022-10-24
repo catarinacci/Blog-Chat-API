@@ -213,23 +213,23 @@
 </header>
 
 <script>
-    function dropdown() {
-        return open: false,
-            show() {
-                if (this.open) {
-                    //cierra el menu
-                    this.open: false;
-                    document.getElementsByTagName('html')[0].style.overflow = 'auto'
-                } else {
-                    //abre el menu
-                    this.open: true;
-                    document.getElementsByTagName('html')[0].style.overflow = 'hidden'
-                }
-            }
-    }
+    // function dropdown() {
+    //     return open: false,
+    //         show() {
+    //             if (this.open) {
+    //                 //cierra el menu
+    //                 this.open: false;
+    //                 document.getElementsByTagName('html')[0].style.overflow = 'auto'
+    //             } else {
+    //                 //abre el menu
+    //                 this.open: true;
+    //                 document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+    //             }
+    //         }
+    // }
 
-    function close_sidebar() {
-        return open: false,
-            // document.getElementById('sidebar').classList.add('hidden');
-    }
+    // function close_sidebar() {
+    //     return open: false,
+    //         // document.getElementById('sidebar').classList.add('hidden');
+    // }
 </script>

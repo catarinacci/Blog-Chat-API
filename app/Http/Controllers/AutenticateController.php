@@ -36,7 +36,7 @@ class AutenticateController extends Controller
         $user->nickname = $request->nickname;
         $user->email = $request->email;
         $user->image = $path;
-        //$user->email_verified_at = $request->email_verified_at;
+        $user->email_verified_at = $request->email_verified_at;
         $user->password = bcrypt($request->password);
         $user->save();
 
@@ -50,7 +50,7 @@ class AutenticateController extends Controller
             'user'=> $user,
             'res' => true,
             'msg' => 'Usuario registrado correctamente',
-            'email verification' => 'Se envió un email con un código de verificación'
+            'send_email_verification' => 'Se envió un email con un código de verificación'
         ],200);
     }
 
@@ -66,12 +66,12 @@ class AutenticateController extends Controller
         }
 
         //$token = $user->createToken($request->email)->plainTextToken;
-        $user_authtoken = $user->createAuthToken('web',20);
-        $user_refreshtoken = $user->createRefreshToken('web', 120);
+        $user_authtoken = $user->createAuthToken('api',20);
+        $user_refreshtoken = $user->createRefreshToken('api', 120);
 
         return response()->json([
             'res' => true,
-            //'token' => $token,
+            'email_verified_at:' => $user->email_verified_at,
             'user_authtoken' => $user_authtoken,
             'user_refreshtoken' => $user_refreshtoken
         ], 200);
