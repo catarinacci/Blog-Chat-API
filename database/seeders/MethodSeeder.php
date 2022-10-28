@@ -25,7 +25,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '1',
-                'name' => 'Email Verification'
+                'name' => 'Verify_Email'
             ],
             [
                 'module_id' => '1',
@@ -33,7 +33,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '1',
-                'name' => 'Reset Password'
+                'name' => 'Forgot Password'
             ],
             [
                 'module_id' => '1',

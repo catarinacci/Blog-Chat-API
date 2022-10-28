@@ -53,26 +53,26 @@
     </div>
     <div class=" mt-5 overflow-auto bg-slate-100">
         <div class="size">
-            <pre>
-                <code data-lang="php" >
-    {
-        <span style="color:red;">"user"</span>: {
-            <span style="color:red;">"name"</span>: <span style="color:blue;">"Gabriel"</span>,
-            <span style="color:red;">"surname"</span>: <span style="color:blue;">"Catarinacci"</span>,
-            <span style="color:red;">"nickname"</span>: <span style="color:blue;">"Gabi"</span>,
-            <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
-            <span style="color:red;">"image"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png"</span>,
-            <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,
-            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,
-            <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,
-            <span style="color:red;">"id"</span>: <span style="color:green;">1</span>
-        },
-        <span style="color:red;">"res"</span>: <span style="color:blue;">true</span>,
-        <span style="color:red;">"msg"</span>: <span style="color:blue;">"Usuario registrado correctamente"</span>,
-        <span style="color:red;">"email verification"</span>: <span style="color:blue;">"Se envió un email con un código de verificación"</span>
-    }
-                </code>
-            </pre>
+        <pre>
+            <code data-lang="php" >
+{
+    <span style="color:red;">"user"</span>: {
+        <span style="color:red;">"name"</span>: <span style="color:blue;">"Gabriel"</span>,
+        <span style="color:red;">"surname"</span>: <span style="color:blue;">"Catarinacci"</span>,
+        <span style="color:red;">"nickname"</span>: <span style="color:blue;">"Gabi"</span>,
+        <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
+        <span style="color:red;">"image"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png"</span>,
+        <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,
+        <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,
+        <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,
+        <span style="color:red;">"id"</span>: <span style="color:green;">1</span>
+    },
+    <span style="color:red;">"res"</span>: <span style="color:blue;">true</span>,
+    <span style="color:red;">"msg"</span>: <span style="color:blue;">"Usuario registrado correctamente"</span>,
+    <span style="color:red;">"email verification"</span>: <span style="color:blue;">"Se envió un email con un código de verificación"</span>
+}
+            </code>
+        </pre>
         </div>
     </div>
 
@@ -93,4 +93,5 @@
     .size {
         height: 314px;
         width: 800px;
+        }
 </style>

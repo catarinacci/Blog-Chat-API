@@ -29,3 +29,74 @@
             <p class=" ml-6 text-lg ">www.noteapi.ga/api/login</p>
         </div>
 </div>
+<div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
+    <div class="flex items-center">
+        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR</div>
+    </div>
+    <div class=" mt-5 overflow-auto">
+        <div class="size ">
+            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/login_enviar.jpg" alt="">
+        </div>
+    </div>
+
+</div>
+<div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
+    <div class="flex items-center">
+        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">RESPUESTA</div>
+    </div>
+    <div class=" mt-5 overflow-auto bg-slate-100">
+        <div class="size_code">
+            <pre>
+                <code data-lang="php" >
+{
+    <span style="color:red;">"res"</span>: <span style="color:blue;">true</span>,
+    <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,
+    <span style="color:red;">"user_authtoken"</span>: {
+        <span style="color:red;">"accessToken"</span>: {
+            <span style="color:red;">"name"</span>: <span style="color:blue;">"api"</span>,
+            <span style="color:red;">"abilities"</span>: [
+                <span style="color:blue;">"auth"</span>
+            ],
+            <span style="color:red;">"expired_at"</span>: <span style="color:blue;">"2022-10-28T17:12:27.000000Z"</span>,
+            <span style="color:red;">"tokenable_id"</span>: <span style="color:green;">1</span>,
+            <span style="color:red;">"tokenable_type"</span>: <span style="color:blue;">"App\\Models\\User"</span>,
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-10-28T16:52:27.000000Z"</span>,
+            <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-10-28T16:52:27.000000Z"</span>,
+            <span style="color:red;">"id"</span>: <span style="color:green;">1</span>
+        },
+        <span style="color:red;">"plainTextToken"</span>: <span style="color:blue;">"9ABdQ0cf9fwNSwOLi1DnZhMm13Fvyygtb6EBel1A"</span>
+    },
+    <span style="color:red;">"user_refreshtoken"</span>: {
+        <span style="color:red;">"accessToken"</span>: {
+            <span style="color:red;">"name"</span>: <span style="color:blue;">"api"</span>,
+            <span style="color:red;">"abilities"</span>: [
+                <span style="color:blue;">"refresh"</span>
+            ],
+            <span style="color:red;">"expired_at"</span>: <span style="color:blue;">"2022-10-28T18:52:27.000000Z"</span>,
+            <span style="color:red;">"tokenable_id"</span>: <span style="color:green;">1</span>,
+            <span style="color:red;">"tokenable_type"</span>: <span style="color:blue;">"App\\Models\\User"</span>,
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-10-28T16:52:27.000000Z"</span>,
+            <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-10-28T16:52:27.000000Z"</span>,
+            <span style="color:red;">"id"</span>: <span style="color:green;">2</span>
+        },
+        <span style="color:red;">"plainTextToken"</span>: <span style="color:blue;">"ydCS4ZUnzokgUaaQAaf22ncPeBSY83Zjlb4ieQN3"</span>
+    }
+}
+                </code>
+            </pre>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .size {
+        height: 271px;
+        width: 800px;
+        }
+        .size_code {
+        height: 350px;
+        width: 800px;
+        }
+
+</style>

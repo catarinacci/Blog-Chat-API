@@ -13,6 +13,12 @@
         </x-contenedor>
         @break
 
+        @case('Verify_Email')
+        <x-contenedor>
+            <x-user.verify_email />
+        </x-contenedor>
+        @break
+
         @case('Login')
         <x-contenedor>
             <x-user.login />
