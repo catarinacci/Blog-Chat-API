@@ -11,18 +11,21 @@ use PHPUnit\Framework\Constraint\IsEmpty;
 
 class EmailVerificationController extends Controller
 {
-    // public function sendVerificationEmail(Request $request)
-    // {
-    //     if ($request->user()->hasVerifiedEmail()) {
-    //         return [
-    //             'message' => 'Already Verified'
-    //         ];
-    //     }
+    public function sendVerificationEmail(Request $request)
+    {
+        $user = Auth::user();
+        // return $user;
 
-    //     $request->user()->sendEmailVerificationNotification();
+        if ($request->user()->hasVerifiedEmail()) {
+            return [
+                'message' => 'Already Verified'
+            ];
+        }
 
-    //     return ['status' => 'verification-link-sent'];
-    // }
+        $user->sendEmailVerificationNotification();
+
+        return ['status' => 'verification-link-sent'];
+    }
 
     public function verify(Request $request)
     {
