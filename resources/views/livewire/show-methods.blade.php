@@ -25,6 +25,12 @@
         </x-contenedor>
         @break
 
+        @case('Resending_Email_Verification')
+        <x-contenedor>
+            <x-user.send_verify_email />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 

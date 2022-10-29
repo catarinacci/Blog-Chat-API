@@ -46,8 +46,11 @@ class AutenticateController extends Controller
 
         event(new Registered($user));
 
+        $user_authtoken = $user->createAuthToken('api',20);
+
         return response()->json([
             'user'=> $user,
+            'user_authtoken'=> $user_authtoken,
             'res' => true,
             'msg' => 'Usuario registrado correctamente',
             'send_email_verification' => 'Se envió un email con un código de verificación'

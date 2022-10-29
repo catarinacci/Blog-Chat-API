@@ -29,7 +29,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '1',
-                'name' => 'Resending Email Verification'
+                'name' => 'Resending_Email_Verification'
             ],
             [
                 'module_id' => '1',
