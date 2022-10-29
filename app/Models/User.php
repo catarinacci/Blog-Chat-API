@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 // use Laravel\Sanctum\HasApiTokens;
@@ -84,6 +85,8 @@ class User extends Authenticatable implements MustVerifyEmail
         // $token_id = makeRandomToken();
         $url =  $token;
         //return $url;
+        // $code_string = Str::random(6);
+        // $code = mb_strtoupper($code_string);
 
         $this->notify(new ResetPasswordNotification($url));
     }

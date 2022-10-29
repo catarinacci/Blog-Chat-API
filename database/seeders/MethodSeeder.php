@@ -33,7 +33,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '1',
-                'name' => 'Forgot Password'
+                'name' => 'Forgot_Password'
             ],
             [
                 'module_id' => '1',

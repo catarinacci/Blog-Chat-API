@@ -31,6 +31,12 @@
         </x-contenedor>
         @break
 
+        @case('Forgot_Password')
+        <x-contenedor>
+            <x-user.forgot_password />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 
