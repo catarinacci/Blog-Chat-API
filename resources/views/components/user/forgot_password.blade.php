@@ -16,8 +16,8 @@
 
     <div class="mt-6 mb-6 leading-7 text-gray-800">
         Permite al usuario reestablecer su contraseña.<br/>
-        * Primero se envía un email con un token para reestablecer su contraseña.<br/>
-        * Luego se debe ingresar el token, su dirección de correo y la nueva contraceña.
+        * Primero se envía un email con un código de 6 dìgitos para reestablecer su contraseña.<br/>
+        * Luego se debe ingresar el código de 6 dìgitos, su dirección de correo y la nueva contraceña.
 
     </div>
     <div class=" flex mb-6 lg:mt-0 overflow-auto items-center bg-blue-100 rounded-lg ">
@@ -38,7 +38,6 @@
                 <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/forgot_passsword_enviar.jpg" alt="">
             </div>
         </div>
-
     </div>
     <div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
         <div class="flex items-center">
@@ -54,6 +53,16 @@
             </div>
         </div>
 
+    </div>
+    <div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
+        <div class="flex items-center">
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">EMAIL</div>
+        </div>
+        <div class=" mt-5 overflow-auto">
+            <div class="size ">
+                <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/forgot_passsword_enviar.jpg" alt="">
+            </div>
+        </div>
     </div>
 
     <div class="mt-6 mb-6 text-xl lg:grid grid-cols-2 gap-2 items-center  ">

@@ -22,7 +22,7 @@
         Email: obligatorio<br>
         Password: obligatorio<br>
         Image: puede ser nulo, si es así carga una imagen de perfil por defecto.<br>
-        También envía un correo electrónico con un código de 4 dígitos para realizar la verificación de su cuenta de
+        También envía un correo electrónico con un código de 6 dígitos para realizar la verificación de su cuenta de
         correo.
 
     </div>

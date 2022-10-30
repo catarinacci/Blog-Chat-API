@@ -35,7 +35,7 @@
                 * Primero en la pestaña <code>Authorization</code>, selccionar la opción <code>Bearer Token</code> y
                 cargar el <code>user_authtoken</code> asignado al momento de Registrarse o Autenticarse.<br />
                 * Luego en la pestaña <code>Body</code>, seleccionar la opción <code>form-data</code> y cargar los
-                siguientes valores KEY:code y en VALUE: cargar el código de 4 dígitos enviado por correo al momento de
+                siguientes valores KEY:code y en VALUE: cargar el código de 6 dígitos enviado por correo al momento de
                 Registrarse.<br />
                 * Una vez configurado ya se puede enviar.
 
