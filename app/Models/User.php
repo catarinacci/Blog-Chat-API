@@ -84,6 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         // $token_id = makeRandomToken();
         $url =  $token;
+        // dd($url);
         //return $url;
         // $code_string = Str::random(6);
         // $code = mb_strtoupper($code_string);
