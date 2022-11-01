@@ -45,14 +45,16 @@
         </div>
         <div class=" mt-5 overflow-auto bg-slate-100">
             <div class="size_code">
-                <pre>            <code data-lang="php" >
+                <pre>
+                     <code data-lang="php" >
 {
-    <span style="color:red;">"status"</span>: <span style="color:blue;">" El email para el restablecimiento de su contraceña fue enviado con èxito "</span>
+    <span style="color:red;">"succes"</span>: <span style="color:blue;">true</span>,
+    <span style="color:red;">"messaje"</span>: <span style="color:blue;">" Please check your email for a 6 digit pin"</span>
 }
-            </code></pre>
+                    </code>
+                </pre>
             </div>
         </div>
-
     </div>
     <div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
         <div class="flex items-center">
@@ -60,7 +62,7 @@
         </div>
         <div class=" mt-5 overflow-auto">
             <div class="size ">
-                <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/forgot_passsword_enviar.jpg" alt="">
+                <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/forgot_password_email.jpg" alt="">
             </div>
         </div>
     </div>
@@ -84,8 +86,8 @@
             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR</div>
         </div>
         <div class=" mt-5 overflow-auto">
-            <div class="size ">
-                <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/forgot_passsword_enviar.jpg" alt="">
+            <div class="size_reset ">
+                <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/reset_password_enviar.jpg" alt="">
             </div>
         </div>
 
@@ -96,19 +98,25 @@
         </div>
         <div class=" mt-5 overflow-auto bg-slate-100">
             <div class="size_code">
-                <pre>            <code data-lang="php" >
+                <pre>
+                    <code data-lang="php" >
 {
-    <span style="color:red;">"message"</span>: <span style="color:blue;">"Email has been verified"</span>
+    <span style="color:red;">"succes"</span>: <span style="color:blue;">true</span>,
+    <span style="color:red;">"messaje"</span>: <span style="color:blue;">" Updated password "</span>
 }
-            </code></pre>
+                    </code>
+                </pre>
             </div>
         </div>
-
     </div>
 </div>
     <style>
         .size {
             height: 271px;
+            width: 800px;
+            }
+            .size_reset {
+            height: 275px;
             width: 800px;
             }
             .size_code {

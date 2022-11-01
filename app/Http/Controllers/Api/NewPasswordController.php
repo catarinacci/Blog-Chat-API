@@ -20,6 +20,7 @@ use App\Mail\ResetPassword;
 
 use App\Http\Passwords\MyPasswordBroker;
 use App\Notifications\ResetPasswordNotification;
+
 class NewPasswordController extends Controller
 {
     public function forgotPassword(Request $request)
@@ -33,14 +34,11 @@ class NewPasswordController extends Controller
 
         $verify = DB::table('password_resets')->where('email', $email)->first();
 
-        //return $verify;
-
-        if($verify){
-            //$verify->delete();
+        if ($verify) {
             DB::table('password_resets')->where('email', $email)->delete();
         }
 
-        $token= mb_strtoupper(Str::random(6));
+        $token = mb_strtoupper(Str::random(6));
 
         $password_reset = DB::table('password_resets')->insert([
             'email' => $request->email,
@@ -48,26 +46,17 @@ class NewPasswordController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        if($password_reset){
+        if ($password_reset) {
             Mail::to($request->email)->send(new ResetPassword($user, $token));
             return [
                 'succes' => true,
                 'messaje' => ' Please check your email for a 6 digit pin '];
-        }else{
+        } else {
             return [
                 'succes' => false,
                 'messaje' => ' This email does not exist '
             ];
         }
-        // if (Password::RESET_LINK_SENT) {
-        //     return [
-        //         'status' => ' El email para el restablecimiento de su contraceña fue enviado con èxito '
-        //     ];
-        // }
-
-        // throw ValidationException::withMessages([
-        //     // 'email' => [trans($status)],
-        // ]);
     }
 
     public function reset(Request $request)
@@ -80,60 +69,44 @@ class NewPasswordController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        $email_reset =DB::table('password_resets')->where('email', $request->email)->first();
+        $email_reset = DB::table('password_resets')->where('email', $request->email)->first();
 
-        if($user){
-            if($email_reset->email == $request->email){
-                if($email_reset->token == $request->token){
+        if ($user) {
+            if ($email_reset) {
+                if ($email_reset->email == $request->email) {
+                    if ($email_reset->token == $request->token) {
 
-                    $user->update([
-                        'password' => Hash::make($request->password)
-                    ]);
-                    //DB::table('password_resets')->where('email', $request->email)->delete();
-                    return response()->json([
-                        'succes' => true,
-                        'messaje' => ' Updated password '
-                    ], 200);
-                }else{
+                        $user->update([
+                            'password' => Hash::make($request->password)
+                        ]);
+                        DB::table('password_resets')->where('email', $request->email)->delete();
+                        return response()->json([
+                            'succes' => true,
+                            'messaje' => ' Your password has been reset '
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'succes' => false,
+                            'messaje' => ' El código es incorrecto '
+                        ], 400);
+                    }
+                } else {
                     return response()->json([
                         'succes' => false,
-                        'messaje' => ' El código es incorrecto '
+                        'messaje' => ' This email does not exist '
                     ], 400);
                 }
             }else{
                 return response()->json([
                     'succes' => false,
-                    'messaje' => ' This email does not exist '
-                ],400);
+                    'messaje' => "El email"." " .$request->email." ". "no posee una solicitud para restablecer su contraceña. "
+                ], 400);
             }
-        } return response()->json([
+        }
+        return response()->json([
             'succes' => false,
             'messaje' => ' El email es incorrecto '
-        ],400);
-        //return $email_reset;
-        // $status = Password::reset(
-        //     $request->only('email', 'password', 'password_confirmation', 'token'),
-        //     function ($user) use ($request) {
-        //         $user->forceFill([
-        //             'password' => Hash::make($request->password),
-        //             'remember_token' => Str::random(6),
-        //         ])->save();
-
-        //         $user->tokens()->delete();
-
-        //         event(new PasswordReset($user));
-        //     }
-        // );
-
-        // if ($status == Password::PASSWORD_RESET) {
-        //     return response([
-        //         'message'=> 'Password reset successfully'
-        //     ]);
-        // }
-
-        // return response([
-        //     'message'=> __($status)
-        // ], 500);
+        ], 400);
 
     }
 }
