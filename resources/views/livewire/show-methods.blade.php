@@ -37,6 +37,12 @@
         </x-contenedor>
         @break
 
+        @case('Profile')
+        <x-contenedor>
+            <x-user.profile />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 

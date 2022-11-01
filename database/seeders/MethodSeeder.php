@@ -49,7 +49,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '2',
-                'name' => 'All Notes'
+                'name' => 'All_Notes'
             ],
             [
                 'module_id' => '2',
@@ -69,7 +69,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '2',
-                'name' => 'My Notes'
+                'name' => 'My_Notes'
             ],
             [
                 'module_id' => '3',
@@ -81,11 +81,11 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '4',
-                'name' => 'Note'
+                'name' => 'To_Note'
             ],
             [
                 'module_id' => '4',
-                'name' => 'Comment'
+                'name' => 'To_Comment'
             ],
             [
                 'module_id' => '4',
@@ -93,7 +93,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '5',
-                'name' => 'My Notifications'
+                'name' => 'My_Notifications'
             ],
             [
                 'module_id' => '5',

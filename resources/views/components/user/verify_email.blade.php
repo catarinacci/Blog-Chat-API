@@ -15,7 +15,7 @@
     </div>
 
     <div class="mt-6 mb-6 leading-7 text-gray-800">
-        El usuario debe ingresar el código de 4 dígitos que se le asignó en el
+        El usuario debe ingresar el código de 6 dígitos que se le asignó en el
         email de verificación al momento de registrarse. Al verificar su correo
         electrónico podrá utilizar las funcionalidades que ofrece el sistema.
     </div>

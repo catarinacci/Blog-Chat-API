@@ -16,25 +16,13 @@ use App\Http\Resources\UserCollection;
 
 class UserController extends Controller
 {
-    // public function index()
-    // {
-    //     $users = User::paginate(10);
-    //     return new UserCollection($users);
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     return response()->json([
-    //         'msg' => 'No puede realizar ésta acción'
-    //     ],200);
-    // }
 
     public function show($user_id)
     {
         $user_exists = User::where('id', $user_id)->exists();
         if($user_exists){
             $user = User::find($user_id);
-            return new UserResource($user);
+            return $user;
         }
         return response()->json([
             'msg' => 'El usuario no existe'
