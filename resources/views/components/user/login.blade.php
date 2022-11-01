@@ -49,6 +49,7 @@
             <pre>
                 <code data-lang="php" >
 {
+
     <span style="color:red;">"res"</span>: <span style="color:blue;">true</span>,
     <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,
     <span style="color:red;">"user_authtoken"</span>: {

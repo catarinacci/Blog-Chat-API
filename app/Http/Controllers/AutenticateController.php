@@ -73,9 +73,18 @@ class AutenticateController extends Controller
         $user_refreshtoken = $user->createRefreshToken('api', 120);
 
         return response()->json([
-            'user' => $user,
+            'user' => [
+                'id'=>$user->id,
+                'name'=>$user->name,
+                'surname'=>$user->surname,
+                'nick_name'=>$user->nickname,
+                'email'=>$user->email,
+                'email_verified_at'=> $user->email_verified_at,
+                'image_profile_path'=> $user->image_profile_path,
+                'created_at'=> $user->created_at,
+                'updated_at'=> $user->updated_at,
+            ],
             'res' => true,
-            'email_verified_at:' => $user->email_verified_at,
             'user_authtoken' => $user_authtoken,
             'user_refreshtoken' => $user_refreshtoken
         ], 200);
