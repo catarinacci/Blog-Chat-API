@@ -35,7 +35,7 @@ class AutenticateController extends Controller
         $user->surname = $request->surname;
         $user->nickname = $request->nickname;
         $user->email = $request->email;
-        $user->image = $path;
+        $user->image_profile_path = $path;
         $user->email_verified_at = $request->email_verified_at;
         $user->password = bcrypt($request->password);
         $user->save();
