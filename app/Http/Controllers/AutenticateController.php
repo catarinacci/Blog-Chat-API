@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -61,36 +62,24 @@ class AutenticateController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-
         if (! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'msg' => ['Las credenciales son incorrectas.'],
             ]);
         }
 
-        //$token = $user->createToken($request->email)->plainTextToken;
         $user_authtoken = $user->createAuthToken('api',20);
         $user_refreshtoken = $user->createRefreshToken('api', 120);
 
-        return response()->json([
-            'user' => [
-                'id'=>$user->id,
-                'name'=>$user->name,
-                'surname'=>$user->surname,
-                'nick_name'=>$user->nickname,
-                'email'=>$user->email,
-                'email_verified_at'=> $user->email_verified_at,
-                'image_profile_path'=> $user->image_profile_path,
-                'created_at'=> $user->created_at,
-                'updated_at'=> $user->updated_at,
-            ],
+        return (new UserResource($user))->additional([
             'res' => true,
             'user_authtoken' => $user_authtoken,
             'user_refreshtoken' => $user_refreshtoken
-        ], 200);
+        ]);
     }
 
     public function logout(Request $request){
+
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([

@@ -19,15 +19,21 @@ class UserController extends Controller
 
     public function show($user_id)
     {
+
+            return Auth::user();
+
         $user_exists = User::where('id', $user_id)->exists();
+
         if($user_exists){
             $user = User::find($user_id);
-            return $user;
+            return (new UserResource($user))->additional([
+                'res' => true
+            ]);
+        }else{
+            return response()->json([
+                'msg' => 'El usuario no existe'
+            ],400);
         }
-        return response()->json([
-            'msg' => 'El usuario no existe'
-        ],200);
-
     }
 
 

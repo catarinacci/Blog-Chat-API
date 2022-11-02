@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -39,6 +40,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+        $this->renderable(function (RouteNotFoundException $e, $request) {
+
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'unauthenticated'
+                ], 404);
+            }
+        });
     }
     protected function invalidJson($request, ValidationException $exception)
     {
@@ -47,5 +56,15 @@ class Handler extends ExceptionHandler
             'errors' => $exception->errors(),
         ], $exception->status);
     }
+
+    // public function render(Throwable $exception)
+    // {
+    //     if($exception instanceof RouteNotFoundException){
+    //         return response()->json([
+    //             'messaje' => __('sin autenticar'),
+    //             'errors' => $exception->errors(),
+    //         ], $exception->status);
+    //     }
+    // }
 
 }
