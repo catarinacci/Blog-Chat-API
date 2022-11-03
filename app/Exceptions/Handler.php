@@ -6,6 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -45,6 +46,14 @@ class Handler extends ExceptionHandler
             if ($request->is('api/*')) {
                 return response()->json([
                     'message' => 'unauthenticated'
+                ], 404);
+            }
+        });
+        $this->renderable(function (HttpException $e, $request) {
+
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'Your email address is not verified.'
                 ], 404);
             }
         });

@@ -26,8 +26,8 @@ class ActualizarUserRequest extends FormRequest
         return [
             'name' => 'nullable|alpha',
             'surname' => 'nullable|alpha',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'password' => ['confirmed', RulesPassword::defaults()],
+            'image_profile_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
         ];
     }
 }

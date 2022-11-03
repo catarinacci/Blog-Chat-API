@@ -9,7 +9,10 @@ use App\Http\Resources\NoteResource;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\ReactionResource;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Support\Facades\Hash;
 use App\Helpers\UpdateStore;
+use App\Http\Resources\UserResource;
 
 
 
@@ -73,8 +76,100 @@ class UpdateStoreFiles{
 
 
      public static function UpdateUser($request, $user){
-        //return $user->id;
-        //return Auth::user()->id;
+
+        if($request->password && $request->password_confirmation){
+
+            if($request->password == $request->password_confirmation){
+
+                $validated = $request->validate([
+                    'password' => ['required','confirmed', RulesPassword::defaults()]
+                ]);
+
+                if($validated){
+
+                    $image_object = Image::where('imageable_id', $user->id)->first();
+
+                    if($request->hasFile('image_profile_path')){
+
+                        //borro la imagen antigua en s3
+                        $oldimage_path = $image_object->url;
+                        $path_filter = Url::filterUrl($oldimage_path );
+                        Storage::disk('s3')->delete($path_filter);
+
+                        // Guardo la imagen nueva en s3
+                        $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
+                        $path = Storage::disk('s3')->url($documentPath);
+
+                        // Actualizo la URL de la imagen en la tabla images
+                        $image_object->update([
+                            'url' => $path
+                        ]);
+
+                    }else{
+                        $path = $image_object->url;
+                    }
+
+                    $user->update([
+                        'name' => $request->name,
+                        'surname' => $request->surname,
+                        'nickname' => $request->nickname,
+                        'password' => Hash::make($request->password),
+                        'image_profile_path' => $path
+                    ]);
+                    return (new UserResource($user))->additional([
+                        'res' => true,
+                        'updated_password' => true,
+                        'msj' => 'updated user'
+                    ]);
+                }
+            }else{
+                return response()->json([
+                    'res' => 'Los campos password y password_confirmation no coinciden',
+                ],400);
+            }
+        }else{
+
+            $image_object = Image::where('imageable_id', $user->id)->first();
+
+            if($request->hasFile('image_profile_path')){
+
+                //borro la imagen antigua en s3
+                $oldimage_path = $image_object->url;
+                $path_filter = Url::filterUrl($oldimage_path );
+                Storage::disk('s3')->delete($path_filter);
+
+                // Guardo la imagen nueva en s3
+                $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
+                $path = Storage::disk('s3')->url($documentPath);
+
+                // Actualizo la URL de la imagen en la tabla images
+                $image_object->update([
+                    'url' => $path
+                ]);
+
+            }else{
+                $path = $image_object->url;
+            }
+
+            $user->update([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'nickname' => $request->nickname,
+
+                'image_profile_path' => $path
+            ]);
+            return (new UserResource($user))->additional([
+                'res' => true,
+                'updated_password' => false,
+                'msj' => 'updated user'
+            ]);
+        }
+
+
+
+
+
+
 
         $image_object = Image::where('imageable_id', $user->id)->first();
 

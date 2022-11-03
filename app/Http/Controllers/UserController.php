@@ -54,6 +54,7 @@ class UserController extends Controller
         // $user_object = User::where('id', $user_id)->first();
         // return $user_object;
         $user_object= Auth::user();
+
         if($user_object){
             //return $user_object;
             // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
