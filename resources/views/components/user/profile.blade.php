@@ -15,14 +15,14 @@
     </div>
 
     <div class="mt-6 mb-6 leading-7 text-gray-800">
-        Permite ver los datos del usuario Autenticado.
+        Permite ver los datos del usuario Autenticado, pasando por la URL el id de usuario.
     </div>
     <div class=" flex mb-6 lg:mt-0 overflow-auto items-center bg-blue-100 rounded-lg ">
-        <div class="bg-blue-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
-            <span>POST</span>
+        <div class="bg-green-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
+            <span>GET</span>
         </div>
         <div>
-            <p class=" ml-6 text-lg ">www.noteapi.ga/api/forgot-password</p>
+            <p class=" ml-6 text-lg ">www.noteapi.ga/api/user/{id_user}</p>
         </div>
     </div>
 

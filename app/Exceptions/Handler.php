@@ -56,15 +56,4 @@ class Handler extends ExceptionHandler
             'errors' => $exception->errors(),
         ], $exception->status);
     }
-
-    // public function render(Throwable $exception)
-    // {
-    //     if($exception instanceof RouteNotFoundException){
-    //         return response()->json([
-    //             'messaje' => __('sin autenticar'),
-    //             'errors' => $exception->errors(),
-    //         ], $exception->status);
-    //     }
-    // }
-
 }

@@ -25,23 +25,22 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 Route::post('logout', [AutenticateController::class, 'logout'])->middleware('auth:sanctum');
 
-
-
-
-
+// Midleware auth and verifyed
+Route::get('unauthenticated', function(){
+    return response()->json(['msj'=>'Unauthenticated'],400);
+})->name('unauthenticated');
+Route::get('unverified', function(){
+    return response()->json(['msj'=>'Your email address is not verified.'],400);
+})->name('unverified');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     //Users
-    //Route::apiResource('user', UserController::class);
-    // Route::get('users', [UserController::class, 'index']);
-    // Route::post('user', [UserController::class, 'store']);
     Route::get('user/{user}', [UserController::class, 'show']);
     Route::post('user/{user}', [UserController::class, 'update']);
     Route::delete('user/{user}', [UserController::class, 'destroy']);
 
     //Notes
-    //Route::apiResource('note', NoteController::class);
     Route::get('notes', [NoteController::class, 'index']);
     Route::post('note', [NoteController::class, 'store']);
     Route::get('note/{note}', [NoteController::class, 'show']);
@@ -51,7 +50,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('note_user', [NoteController::class, 'noteUser']);
 
     //Comments
-    Route::apiResource('comment', CommentController::class);
+    // Route::apiResource('comment', CommentController::class);
     // Route::get('comments', [CommentController::class, 'index']);
     // Route::post('comment', [CommentController::class, 'store']);
     // Route::get('comment/{comment}', [CommentController::class, 'show']);

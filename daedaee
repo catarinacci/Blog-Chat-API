@@ -1,0 +1,503 @@
+[33mcommit 47cfb4b1124e6b5baa1d7aad3abef769dc56c363[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31mheroku/master[m[33m)[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Nov 2 13:27:10 2022 -0300
+
+    register change image
+
+[33mcommit 3dfcd5087d0dd3d50e0ffa8954ac3047d9c95dad[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Tue Nov 1 19:30:55 2022 -0300
+
+    rename_image_table_users_and_notes
+
+[33mcommit 52e05a6cec0dac8e09930e121ba49bf6d45fd843[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Tue Nov 1 17:12:13 2022 -0300
+
+    add user data to login
+
+[33mcommit 4c868a706dd5cc5a3edc1508a78bfa91d1468a28[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Tue Nov 1 17:11:45 2022 -0300
+
+    view profile and add user data to login
+
+[33mcommit 3f7edd16e36c882691768aefb6634ec0a666d9af[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Tue Nov 1 14:42:50 2022 -0300
+
+    view forgot fasword complete
+
+[33mcommit d07872d1ef65a74ad86b062c9f76beb58aeca48d[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Mon Oct 31 20:33:46 2022 -0300
+
+    password reset controller complete
+
+[33mcommit 626400bb5f1678d4806df548a87cb61d1fabd0d3[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 30 20:00:22 2022 -0300
+
+    carpeta passwords
+
+[33mcommit cea00bc12b1b985a1efb879090b3f5661d3c52e9[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 30 16:30:15 2022 -0300
+
+    password reset create token 4 digitos
+
+[33mcommit 23f0b8ed0203c70a91c416bcd6c681ae420e8918[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sat Oct 29 19:07:30 2022 -0300
+
+    view forgot password
+
+[33mcommit 676b46af77c9054e27ee43ccef24a5cf12866900[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sat Oct 29 14:23:05 2022 -0300
+
+    register user_authtoken
+
+[33mcommit 8a7b4b8585200ca5953224c9297cb13d9527e28e[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Oct 28 19:31:33 2022 -0300
+
+    send-verify-email method
+
+[33mcommit 99301996d012cdc963bbf36030e8cb8c64ddd6ca[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Oct 28 18:00:31 2022 -0300
+
+    view verify email
+
+[33mcommit 56c1e207f50cb287eb71d3bcc795c878482eafa3[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 23 21:37:43 2022 -0300
+
+    view login
+
+[33mcommit 92da0242de5f4c5b3704addda3f99dec286e6690[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 23 17:01:58 2022 -0300
+
+    modify footer 1
+
+[33mcommit c4eded5e21c862e5e54c5fdc7cba3de4185563f1[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 23 16:49:35 2022 -0300
+
+    modify footer
+
+[33mcommit 9b1c006e60dce9bd21e773006cf8a2724b7ef816[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 23 16:40:38 2022 -0300
+
+    create footer complete
+
+[33mcommit fca3730e1e0b281bc532d8fb2d5ea88da671b8d1[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 23 15:35:57 2022 -0300
+
+    view register complete
+
+[33mcommit 15c962b00e836e53181200f996dba0c3f5e1e58c[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Oct 23 13:28:39 2022 -0300
+
+    view register response code
+
+[33mcommit d78b7e9f7ee7fb5e2cec5de2c4d7a67f4a392835[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Oct 21 22:51:05 2022 -0300
+
+    component register responsive
+
+[33mcommit 801e9d6bf9968ae9a83d38e5c5ea6ecee5ea1b40[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Oct 21 10:26:43 2022 -0300
+
+    view register responsive
+
+[33mcommit 49f7cb6cd227f3b1dcaff1bb317a142113cf1b74[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Oct 20 22:20:08 2022 -0300
+
+    create component blade home and register
+
+[33mcommit 5a0728e20866f0be89c6179b27a6574ef2279ff9[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Oct 19 18:52:15 2022 -0300
+
+    view image home responsive end
+
+[33mcommit 97363b755e304c3894a2b1b611dfc31ecb8b286b[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Oct 19 17:28:43 2022 -0300
+
+    imagen view home responsive
+
+[33mcommit ad8f39ff9bfe5c07834c0c2737799e907d216da0[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Oct 19 12:04:19 2022 -0300
+
+    view home
+
+[33mcommit 18b8a7f1e42bdd97992c9ec55a35ec7d09475612[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sat Oct 15 22:22:52 2022 -0300
+
+    creación vista inicio
+
+[33mcommit 64990b71b47bd98dc2f383ef5e1172f9d6e0cba7[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Oct 14 19:21:22 2022 -0300
+
+    menu responsive
+
+[33mcommit 63bab630b7328d65e9a93d005d16eb519298a969[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Sep 22 21:16:41 2022 -0300
+
+    rediseño menu
+
+[33mcommit 86727a334b71c1c4e64f2ff07ff319ce5b912530[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Sep 22 16:24:52 2022 -0300
+
+    prueba tailwid 2
+
+[33mcommit a23c71668c8ede4349ff81c0b8da453bfadece8c[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Sep 22 16:22:50 2022 -0300
+
+    prueba tailwind
+
+[33mcommit 9ee54966890c9c8721a1a751ee51292ad4b6c3a2[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Sep 22 16:13:07 2022 -0300
+
+    reinstall tailwind
+
+[33mcommit 269a0e55e687c20f1391616b71dcf3a40535164d[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Aug 7 18:16:07 2022 -0300
+
+    corrección email verify
+
+[33mcommit 8a7e599ffdff2f9c645d98485d49401697c86a35[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Aug 7 17:32:54 2022 -0300
+
+    modificación modelo user 2
+
+[33mcommit 5628b60f3d17db7230ff13bbe8346bc44d17713d[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Aug 7 16:13:21 2022 -0300
+
+    Modificación del modelo user
+
+[33mcommit ef0f7e936c6a22133e871850c05fda9253a58f08[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Jul 20 13:46:53 2022 -0300
+
+    hover menu
+
+[33mcommit d63ed6c30cc4a24c2c17c9c79980b83e3263a2ac[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Jul 20 13:36:18 2022 -0300
+
+    transition sidebar
+
+[33mcommit 56b78675b43b7500f0d710375aeff846d251cd40[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Tue Jul 19 13:46:09 2022 -0300
+
+    funcionalidad al sidebar
+
+[33mcommit 76c13e71ef123afcf55e2d9316b91ea7422a82c5[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Mon Jul 18 13:46:34 2022 -0300
+
+    funcionalidad menu
+
+[33mcommit 984a7ef32029fc11b09709eb846e9e11b0d98ec2[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sat Jul 16 18:29:04 2022 -0300
+
+    create seeders para los modelos del contenido
+
+[33mcommit e20294dbaaf9aaa7c347c721d358d16dda1856e7[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Jul 15 12:47:19 2022 -0300
+
+    creación de modelos y megraciones para el contenido del home
+
+[33mcommit 6f4c581eb3570607f0bf7cf6d09eff37c64ff7e8[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Jul 15 11:11:43 2022 -0300
+
+    prueba css
+
+[33mcommit 0b8dd93768561bc80458fd8a6e2f6badc8b5858f[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Jul 15 11:09:55 2022 -0300
+
+    prueba archivo css
+
+[33mcommit 33398e275fd16fa95cea29bf7d04376e2e85b4c0[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Jul 14 13:31:44 2022 -0300
+
+    creación sidebar
+
+[33mcommit 3e8dfd843bb4347511dc47629320e413ab568dd9[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Jul 13 13:18:06 2022 -0300
+
+    diseño menú
+
+[33mcommit 2162288d0ded91a7d3f54d162d33586f3a7e9cb8[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Mon Jul 11 00:16:49 2022 -0300
+
+    navbar colors y logo
+
+[33mcommit b332e0e53ab6e0ef0aa850c52d50af391fbbdc25[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Jul 10 22:03:25 2022 -0300
+
+    component livewire
+
+[33mcommit c1686e9c701ef87c04b74073226757ad2efc622e[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Jul 10 21:08:24 2022 -0300
+
+    Componentes jetstream
+
+[33mcommit d06c7967712c19b335ada3a8a3057aebb49a36f0[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Mon Jul 4 13:55:56 2022 -0300
+
+    notification reaction
+
+[33mcommit 57950022d640de5eb5bdde5ca124464f6970e5e3[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Jul 3 22:26:13 2022 -0300
+
+    notifications comments
+
+[33mcommit 407b535d537a6957bbad3b98e14c8943c7007e38[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Jul 3 18:34:23 2022 -0300
+
+    email_verify terminado
+
+[33mcommit 2a2077c3985041a3591fb962d25d3aac61596318[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Jul 3 01:24:50 2022 -0300
+
+    email verify code
+
+[33mcommit 266f584768ecde93ff6e4ab096a1643ce5bc39a5[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Jun 30 14:02:03 2022 -0300
+
+    mail verify
+
+[33mcommit c105b8733244588de424b241ff9e677e5cf9f604[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Jun 30 01:28:56 2022 -0300
+
+    reset password token 6 digitos
+
+[33mcommit b63a86bb629b0112c30b91b4285dbc52776033a7[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Jun 26 19:42:44 2022 -0300
+
+    password_reset
+
+[33mcommit c151cfcd6e9e14fadcf7c72029584fdc020be901[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sat May 28 16:16:49 2022 -0300
+
+    forgot-password
+
+[33mcommit dbcf5cc0e25332a4a26eef088efa5efde584193a[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri May 27 13:19:55 2022 -0300
+
+    create image migration
+
+[33mcommit 7b687d1e09859f2331214effe3bb8bdb6cb33776[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed May 11 13:48:33 2022 -0300
+
+    delete images -m
+
+[33mcommit 2c30caedd1466b6f46aa71499ffd12c03f8be004[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed May 11 13:33:58 2022 -0300
+
+    images migration
+
+[33mcommit 94cc974a905e5bb7c542665eb34ec9d6a6804422[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed May 11 12:45:38 2022 -0300
+
+    creación forgotPasword controller
+
+[33mcommit 1881c67f2f10d9910dd21ad5bc7864005c207dd2[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Mon May 9 13:33:20 2022 -0300
+
+    Login con tokenauth y tokenrefresh copletado
+
+[33mcommit 516e534b3a8a1d034fec5155d3a16e2ae2a25b20[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri May 6 13:24:09 2022 -0300
+
+    métodos update y store de note y user listos
+
+[33mcommit 5c703a3ff59d8b26f753613efc3522f1af4792eb[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed May 4 13:44:54 2022 -0300
+
+    updateNote
+
+[33mcommit a7827eff9b65a14114e3dc0b82b1708ef3b8837c[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Tue May 3 13:00:58 2022 -0300
+
+    método update note y user
+
+[33mcommit b2ab4f3a28f7f614c4e7a0f358d8eaa67f93f214[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sat Apr 30 11:47:13 2022 -0300
+
+    Creación método store y update de la clase Note
+
+[33mcommit f7df4bc9cec0a2e05d8131718609fdc24d11018d[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Thu Apr 28 22:56:29 2022 -0300
+
+    agregar y eliminar imagenes de aws s3
+
+[33mcommit 073501ea2bda4b2f292f53b95e70ead102dcb6d5[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Apr 27 12:38:44 2022 -0300
+
+    delete image s3
+
+[33mcommit 73a3c8dba6816eb0ad15f5bea43b8ac1d29a0cad[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Mon Apr 25 13:27:50 2022 -0300
+
+    insertar la columna title en la tabla notes con su migraciòn seeder
+
+[33mcommit d4d18bbd596369c96929fe27fddc814a88c03075[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Apr 24 23:45:49 2022 -0300
+
+    subiendo imagenes de prueba a AWS s3
+
+[33mcommit fc7247d540e8ecb0c420236183d227d111f48b81[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Apr 24 00:46:03 2022 -0300
+
+    modelo y migraciones para las imágenes
+
+[33mcommit 469d39a8705364b34f12e832c049961f9f848b0a[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Apr 20 13:46:33 2022 -0300
+
+    integración AWS s3
+
+[33mcommit dc136d9cd6115b2130f422d747a2b9eb1e9915f0[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Wed Apr 13 13:11:42 2022 -0300
+
+    links para los módulos
+
+[33mcommit e99e8bf023546644965a268ed2f4be9d4431c0d6[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 23:34:35 2022 -0300
+
+    guia de uso modulo notas
+
+[33mcommit 676aae670189ae5c8dfaca40308883c81ea6d6f0[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 18:19:56 2022 -0300
+
+    diseño guia de uso
+
+[33mcommit 8512b1498da03f969911ee1de6bc80dc1a1ab048[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 16:44:25 2022 -0300
+
+    carga de imágenes
+
+[33mcommit ba75a71691c4a7acb17e6ccfe7aa797f5d934667[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 15:44:25 2022 -0300
+
+    carga de información
+
+[33mcommit 31dd328f0bd93865a7ccc7871c4bddcb05d2bbc6[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 15:32:10 2022 -0300
+
+    Diseño guia de uso part 1
+
+[33mcommit 85cefcae21881db45a8458cd06fcb6f4efbdf96e[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 13:10:38 2022 -0300
+
+    confif
+
+[33mcommit 949c3b406b854346441cc29ad14d448f483ef7f1[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 10:03:02 2022 -0300
+
+    https fixed
+
+[33mcommit a8931c4563cc00b9304a3ce857c986f8ce4bc551[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 08:40:36 2022 -0300
+
+    Procfile for Heroku
+
+[33mcommit 400e4419758d502197144ac119a6ef5d26eea76a[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 01:28:03 2022 -0300
+
+    instalando dependencias
+
+[33mcommit 8b820a3e36adc94036163ccde036f8afe4d30ad2[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sun Feb 20 00:34:36 2022 -0300
+
+    prueba
+
+[33mcommit d42c21c75929e827de9be09229649ee1c613922b[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Sat Feb 19 00:59:10 2022 -0300
+
+    compilacion de los archivos css y js
+
+[33mcommit c2b1db8f5e4190cceee3e98b6d86099a3e92936a[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Feb 18 23:54:55 2022 -0300
+
+    Procfile for Heroku
+
+[33mcommit 205063a2e564ae0a3085bf009c601186f1d27f41[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Feb 18 22:57:10 2022 -0300
+
+    diseño guia de usuario perte1
+
+[33mcommit fbf6c0a2a8a42d4670334f759a88ed27d1dce6ce[m
+Author: catarinacci <catarinacci@gmail.com>
+Date:   Fri Feb 18 19:12:18 2022 -0300
+
+    prueba3

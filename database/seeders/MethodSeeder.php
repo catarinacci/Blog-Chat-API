@@ -37,6 +37,10 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '1',
+                'name' => 'Logout'
+            ],
+            [
+                'module_id' => '1',
                 'name' => 'Profile'
             ],
             [

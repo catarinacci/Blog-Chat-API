@@ -19,16 +19,24 @@ class UserController extends Controller
 
     public function show($user_id)
     {
-
-            return Auth::user();
-
         $user_exists = User::where('id', $user_id)->exists();
 
+        $user_auth = Auth::user();
+
         if($user_exists){
+
             $user = User::find($user_id);
-            return (new UserResource($user))->additional([
-                'res' => true
-            ]);
+
+            if($user_auth->id == $user->id){
+
+                return (new UserResource($user))->additional([
+                    'res' => true
+                ]);
+            }else{
+                return response()->json([
+                    'msg' => 'No es propietario de ésta cuenta'
+                ],400);
+            }
         }else{
             return response()->json([
                 'msg' => 'El usuario no existe'
