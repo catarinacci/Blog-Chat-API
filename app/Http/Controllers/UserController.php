@@ -45,13 +45,15 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, $user_id)
+    public function update(ActualizarUserRequest $request)
     {
         //return $user_id;
-        //return $request;
+        // return Auth::user();
+        // return $request;
 
-        $user_object = User::where('id', $user_id)->first();
+        // $user_object = User::where('id', $user_id)->first();
         // return $user_object;
+        $user_object= Auth::user();
         if($user_object){
             //return $user_object;
             // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
@@ -59,7 +61,7 @@ class UserController extends Controller
 
         }else{
             return response()->json([
-            'res' => 'El usuario '.$user_id.' no existe',
+            'res' => 'El usuario '.Auth::user()->id.' no existe',
             ], 400);
         }
         return $user_object_updated;

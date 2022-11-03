@@ -43,6 +43,12 @@
         </x-contenedor>
         @break
 
+        @case('Update')
+        <x-contenedor>
+            <x-user.update />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 
