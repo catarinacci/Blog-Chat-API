@@ -27,10 +27,10 @@ Route::post('logout', [AutenticateController::class, 'logout'])->middleware('aut
 
 // Midleware auth and verifyed
 Route::get('unauthenticated', function(){
-    return response()->json(['msj'=>'Unauthenticated'],400);
+    return response()->json(['res' => false, 'msj'=>'Unauthenticated'],400);
 })->name('unauthenticated');
 Route::get('unverified', function(){
-    return response()->json(['msj'=>'Your email address is not verified.'],400);
+    return response()->json(['res' => false, 'msj'=>'Your email address is not verified.'],400);
 })->name('unverified');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
