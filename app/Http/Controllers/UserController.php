@@ -48,8 +48,16 @@ class UserController extends Controller
     public function update(ActualizarUserRequest $request)
     {
         $user_object= Auth::user();
+
             // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
-             UpdateStoreFiles::UpdateUser($request, $user_object);
+            $updated_user= UpdateStoreFiles::UpdateUser($request, $user_object);
+
+            if($updated_user){
+                return $updated_user;
+
+            } return response()->json([
+                "msg"=>"Error de datos",
+                "res"=>"false"], 400);
     }
 
     public function destroy(Request $request, User $user)

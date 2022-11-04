@@ -77,6 +77,7 @@ class UpdateStoreFiles{
 
      public static function UpdateUser($request, $user){
 
+
         if($request->password && $request->password_confirmation){
 
             if($request->password == $request->password_confirmation){
@@ -163,7 +164,7 @@ class UpdateStoreFiles{
                 'updated_password' => false,
                 'msj' => 'updated user'
             ]);
-        }
+        } return 333;
 
 
 
@@ -171,59 +172,59 @@ class UpdateStoreFiles{
 
 
 
-        $image_object = Image::where('imageable_id', $user->id)->first();
+        // $image_object = Image::where('imageable_id', $user->id)->first();
 
-        if( !is_object($image_object)){
+        // if( !is_object($image_object)){
 
-            $oldimage_path = 1;
-        }else{
+        //     $oldimage_path = 1;
+        // }else{
 
-            $oldimage_path = $image_object->url;
-        }
+        //     $oldimage_path = $image_object->url;
+        // }
 
-            if(Auth::user()->id == $user->id){
+        //     if(Auth::user()->id == $user->id){
 
-                    if($request->image){
+        //             if($request->image){
 
-                        if($oldimage_path <> 1){
+        //                 if($oldimage_path <> 1){
 
-                        $path_filter = Url::filterUrl($oldimage_path );
-                        Storage::disk('s3')->delete($path_filter);
-                        }
+        //                 $path_filter = Url::filterUrl($oldimage_path );
+        //                 Storage::disk('s3')->delete($path_filter);
+        //                 }
 
-                        if( !is_object($image_object)){
+        //                 if( !is_object($image_object)){
 
-                            $image_object_save = $request->file('image')->store('noteapi', 's3');
-                            $imagen = Storage::disk('s3')->url($image_object_save);
-                            $user->image()->create([
-                                'url' => $imagen,
-                            ]);
+        //                     $image_object_save = $request->file('image')->store('noteapi', 's3');
+        //                     $imagen = Storage::disk('s3')->url($image_object_save);
+        //                     $user->image()->create([
+        //                         'url' => $imagen,
+        //                     ]);
 
-                        }else{
-                            $image_object_save = $request->file('image')->store('noteapi', 's3');
-                            $imagen = Storage::disk('s3')->url($image_object_save);
-                            $image_object->update([
-                                'url' => $imagen,
-                            ]);
-                        }
+        //                 }else{
+        //                     $image_object_save = $request->file('image')->store('noteapi', 's3');
+        //                     $imagen = Storage::disk('s3')->url($image_object_save);
+        //                     $image_object->update([
+        //                         'url' => $imagen,
+        //                     ]);
+        //                 }
 
-                    }else{
-                        $imagen = $oldimage_path;
-                    }
+        //             }else{
+        //                 $imagen = $oldimage_path;
+        //             }
 
-                        $user->update([
-                            'name' => $request->name,
-                            'surname' => $request->surname,
-                            'nickname' => $request->nickname,
-                            //'id' => Auth::user()->id,
-                            'image' => $imagen]);
+        //                 $user->update([
+        //                     'name' => $request->name,
+        //                     'surname' => $request->surname,
+        //                     'nickname' => $request->nickname,
+        //                     //'id' => Auth::user()->id,
+        //                     'image' => $imagen]);
 
-                            return $user;
-            }else{
-                return response()->json([
-                    'res' => 'Usted no es el propietario de ésta nota, no la puede modificar',
-                ], 400);
-            }
+        //                     return $user;
+        //     }else{
+        //         return response()->json([
+        //             'res' => 'Usted no es el propietario de ésta nota, no la puede modificar',
+        //         ], 400);
+        //     }
      }
 
 
