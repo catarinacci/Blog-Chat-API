@@ -24,8 +24,8 @@ class ActualizarUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|alpha',
-            'surname' => 'nullable|alpha',
+            'name' => 'nullable|regex:/^[\pL\s\-]+$/u',
+            'surname' => 'nullable|regex:/^[\pL\s\-]+$/u',
             'image_profile_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ];

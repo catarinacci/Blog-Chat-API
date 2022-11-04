@@ -25,8 +25,8 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|alpha',
-            'surname' => 'nullable|alpha',
+            'name' => 'regex:/^[\pL\s\-]+$/u',
+            'surname' => 'regex:/^[\pL\s\-]+$/u',
             'email' => 'required|email|unique:users,email',
             'image_profile_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
