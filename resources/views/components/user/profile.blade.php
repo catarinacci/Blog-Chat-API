@@ -28,7 +28,7 @@
 
     <div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
         <div class="flex items-center">
-            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR</div>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR <br/> * Debe cargar el token.  </div>
         </div>
         <div class=" mt-5 overflow-auto">
             <div class="size ">

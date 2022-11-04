@@ -47,35 +47,9 @@ class UserController extends Controller
 
     public function update(ActualizarUserRequest $request)
     {
-        //return $user_id;
-        // return Auth::user();
-        // return $request;
-
-        // $user_object = User::where('id', $user_id)->first();
-        // return $user_object;
         $user_object= Auth::user();
-
-        if($user_object){
-            //return $user_object;
             // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
-            $user_object_updated = UpdateStoreFiles::UpdateUser($request, $user_object);
-
-        }else{
-            return response()->json([
-            'res' => 'El usuario '.Auth::user()->id.' no existe',
-            ], 400);
-        }
-        return $user_object_updated;
-        // return $request. $user;
-        // if (Auth::user()->id == $user->id) {
-        //     $user->update($request->all());
-        //     return response()->json($user, 200);
-        //     ;
-        // } else {
-        //     return response()->json([
-        //         'res' => 'Usted no es el propietario de ésta cuenta, no la puede modificar',
-        //     ], 200);
-        // };
+             UpdateStoreFiles::UpdateUser($request, $user_object);
     }
 
     public function destroy(Request $request, User $user)

@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password as RulesPassword;
 
 class AutenticateController extends Controller
 {
     public function register(RegisterRequest $request){
-
+        //return $request;
         if($request->hasFile('image')) {
 
             $documentPath = $request->file('image')->store('noteapi', 's3');
@@ -30,6 +31,10 @@ class AutenticateController extends Controller
         } else {
             $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png';
         }
+
+        $request->validate([
+            'password' => ['required', 'confirmed', RulesPassword::defaults()],
+        ]);
 
         $user = new User();
         $user->name = $request->name;

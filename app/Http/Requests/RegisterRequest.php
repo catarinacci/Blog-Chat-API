@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password as RulesPassword;
 
 class RegisterRequest extends FormRequest
 {
@@ -27,7 +28,6 @@ class RegisterRequest extends FormRequest
             'name' => 'nullable|alpha',
             'surname' => 'nullable|alpha',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }

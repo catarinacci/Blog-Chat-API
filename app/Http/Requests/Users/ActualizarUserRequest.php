@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Users;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class ActualizarUserRequest extends FormRequest

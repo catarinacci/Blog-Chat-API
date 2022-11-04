@@ -15,7 +15,8 @@
     </div>
 
     <div class="mt-6 mb-6 leading-7 text-gray-800">
-        Permite ver los datos del usuario Autenticado, pasando por la URL el id de usuario.
+        Permite al usuario Autenticado actualizar sus datos y también resetear su password.<br/>
+        En caso de no querer hacerlo debe dejar vacio los campos <code>password</code> y <code>password_confirmation.</code>
     </div>
     <div class=" flex mb-6 lg:mt-0 overflow-auto items-center bg-blue-100 rounded-lg ">
         <div class="bg-blue-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
@@ -28,7 +29,7 @@
 
     <div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
         <div class="flex items-center">
-            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR</div>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR<br>* Debe cargar el token.</div>
         </div>
         <div class=" mt-5 overflow-auto">
             <div class="size ">
