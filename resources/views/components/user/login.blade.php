@@ -58,7 +58,8 @@
         <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,
         <span style="color:red;">"image_profile_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/JmbUBKGpKO5v3yXNTgSAHaprzGjnwPSwe3lh0fZ7.jpg"</span>,
         <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-11-02"</span>,
-        <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-02"</span>
+        <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-02"</span>,
+        <span style="color:red;">"user_status"</span>: <span style="color:blue;"> "ACTIVE"</span>
     },
     <span style="color:red;">"res"</span>: <span style="color:blue;">true</span>,
     <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,

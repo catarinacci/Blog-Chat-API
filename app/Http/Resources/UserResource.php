@@ -15,7 +15,13 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
+
+        if($this->status == 1){
+            $status = 'ACTIVE';
+        }else{
+            $status = 'LOCKED';
+        }
+
         return [
             'user' => [
                 'id'=>$this->id,
@@ -27,6 +33,7 @@ class UserResource extends JsonResource
                 'image_profile_path'=> $this->image_profile_path,
                 'created_at'=> $this->created_at,
                 'updated_at'=> $this->updated_at,
+                'user_status' => $status
             ]
         ];
     }

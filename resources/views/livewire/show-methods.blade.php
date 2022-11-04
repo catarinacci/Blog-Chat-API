@@ -56,6 +56,12 @@
         </x-contenedor>
         @break
 
+        @case('Delete')
+        <x-contenedor>
+            <x-user.delete />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 

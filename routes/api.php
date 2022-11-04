@@ -36,9 +36,9 @@ Route::get('unverified', function(){
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     //Users
-    Route::get('user/{user}', [UserController::class, 'show']);
+    Route::get('user', [UserController::class, 'show']);
     Route::post('user', [UserController::class, 'update']);
-    Route::delete('user/{user}', [UserController::class, 'destroy']);
+    Route::delete('user', [UserController::class, 'destroy']);
 
     //Notes
     Route::get('notes', [NoteController::class, 'index']);

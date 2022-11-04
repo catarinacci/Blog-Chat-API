@@ -17,63 +17,52 @@ use App\Http\Resources\UserCollection;
 class UserController extends Controller
 {
 
-    public function show($user_id)
+    public function show()
     {
-        $user_exists = User::where('id', $user_id)->exists();
-
         $user_auth = Auth::user();
-
-        if($user_exists){
-
-            $user = User::find($user_id);
-
-            if($user_auth->id == $user->id){
-
-                return (new UserResource($user))->additional([
-                    'res' => true
-                ]);
-            }else{
-                return response()->json([
-                    'msg' => 'No es propietario de ésta cuenta'
-                ],400);
-            }
-        }else{
-            return response()->json([
-                'msg' => 'El usuario no existe'
-            ],400);
-        }
+        return (new UserResource($user_auth))->additional(
+            [
+                'res' => true
+            ]
+        );
     }
 
 
     public function update(ActualizarUserRequest $request)
     {
-        $user_object= Auth::user();
+        // return $request;
+        $user_object = Auth::user();
 
-            // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
-            $updated_user= UpdateStoreFiles::UpdateUser($request, $user_object);
+        // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
+        $updated_user = UpdateStoreFiles::UpdateUser($request, $user_object);
 
-            if($updated_user){
-                return $updated_user;
+        if ($updated_user) {
+            return $updated_user;
 
-            } return response()->json([
-                "msg"=>"Error de datos",
-                "res"=>"false"], 400);
+        }
+        return response()->json(
+            [
+                "msg" => "Error de datos",
+                "res" => "false"
+            ],
+            400
+        );
     }
 
     public function destroy(Request $request, User $user)
     {
-        if (Auth::user()->id == $user->id) {
+        $user = Auth::user();
 
-            $user->delete();
+        $user->update(
+            ['status' => 2]
+        );
 
-            return response()->json([
-
-                "res"=>"El Usuario se eliminó correctamente"], 200);
-        } else {
-            return response()->json([
-                'res' => 'Usted no es el propietario de ésta cuenta, no la puede borrar',
-            ], 200);
-        }
+        return response()->json(
+            [
+                "res" => "El Usuario se bloqueó correctamente"
+            ],
+            200
+        );
 
     }
 }

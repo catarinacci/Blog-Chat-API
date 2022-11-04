@@ -10,16 +10,16 @@
 
     <div class="mt-6 text-xl lg:grid grid-cols-2 gap-2 items-center  ">
         <div class="  bg-indigo-400 rounded-lg ">
-            <p class="ml-6">PROFILE</p>
+            <p class="ml-6">DELETE</p>
         </div>
     </div>
 
     <div class="mt-6 mb-6 leading-7 text-gray-800">
-        Permite ver los datos del usuario Autenticado.
+        Permite al usuario Autenticado bloquear su cuenta.
     </div>
     <div class=" flex mb-6 lg:mt-0 overflow-auto items-center bg-blue-100 rounded-lg ">
-        <div class="bg-green-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
-            <span>GET</span>
+        <div class="bg-red-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
+            <span>DELETE</span>
         </div>
         <div>
             <p class=" ml-6 text-lg ">www.noteapi.ga/api/user</p>
@@ -78,3 +78,4 @@
         }
 
 </style>
+
