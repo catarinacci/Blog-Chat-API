@@ -49,6 +49,13 @@
         </x-contenedor>
         @break
 
+
+        @case('Logout')
+        <x-contenedor>
+            <x-user.logout />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 
