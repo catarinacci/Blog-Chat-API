@@ -21,6 +21,7 @@
         Nickname: puede ser nulo<br>
         Email: obligatorio<br>
         Password: obligatorio<br>
+        Password_confirmation: obligatorio<br/>
         Image: puede ser nulo, si es así carga una imagen de perfil por defecto.<br>
         También envía un correo electrónico con un código de 6 dígitos para realizar la verificación de su cuenta de
         correo.
@@ -61,7 +62,7 @@
         <span style="color:red;">"surname"</span>: <span style="color:blue;">"Catarinacci"</span>,
         <span style="color:red;">"nickname"</span>: <span style="color:blue;">"Gabi"</span>,
         <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
-        <span style="color:red;">"image"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png"</span>,
+        <span style="color:red;">"image_profile_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/yXnKnqUfRkRaXV2M9dMvZ4UdgxvSS16RxdoNNaRK.jpg"</span>,
         <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,
         <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,
         <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,

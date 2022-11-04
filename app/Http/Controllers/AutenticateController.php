@@ -21,10 +21,10 @@ use Illuminate\Validation\Rules\Password as RulesPassword;
 class AutenticateController extends Controller
 {
     public function register(RegisterRequest $request){
-        //return $request;
-        if($request->hasFile('image')) {
 
-            $documentPath = $request->file('image')->store('noteapi', 's3');
+        if($request->hasFile('image_profile_path')) {
+
+            $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
 
             $path = Storage::disk('s3')->url($documentPath);
 
