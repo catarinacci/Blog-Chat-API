@@ -43,7 +43,7 @@
         </x-contenedor>
         @break
 
-        @case('Update')
+        @case('Update_User')
         <x-contenedor>
             <x-user.update />
         </x-contenedor>
@@ -56,9 +56,16 @@
         </x-contenedor>
         @break
 
-        @case('Delete')
+        @case('Delete_User')
         <x-contenedor>
             <x-user.delete />
+        </x-contenedor>
+        @break
+
+
+        @case('Create_Note')
+        <x-contenedor>
+            <x-note.create />
         </x-contenedor>
         @break
 

@@ -32,7 +32,7 @@
         </div>
         <div class=" mt-5 overflow-auto">
             <div class="size ">
-                <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/profile_enviar.jpg" alt="">
+                <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/delete_enviar.jpg" alt="">
             </div>
         </div>
     </div>
@@ -45,21 +45,7 @@
                 <pre>
                      <code data-lang="php" >
 {
-    <span style="color:red;">"data"</span>: {
-        <span style="color:red;">"user"</span>: {
-            <span style="color:red;">"id"</span>: <span style="color:green;">1</span>,
-            <span style="color:red;">"name"</span>: <span style="color:blue;">"GABRIEL"</span>,
-            <span style="color:red;">"surname"</span>: <span style="color:blue;">"CATARINACCI"</span>,
-            <span style="color:red;">"nick_name"</span>: <span style="color:blue;">"Gabi"</span>,
-            <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
-            <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">"2022-11-03T15:42:55.000000Z"</span>,
-            <span style="color:red;">"image_profile_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/kuDb7ebUh3az6nm1hnwpe0ZcQfwPqG5a1QJSfRxC.jpg"</span>,
-            <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-11-03"</span>,
-            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-03"</span>,
-            <span style="color:red;">"user_status"</span>: <span style="color:blue;"> "ACTIVE"</span>
-        }
-    },
-    <span style="color:red;">"res"</span>: <span style="color:green;">true</span>
+    <span style="color:red;">"res"</span>: <span style="color:blue;">"El Usuario se bloqueó correctamente"</span>
 }
                     </code>
                 </pre>
@@ -69,11 +55,11 @@
 </div>
 <style>
     .size {
-        height: 298px;
+        height: 320px;
         width: 800px;
         }
         .size_code {
-        height: 270px;
+        height: 100px;
         width: 800px;
         }
 

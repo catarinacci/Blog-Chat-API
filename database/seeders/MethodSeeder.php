@@ -45,11 +45,11 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '1',
-                'name' => 'Update'
+                'name' => 'Update_User'
             ],
             [
                 'module_id' => '1',
-                'name' => 'Delete'
+                'name' => 'Delete_User'
             ],
             [
                 'module_id' => '2',
@@ -57,19 +57,23 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '2',
-                'name' => 'Create'
+                'name' => 'Create_Note'
             ],
             [
                 'module_id' => '2',
-                'name' => 'Select'
+                'name' => 'Select_Note'
             ],
             [
                 'module_id' => '2',
-                'name' => 'Update'
+                'name' => 'Update_Note'
             ],
             [
                 'module_id' => '2',
-                'name' => 'Delete'
+                'name' => 'Delete_Note'
+            ],
+            [
+                'module_id' => '2',
+                'name' => 'Search_Note'
             ],
             [
                 'module_id' => '2',
@@ -77,11 +81,11 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '3',
-                'name' => 'Create'
+                'name' => 'Create_Comment'
             ],
             [
                 'module_id' => '3',
-                'name' => 'Delete'
+                'name' => 'Delete_Comment'
             ],
             [
                 'module_id' => '4',
@@ -93,7 +97,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '4',
-                'name' => 'Delete'
+                'name' => 'Delete_Reaction'
             ],
             [
                 'module_id' => '5',
