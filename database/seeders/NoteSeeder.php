@@ -2,8 +2,12 @@
 
 namespace Database\Seeders;
 
+use Faker\Provider\Lorem;
 use Illuminate\Database\Seeder;
 use App\Models\Note;
+use App\Helpers\orem;
+use Illuminate\Support\Str;
+
 
 class NoteSeeder extends Seeder
 {
@@ -14,6 +18,136 @@ class NoteSeeder extends Seeder
      */
     public function run()
     {
+      $notes = [
+                    [
+                        'user_id' => '1',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '1',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '1',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '1',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '1',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '2',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '2',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '2',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '2',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '2',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '3',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '3',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '3',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '3',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '3',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '4',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '4',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '4',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '4',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                    [
+                        'user_id' => '4',
+                        'title' => implode(" ", Lorem::words(3)) ,
+                        'content' => implode(" ", Lorem::sentences(3)),
+                        'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                    ],
+                ];
 
+                foreach($notes as $note){
+                    Note::create($note);
+                }
     }
-}
+ }
+
+
+
+
+

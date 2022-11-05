@@ -67,32 +67,37 @@ class AutenticateController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if($user->status == 1){
-           // return 1;
-            if (! $user || ! Hash::check($request->password, $user->password)) {
-                throw ValidationException::withMessages([
-                    'msg' => ['Las credenciales son incorrectas.'],
-                ]);
-            }
-            $status = 'ACTIVE';
-            $user_authtoken = $user->createAuthToken('api',20);
-            $user_refreshtoken = $user->createRefreshToken('api', 120);
+        if($user){
+            if($user->status == 1){
+                // return 1;
+                 if (! $user || ! Hash::check($request->password, $user->password)) {
+                     throw ValidationException::withMessages([
+                         'msg' => ['Las credenciales son incorrectas.'],
+                     ]);
+                 }
+                 $status = 'ACTIVE';
+                 $user_authtoken = $user->createAuthToken('api',20);
+                 $user_refreshtoken = $user->createRefreshToken('api', 120);
 
-            return (new UserResource($user))->additional([
-                'res' => true,
-                'user_authtoken' => $user_authtoken,
-                'user_refreshtoken' => $user_refreshtoken
-            ]);
+                 return (new UserResource($user))->additional([
+                     'res' => true,
+                     'user_authtoken' => $user_authtoken,
+                     'user_refreshtoken' => $user_refreshtoken
+                 ]);
+             }
+
+             $status = 'LOCKED';
+
+             return response()->json([
+                 'res' => false,
+                 'user_status' => $status,
+                 'msg' => 'Esta cuenta se encuentra bloqueada'
+             ],400);
         }
-
-        $status = 'LOCKED';
-
         return response()->json([
             'res' => false,
-            'user_status' => $status,
-            'msg' => 'Esta cuenta se encuentra bloqueada'
+            'msg' => 'No existe el usuario'
         ],400);
-
     }
 
     public function logout(Request $request){

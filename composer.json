@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "aws/aws-sdk-php": "3.220.3",
         "doctrine/dbal": "^3.5",
+        "ecrmnn/lorem": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -37,7 +38,8 @@
         "files": [
             "app/Helpers/FormatTime.php",
             "app/Helpers/Url.php",
-            "app/Helpers/UpdateStore.php"
+            "app/Helpers/UpdateStore.php",
+            "app/Helpers/Lorem.php"
         ]
 
     },

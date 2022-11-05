@@ -18,10 +18,62 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()
-        ->count(10)
-        ->hasNotes(2)
-        ->create();
+
+        $users = [
+            [
+                'name' => 'angel',
+                'surname' => 'catarinacci',
+                'nickname'=>'gabi',
+                'email'=> 'systemredsys@gmail.com',
+                'password'=> bcrypt(31340423),
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'email_verified_at' => now()
+            ],
+            [
+                'name' => 'gabriel',
+                'surname' => 'catarinacci',
+                'nickname'=>'gabi',
+                'email'=> 'catarinacci@gmail.com',
+                'password'=> bcrypt(12345678),
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'email_verified_at' => now()
+            ],
+            [
+                'name' => 'ignacio daniel',
+                'surname' => 'carrillo',
+                'nickname'=>'nacho',
+                'email'=> 'carrillo@gmail.com',
+                'password'=> bcrypt(12345678),
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'email_verified_at' => now()
+            ],
+            [
+                'name' => 'alberto',
+                'surname' => 'diaz alvarez',
+                'nickname'=>'toto',
+                'email'=> 'alvarez@gmail.com',
+                'password'=> bcrypt(12345678),
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'email_verified_at' => now()
+            ],
+            [
+                'name' => 'kevin',
+                'surname' => 'romero',
+                'nickname'=>'keven',
+                'email'=> 'keven@gmail.com',
+                'password'=> bcrypt(12345678),
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'email_verified_at' => now()
+            ],
+        ];
+
+        foreach($users as $user){
+            User::create($user);
+        }
+        // User::factory()
+        // ->count(10)
+        // ->hasNotes(2)
+        // ->create();
 
         // User::factory(8)->create()->each(function(User $user){
         //     Note::factory(8)->create([
@@ -35,7 +87,7 @@ class UserSeeder extends Seeder
         //     $notes = Note::all();
         //     $note_id = $notes->random(1);
         //     $json = json_decode($note_id, true);
-            
+
         //     foreach($notes as $note){
         //         Comment::factory(2)->create([
         //             'user_id' => $user->id,
@@ -43,10 +95,10 @@ class UserSeeder extends Seeder
         //         ]);
         //     }
         // });
-            
+
         // User::factory(3)->create()->each(function(User $user){
         //     $notes = Note::all();
-        //     $typereactions = TypeReaction::all(); 
+        //     $typereactions = TypeReaction::all();
         //     foreach ($notes as $note) {
         //         $typereaction_id = $typereactions->random(1);
         //         $json = json_decode($typereaction_id, true);
@@ -58,7 +110,7 @@ class UserSeeder extends Seeder
         //     }
         // });
 
-        
-    
+
+
     }
 }

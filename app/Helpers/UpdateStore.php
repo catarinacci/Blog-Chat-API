@@ -164,67 +164,8 @@ class UpdateStoreFiles{
                 'updated_password' => false,
                 'msj' => 'updated user'
             ]);
-        } return 333;
+        };
 
-
-
-
-
-
-
-        // $image_object = Image::where('imageable_id', $user->id)->first();
-
-        // if( !is_object($image_object)){
-
-        //     $oldimage_path = 1;
-        // }else{
-
-        //     $oldimage_path = $image_object->url;
-        // }
-
-        //     if(Auth::user()->id == $user->id){
-
-        //             if($request->image){
-
-        //                 if($oldimage_path <> 1){
-
-        //                 $path_filter = Url::filterUrl($oldimage_path );
-        //                 Storage::disk('s3')->delete($path_filter);
-        //                 }
-
-        //                 if( !is_object($image_object)){
-
-        //                     $image_object_save = $request->file('image')->store('noteapi', 's3');
-        //                     $imagen = Storage::disk('s3')->url($image_object_save);
-        //                     $user->image()->create([
-        //                         'url' => $imagen,
-        //                     ]);
-
-        //                 }else{
-        //                     $image_object_save = $request->file('image')->store('noteapi', 's3');
-        //                     $imagen = Storage::disk('s3')->url($image_object_save);
-        //                     $image_object->update([
-        //                         'url' => $imagen,
-        //                     ]);
-        //                 }
-
-        //             }else{
-        //                 $imagen = $oldimage_path;
-        //             }
-
-        //                 $user->update([
-        //                     'name' => $request->name,
-        //                     'surname' => $request->surname,
-        //                     'nickname' => $request->nickname,
-        //                     //'id' => Auth::user()->id,
-        //                     'image' => $imagen]);
-
-        //                     return $user;
-        //     }else{
-        //         return response()->json([
-        //             'res' => 'Usted no es el propietario de ésta nota, no la puede modificar',
-        //         ], 400);
-        //     }
      }
 
 
@@ -232,10 +173,9 @@ class UpdateStoreFiles{
 
         $base_location = 'noteapi';
 
-        if($request->hasFile('image')) {
+        if($request->hasFile('image_note_path')) {
 
-            $documentPath = $request->file('image')->store('noteapi', 's3');
-
+            $documentPath = $request->file('image_note_path')->store('noteapi', 's3');
             $path = Storage::disk('s3')->url($documentPath);
 
         } else {
@@ -246,7 +186,7 @@ class UpdateStoreFiles{
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => Auth::user()->id,
-            'image' => $path
+            'image_note_path' => $path
         ]);
 
         if($path){

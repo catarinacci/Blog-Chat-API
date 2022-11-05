@@ -15,7 +15,7 @@ class Note extends Model
         'title',
         'content',
         'user_id',
-        'image'
+        'image_note_path'
     ];
 
     // Relación uno a muchos

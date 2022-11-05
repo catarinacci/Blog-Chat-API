@@ -51,7 +51,7 @@ class NoteResource extends JsonResource
             'user_id'=> "/api/user/".$this->user_id,
             'title' => $this->title,
             'content'=> $this->content,
-            'image' => $this->image,
+            'image_note_path' => $this->image_note_path,
             'comentarios '.$this->comments->count() => $comments,
             'reacciones '.$this->reactions->count() => $reactions,
             'nota creada '=> $time,
