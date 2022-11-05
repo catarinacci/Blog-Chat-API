@@ -197,7 +197,7 @@ class UpdateStoreFiles{
         return response()->json([
             'nota' => $nota_creada,
             'res' => true,
-            'msg' => 'Nota Guardada Correctamente',
+            'msg' => 'Nota Creada Correctamente',
         ],200);
      }
 

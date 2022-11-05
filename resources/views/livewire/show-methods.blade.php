@@ -69,6 +69,12 @@
         </x-contenedor>
         @break
 
+        @case('Select_Note')
+        <x-contenedor>
+            <x-note.show />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 

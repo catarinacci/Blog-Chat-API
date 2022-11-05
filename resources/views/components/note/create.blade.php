@@ -15,34 +15,32 @@
     </div>
 
     <div class="mt-6 mb-6 leading-7 text-gray-800">
-        Crea un nuevo usuario con los siguientes campos:<br>
-        Name: puede ser nulo<br>
-        Surname: puede ser nulo<br>
-        Nickname: puede ser nulo<br>
-        Email: obligatorio<br>
-        Password: obligatorio<br>
-        Password_confirmation: obligatorio<br/>
-        Image: puede ser nulo, si es así carga una imagen de perfil por defecto.<br>
-        También envía un correo electrónico con un código de 6 dígitos para realizar la verificación de su cuenta de
-        correo.
-
+       Permite al usuario Autenticado crear una publicación.<br>
     </div>
     <div class=" flex mb-6 lg:mt-0 overflow-auto items-center bg-blue-100 rounded-lg ">
         <div class="bg-blue-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
             <span>POST</span>
         </div>
         <div>
-            <p class=" ml-6 text-lg ">www.noteapi.ga/api/register</p>
+            <p class=" ml-6 text-lg ">www.noteapi.ga/api/note</p>
         </div>
 </div>
 
 <div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
     <div class="flex items-center">
-        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR</div>
+        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR<br/>* Debe cargar el token</div>
     </div>
     <div class=" mt-5 overflow-auto">
         <div class="size ">
-            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/register_enviar.jpg" alt="">
+            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_create_token.jpg" alt="">
+        </div>
+    </div>
+    <div class="flex items-center">
+        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><br/>* Completar el formulario</div>
+    </div>
+    <div class=" mt-5 overflow-auto">
+        <div class="size ">
+            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_create_enviar.jpg" alt="">
         </div>
     </div>
 
@@ -57,42 +55,31 @@
         <pre>
             <code data-lang="php" >
 {
-    <span style="color:red;">"user"</span>: {
-        <span style="color:red;">"name"</span>: <span style="color:blue;">"Gabriel"</span>,
-        <span style="color:red;">"surname"</span>: <span style="color:blue;">"Catarinacci"</span>,
-        <span style="color:red;">"nickname"</span>: <span style="color:blue;">"Gabi"</span>,
+    <span style="color:red;">"nota"</span>: {
+        <span style="color:red;">"id"</span>: <span style="color:green;">21</span>,
+        <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"angel"</span>,
         <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
-        <span style="color:red;">"image_profile_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/yXnKnqUfRkRaXV2M9dMvZ4UdgxvSS16RxdoNNaRK.jpg"</span>,
-        <span style="color:red;">"email_verified_at"</span>: <span style="color:blue;">null</span>,
-        <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,
-        <span style="color:red;">"created_at"</span>: <span style="color:blue;">"2022-10-23T16:36:12.000000Z"</span>,
-        <span style="color:red;">"id"</span>: <span style="color:green;">1</span>
+        <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/1"</span>,
+        <span style="color:red;">"title"</span>: <span style="color:blue;">"Nota de prueba"</span>,
+        <span style="color:red;">"content"</span>: <span style="color:blue;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt venenatis lobortis. Nunc ut odio ac diam pretium aliquam et id quam. Curabitur nisi ante, finibus non nisl id, porttitor suscipit justo. Praesent eu faucibus arcu. Mauris bibendum eu risus vitae mattis. Integer ipsum ligula, interdum a imperdiet sit amet, malesuada non sem. Nulla felis est, hendrerit sit amet imperdiet ac, auctor ut nisl."</span>,
+        <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/9OyNMkFJuS88RsGx5qrEPnKlYLqffRY7fo0DS7qm.jpg"</span>,
+        <span style="color:red;">"comentarios 0"</span>: <span style="color:blue;">"No tiene comentarios"</span>,
+        <span style="color:red;">"reacciones 0"</span>: <span style="color:blue;">"No tiene reacciones"</span>,
+        <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 0 segundos"</span>,
+        <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
     },
     <span style="color:red;">"res"</span>: <span style="color:blue;">true</span>,
-    <span style="color:red;">"msg"</span>: <span style="color:blue;">"Usuario registrado correctamente"</span>,
-    <span style="color:red;">"email verification"</span>: <span style="color:blue;">"Se envió un email con un código de verificación"</span>
+    <span style="color:red;">"msg"</span>: <span style="color:blue;">"Nota Creada Correctamente"</span>
 }
             </code>
         </pre>
-        </div>
-    </div>
-
-</div>
-
-<div class="p-6 sm:px-10 sm:rounded-b-lg bg-indigo-200 border-b border-gray-300 ">
-    <div class="flex items-center">
-        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">EMAIL</div>
-    </div>
-    <div class=" mt-5 overflow-auto bg-slate-100">
-        <div class="size">
-            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/register_email_verify.jpg" alt="">
         </div>
     </div>
 </div>
 
 <style>
     .size {
-        height: 314px;
+        height: 281px;
         width: 800px;
         }
 </style>
