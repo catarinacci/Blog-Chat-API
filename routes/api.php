@@ -41,11 +41,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::delete('user', [UserController::class, 'destroy']);
 
     //Notes
-    Route::get('notes', [NoteController::class, 'index']);
-    Route::post('note', [NoteController::class, 'store']);
     Route::get('note/{note}', [NoteController::class, 'show']);
-    Route::delete('note/{note}', [NoteController::class, 'destroy']);
+    Route::post('note', [NoteController::class, 'store']);
     Route::post('note/{note}', [NoteController::class, 'update']);
+    Route::get('notes', [NoteController::class, 'index']);
+    Route::delete('note/{note}', [NoteController::class, 'destroy']);
+
     //Route::get('note/{note}/image', [NoteController::class, 'image']);
     Route::get('note_user', [NoteController::class, 'noteUser']);
 

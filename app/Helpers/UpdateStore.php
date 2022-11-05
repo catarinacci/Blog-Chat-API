@@ -20,6 +20,37 @@ class UpdateStoreFiles{
 
     public static function UpdateNote($request, $nota_object){
 
+
+        // pregunta si tiene publicaciones
+        $user_notes = Note::where('user_id', Auth::user()->id)->get();
+
+        if($user_notes){
+            foreach($user_notes as $user_note){
+                if($user_note->id == $nota_object->id){
+                    $prop_note = true;
+                    break;
+                }else{
+                    $prop_note = false;
+                }
+            }
+
+            if($prop_note){
+                return 'propietario';
+            }else{
+                return response()->json([
+                    'res' => 'Usted no es el propietario de ésta publicación'
+                ], 400);
+            }
+
+        }else{
+            return response()->json([
+                'res' => 'Usted no tiene ninguna publicación'
+            ], 400);
+        }
+        $note_exists ='';
+
+        return $note_user;
+
         $image_object = Image::where('imageable_id', $nota_object->id)->first();
 
         if( !is_object($image_object)){
