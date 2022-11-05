@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'nickname'=>'gabi',
                 'email'=> 'systemredsys@gmail.com',
                 'password'=> bcrypt(31340423),
-                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg',
                 'email_verified_at' => now()
             ],
             [
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'nickname'=>'gabi',
                 'email'=> 'catarinacci@gmail.com',
                 'password'=> bcrypt(12345678),
-                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg',
                 'email_verified_at' => now()
             ],
             [
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
                 'nickname'=>'nacho',
                 'email'=> 'carrillo@gmail.com',
                 'password'=> bcrypt(12345678),
-                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg',
                 'email_verified_at' => now()
             ],
             [
@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
                 'nickname'=>'keven',
                 'email'=> 'keven@gmail.com',
                 'password'=> bcrypt(12345678),
-                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'image_profile_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg',
                 'email_verified_at' => now()
             ],
         ];

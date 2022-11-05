@@ -29,7 +29,7 @@ class AutenticateController extends Controller
             $path = Storage::disk('s3')->url($documentPath);
 
         } else {
-            $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png';
+            $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg';
         }
 
         $request->validate([
