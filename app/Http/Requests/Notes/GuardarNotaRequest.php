@@ -24,8 +24,9 @@ class GuardarNotaRequest extends FormRequest
     public function rules()
     {
         return [
-            "content" => "required|string",
-             'image' => 'image'
+            "title" => "required",
+            "content" => "required",
+            'image_note_path' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

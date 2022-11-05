@@ -41,6 +41,11 @@ class NoteResource extends JsonResource
             $reactions = 'No tiene reacciones';
         }
 
+        if($this->status == 1 || $this->status == null){
+            $status = 'ACTIVE';
+        } else{
+            $status = 'LOCKED';
+        }
 
         $time = FormatTime::LongTimeFilter($this->created_at);
         // $this->user_id = Auth::user()->id;
@@ -55,6 +60,7 @@ class NoteResource extends JsonResource
             'comentarios '.$this->comments->count() => $comments,
             'reacciones '.$this->reactions->count() => $reactions,
             'nota creada '=> $time,
+            'status' => $status
         ];
 
     }

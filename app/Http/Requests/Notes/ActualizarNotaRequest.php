@@ -24,8 +24,9 @@ class ActualizarNotaRequest extends FormRequest
     public function rules()
     {
         return [
+            "title" => "required",
             "content" => "required",
-            'image' => 'image|nullable'
+            'image' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }
