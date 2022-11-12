@@ -75,6 +75,12 @@
         </x-contenedor>
         @break
 
+        @case('Update_Note')
+        <x-contenedor>
+            <x-note.update />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 

@@ -26,7 +26,7 @@ class ActualizarNotaRequest extends FormRequest
         return [
             "title" => "required",
             "content" => "required",
-            'image' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image_note_path' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }
