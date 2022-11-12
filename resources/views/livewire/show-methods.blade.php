@@ -81,6 +81,12 @@
         </x-contenedor>
         @break
 
+        @case('All_Notes')
+        <x-contenedor>
+            <x-note.all />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 

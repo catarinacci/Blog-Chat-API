@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
 
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => 'Your email address is not verified.'
+                    'message' => 'You entered the URL wrong or Your email address is not verified.'
                 ], 404);
             }
         });

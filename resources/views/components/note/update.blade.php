@@ -28,11 +28,11 @@
 
 <div class="p-6 sm:px-6 lg:px-12  bg-indigo-200 border-b border-gray-400 ">
     <div class="flex items-center">
-        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR<br/>* Debe cargar el token</div>
+        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">ENVIAR<br/>* Debe colocar el id de la nota en la url<br/> * Debe cargar el token</div>
     </div>
     <div class=" mt-5 overflow-auto">
         <div class="size ">
-            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_create_token.jpg" alt="">
+            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_update_token.jpg" alt="">
         </div>
     </div>
     <div class="flex items-center">
@@ -40,7 +40,7 @@
     </div>
     <div class=" mt-5 overflow-auto">
         <div class="size ">
-            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_create_enviar.jpg" alt="">
+            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_update_enviar.jpg" alt="">
         </div>
     </div>
 
@@ -55,21 +55,47 @@
         <pre>
             <code data-lang="php" >
 {
-    <span style="color:red;">"nota"</span>: {
-        <span style="color:red;">"id"</span>: <span style="color:green;">21</span>,
+    <span style="color:red;">"data"</span>: {
+        <span style="color:red;">"id"</span>: <span style="color:green;">5</span>,
         <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"angel"</span>,
         <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
         <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/1"</span>,
-        <span style="color:red;">"title"</span>: <span style="color:blue;">"Nota de prueba"</span>,
-        <span style="color:red;">"content"</span>: <span style="color:blue;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt venenatis lobortis. Nunc ut odio ac diam pretium aliquam et id quam. Curabitur nisi ante, finibus non nisl id, porttitor suscipit justo. Praesent eu faucibus arcu. Mauris bibendum eu risus vitae mattis. Integer ipsum ligula, interdum a imperdiet sit amet, malesuada non sem. Nulla felis est, hendrerit sit amet imperdiet ac, auctor ut nisl."</span>,
-        <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/9OyNMkFJuS88RsGx5qrEPnKlYLqffRY7fo0DS7qm.jpg"</span>,
-        <span style="color:red;">"comentarios 0"</span>: <span style="color:blue;">"No tiene comentarios"</span>,
-        <span style="color:red;">"reacciones 0"</span>: <span style="color:blue;">"No tiene reacciones"</span>,
-        <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 0 segundos"</span>,
+        <span style="color:red;">"title"</span>: <span style="color:blue;">"Título modificado"</span>,
+        <span style="color:red;">"content"</span>: <span style="color:blue;">"\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\""</span>,
+        <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/6pyRu3djacUrQ5qeiyINackQm6yH3SlPA5x0me0t.jpg"</span>,
+        <span style="color:red;">"comentarios 2"</span>: [
+            {
+                <span style="color:red;">"usuario"</span>: <span style="color:blue;">"kevin"</span>,
+                <span style="color:red;">"user_id"</span>: <span style="color:green;">5</span>,
+                <span style="color:red;">"comentario"</span>: <span style="color:blue;">"Veniam facilis non et aut suscipit dolorem. Corporis autem sed totam facilis. Molestiae error veritatis minus error est blanditiis."</span>
+            },
+            {
+                <span style="color:red;">"usuario"</span>: <span style="color:blue;">"gabriel"</span>,
+                <span style="color:red;">"user_id"</span>: <span style="color:green;">2</span>,
+                <span style="color:red;">"comentario"</span>: <span style="color:blue;">"Id voluptatum eius laboriosam omnis soluta velit. Debitis laborum quia natus possimus. Ullam voluptatem fugiat maiores rerum. Corrupti sapiente modi labore eos."</span>
+            }
+        ],
+        <span style="color:red;">"reacciones 2"</span>: [
+            {
+                <span style="color:red;">"id"</span>: <span style="color:green;">2</span>,
+                <span style="color:red;">"usuario"</span>: <span style="color:blue;">"kevin"</span>,
+                <span style="color:red;">"user_id"</span>: <span style="color:green;">5</span>,
+                <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me divierte"</span>,
+                <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">3</span>
+            },
+            {
+                <span style="color:red;">"id"</span>: <span style="color:green;">12</span>,
+                <span style="color:red;">"usuario"</span>: <span style="color:blue;">"kevin"</span>,
+                <span style="color:red;">"user_id"</span>: <span style="color:green;">5</span>,
+                <span style="color:red;">"reaction"</span>: <span style="color:blue;">"No me gusta"</span>,
+                <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">2</span>
+            }
+        ],
+        <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 6 días"</span>,
         <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
     },
     <span style="color:red;">"res"</span>: <span style="color:blue;">true</span>,
-    <span style="color:red;">"msg"</span>: <span style="color:blue;">"Nota Creada Correctamente"</span>
+    <span style="color:red;">"msj"</span>: <span style="color:blue;">"updated note"</span>
 }
             </code>
         </pre>
@@ -79,7 +105,7 @@
 
 <style>
     .size {
-        height: 281px;
+        height: 282.3px;
         width: 800px;
         }
 </style>
