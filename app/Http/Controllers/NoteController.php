@@ -13,6 +13,7 @@ use App\Helpers\UpdateStore;
 use App\Helpers\UpdateStoreFiles;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Aws\S3\S3Client;
 
@@ -20,7 +21,7 @@ class NoteController extends Controller
 {
     public function index()
     {
-        $orden_desc = Note::orderBy('updated_at', 'desc')->paginate(10);
+        $orden_desc = Note::where('status', 1)->orderBy('updated_at', 'desc')->paginate(10);
         return new NoteCollection($orden_desc);
     }
 
@@ -60,11 +61,18 @@ class NoteController extends Controller
 
     public function show ($nota_id)
     {
-        $nota_exists = Note::where('id', $nota_id)->exists();
+        $nota = Note::where('id', $nota_id)->first();
 
-        if ($nota_exists){
-            $nota = Note::find($nota_id);
-            return new NoteResource($nota);
+        if ($nota){
+            $status = $nota->status;
+            if($status == 1){
+                return new NoteResource($nota);
+            }else{
+                return response()->json([
+                    'res' => false,
+                    'msj' => 'La publicación se encuentra bloqueada'
+                ],400);
+            }
         }
         return response()->json([
             'msj' => 'La nota '.$nota_id.' no existe '
@@ -77,37 +85,105 @@ class NoteController extends Controller
     {
         $nota = Note::where('id', $nota_id)->first();
 
+        $status = $nota->status;
 
-        if($nota){
+        if($status == 1){
+            if($nota){
 
-            // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
-            $nota_object = UpdateStoreFiles::UpdateNote($request, $nota);
+                // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
+                $nota_object = UpdateStoreFiles::UpdateNote($request, $nota);
+            }else{
+                return response()->json([
+                'res' => 'La nota '.' '.$nota_id.' '.' no existe',
+                ], 400);
+            }
+
+            return $nota_object;
         }else{
             return response()->json([
-            'res' => 'La nota '.' '.$nota_id.' '.' no existe',
-            ], 400);
+                'res' => false,
+                'msj' => 'La publicación se encuentra bloqueada'
+            ],400);
         }
-
-        return $nota_object;
 
     }
 
     public function destroy($nota_id)
     {
-        $nota = Note::findOrFail($nota_id);
 
-         if (Auth::user()->id == $nota->user_id) {
+        $nota = Note::where('id',$nota_id)->first();
 
-            $nota->delete();
+        if($nota){
+            // pregunta si tiene publicaciones
+            $user_notes = Note::where('user_id', Auth::user()->id)->get();
+            if($user_notes){
+                foreach($user_notes as $user_note){
 
+                    if($user_note->id == $nota->id){
+
+                        $prop_note = true;
+                        break;
+                    }else{
+                        $prop_note = false;
+                    }
+                }
+                if($prop_note){
+
+                    $nota->update(
+                        ['status' => 2]
+                    );
+
+                    return response()->json([
+                            "res" => "La publicación se bloqueó correctamente"
+                        ],200);
+                }else{
+                    return response()->json([
+                        'res' => false,
+                        'msj' => 'Usted no es el propietario de la publicación'
+                    ],400);
+                }
+            }else{
+                return response()->json([
+                    'res' => false,
+                    'msj' => 'No tiene publicaciones'
+                ],400);
+            }
+        }else{
             return response()->json([
-
-                "res"=>"La nota " .$nota->id." se eliminó correctamente"], 200);
-        } else {
-            return response()->json([
-                'res' => 'Usted no es el propietario de ésta nota, no la puede borrar',
+                "res" => false,
+                'msj' => 'La publicación no existe'
             ], 400);
         }
+
+
+
+
+
+
+        $nota->update(
+            ['status' => 2]
+        );
+
+        return response()->json(
+            [
+                "res" => "La Nota se bloqueó correctamente"
+            ],
+            200
+        );
+
+
+        //  if (Auth::user()->id == $nota->user_id) {
+
+        //     $nota->delete();
+
+        //     return response()->json([
+
+        //         "res"=>"La nota " .$nota->id." se eliminó correctamente"], 200);
+        // } else {
+        //     return response()->json([
+        //         'res' => 'Usted no es el propietario de ésta nota, no la puede borrar',
+        //     ], 400);
+        // }
 
     }
 

@@ -22,7 +22,7 @@
             <span>GET</span>
         </div>
         <div>
-            <p class=" ml-6 text-lg ">www.noteapi.ga/api/note</p>
+            <p class=" ml-6 text-lg ">www.noteapi.ga/api/notes</p>
         </div>
 </div>
 
@@ -32,7 +32,7 @@
     </div>
     <div class=" mt-5 overflow-auto">
         <div class="size ">
-            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/select_enviar.jpg" alt="">
+            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/note_all_token.jpg" alt="">
         </div>
     </div>
 </div>
@@ -46,39 +46,192 @@
         <pre>
             <code data-lang="php" >
 {
-    <span style="color:red;">"data"</span>: {
-        <span style="color:red;">"id"</span>: <span style="color:green;">3</span>,
-        <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"angel"</span>,
-        <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
-        <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/1"</span>,
-        <span style="color:red;">"title"</span>: <span style="color:blue;">"modi rerum est"</span>,
-        <span style="color:red;">"content"</span>: <span style="color:blue;">"Mollitia blanditiis consequatur ab ut. Esse expedita eum totam at est repellat minima. Cum quo aut perferendis."</span>,
-        <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg"</span>,
-        <span style="color:red;">"comentarios 1"</span>: [
+    <span style="color:red;">"data"</span>: [
+        {
+            <span style="color:red;">"id"</span>: <span style="color:green;">3</span>,
+            <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"angel"</span>,
+            <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
+            <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/1"</span>,
+            <span style="color:red;">"title"</span>: <span style="color:blue;">"Título modificado nota tres"</span>,
+            <span style="color:red;">"content"</span>: <span style="color:blue;">"\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\""</span>,
+            <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/kjpeUYU5YLrz3lYIJD0tghJrt0CgGRBqv1A9oV3H.jpg"</span>,
+            <span style="color:red;">"comentarios 1"</span>: [
+                {
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"alberto"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">4</span>,
+                    <span style="color:red;">"comentario"</span>: <span style="color:blue;">"Ipsa dolor itaque voluptatem fugit. Cumque molestiae perferendis doloribus laborum illum sunt et. Suscipit voluptates laudantium hic tempora quo."</span>
+                }
+            ],
+            <span style="color:red;">"reacciones 0"</span>: <span style="color:blue;">"No tiene reacciones"</span>,
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-12T20:29:54.000000Z"</span>,
+            <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 12 minutos"</span>,
+            <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
+        },
+        {
+            <span style="color:red;">"id"</span>: <span style="color:green;">5</span>,
+            <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"angel"</span>,
+            <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
+            <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/1"</span>,
+            <span style="color:red;">"title"</span>: <span style="color:blue;">"Título modificado nota cinco"</span>,
+            <span style="color:red;">"content"</span>: <span style="color:blue;">"\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\""</span>,
+            <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/TLSqlyK2B0s1sAdtmeBk4ce4YA2gDIduq9yHAfJG.jpg"</span>,
+            <span style="color:red;">"comentarios 2"</span>: [
+                {
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"angel"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">1</span>,
+                    <span style="color:red;">"comentario"</span>: <span style="color:blue;">"Consequatur vel rem sint velit at. Laboriosam eum magni a ut omnis."</span>
+                },
+                {
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"alberto"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">4</span>,
+                    <span style="color:red;">"comentario"</span>: <span style="color:blue;">"Eaque nemo qui soluta voluptates et sint illum sapiente. Qui tempore eligendi accusantium reprehenderit quos perspiciatis error. Saepe totam aut qui. Itaque molestias autem qui laudantium."</span>
+                }
+            ],
+            <span style="color:red;">"reacciones 0"</span>: <span style="color:blue;">"No tiene reacciones"</span>,
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-12T20:29:36.000000Z"</span>,
+            <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 12 minutos"</span>,
+            <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
+        },
+        {
+            <span style="color:red;">"id"</span>: <span style="color:green;">1</span>,
+            <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"angel"</span>,
+            <span style="color:red;">"email"</span>: <span style="color:blue;">"systemredsys@gmail.com"</span>,
+            <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/1"</span>,
+            <span style="color:red;">"title"</span>: <span style="color:blue;">"Título modificado nota uno"</span>,
+            <span style="color:red;">"content"</span>: <span style="color:blue;">"\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\""</span>,
+            <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/vAuPYgIan55WKUPWnCvDErlr2iOYRrD3FSDf3yRr.jpg"</span>,
+            <span style="color:red;">"comentarios 0"</span>: <span style="color:blue;">"No tiene comentarios"</span>,
+            <span style="color:red;">"reacciones 1"</span>: [
+                {
+                    <span style="color:red;">"id"</span>: <span style="color:green;">12</span>,
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"angel"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">1</span>,
+                    <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me enoja"</span>,
+                    <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">4</span>
+                }
+            ],
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-12T20:28:56.000000Z"</span>,
+            <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 12 minutos"</span>,
+            <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
+        },
+        <span style="color:green;">//</span>
+        <span style="color:green;">-</span>
+        <span style="color:green;">-</span>
+        <span style="color:green;">-</span>
+        <span style="color:green;">-</span>
+        <span style="color:green;">-</span>
+        <span style="color:green;">-</span>
+        <span style="color:green;">//</span>
+        {
+            <span style="color:red;">"id"</span>: <span style="color:green;">11</span>,
+            <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"ignacio daniel"</span>,
+            <span style="color:red;">"email"</span>: <span style="color:blue;">"carrillo@gmail.com"</span>,
+            <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/3"</span>,
+            <span style="color:red;">"title"</span>: <span style="color:blue;">"earum molestiae quae"</span>,
+            <span style="color:red;">"content"</span>: <span style="color:blue;">"Pariatur temporibus ut provident vel. Cum eum odit repellendus quia eaque ea tenetur. Dolor mollitia illo et earum quae labore."</span>,
+            <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg"</span>,
+            <span style="color:red;">"comentarios 0"</span>: <span style="color:blue;">"No tiene comentarios"</span>,
+            <span style="color:red;">"reacciones 2"</span>: [
+                {
+                    <span style="color:red;">"id"</span>: <span style="color:green;">9</span>,
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"angel"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">1</span>,
+                    <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me divierte"</span>,
+                    <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">3</span>
+                },
+                {
+                    <span style="color:red;">"id"</span>: <span style="color:green;">16</span>,
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"angel"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">1</span>,
+                    <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me divierte"</span>,
+                    <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">3</span>
+                }
+            ],
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-12T20:17:25.000000Z"</span>,
+            <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 12 minutos"</span>,
+            <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
+        },
+        {
+            <span style="color:red;">"id"</span>: <span style="color:green;">12</span>,
+            <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"ignacio daniel"</span>,
+            <span style="color:red;">"email"</span>: <span style="color:blue;">"carrillo@gmail.com"</span>,
+            <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/3"</span>,
+            <span style="color:red;">"title"</span>: <span style="color:blue;">"fuga sed numquam"</span>,
+            <span style="color:red;">"content"</span>: <span style="color:blue;">"Voluptates cupiditate sunt ea et inventore consequatur. Nihil eligendi reprehenderit sit corporis vel. Quis aperiam nihil dignissimos similique officia qui."</span>,
+            <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg"</span>,
+            <span style="color:red;">"comentarios 0"</span>: <span style="color:blue;">"No tiene comentarios"</span>,
+            <span style="color:red;">"reacciones 2"</span>: [
+                {
+                    <span style="color:red;">"id"</span>: <span style="color:green;">10</span>,
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"angel"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">1</span>,
+                    <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me gusta"</span>,
+                    <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">1</span>
+                },
+                {
+                    <span style="color:red;">"id"</span>: <span style="color:green;">11</span>,
+                    <span style="color:red;">"usuario"</span>: <span style="color:blue;">"alberto"</span>,
+                    <span style="color:red;">"user_id"</span>: <span style="color:green;">4</span>,
+                    <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me enoja"</span>,
+                    <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">4</span>
+                }
+            ],
+            <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 12 minutos"</span>,
+            <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-12T20:17:25.000000Z"</span>,
+        },
+        {
+            <span style="color:red;">"id"</span>: <span style="color:green;">13</span>,
+            <span style="color:red;">"creador de la nota"</span>: <span style="color:blue;">"ignacio daniel"</span>,
+            <span style="color:red;">"email"</span>: <span style="color:blue;">"carrillo@gmail.com"</span>,
+            <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/3"</span>,
+            <span style="color:red;">"title"</span>: <span style="color:blue;">"temporibus autem quas"</span>,
+            <span style="color:red;">"content"</span>: <span style="color:blue;">"Alias vel vero voluptatem vel ullam porro. Ut quia ea aspernatur cum. Atque sint sed aut eius."</span>,
+            <span style="color:red;">"image_note_path"</span>: <span style="color:blue;">"https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg"</span>,
+            <span style="color:red;">"comentarios 0"</span>: <span style="color:blue;">"No tiene comentarios"</span>,
+            <span style="color:red;">"reacciones 0"</span>: <span style="color:blue;">"No tiene reacciones"</span>,
+            <span style="color:red;">"updated_at"</span>: <span style="color:blue;">"2022-11-12T20:17:25.000000Z"</span>,
+            <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 12 minutos"</span>,
+            <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
+        }
+    ],
+    <span style="color:red;">"links"</span>: {
+        <span style="color:red;">"self"</span>: <span style="color:blue;">"link-value"</span>,
+        <span style="color:red;">"first"</span>: <span style="color:blue;">"http://www.noteapi.ga/api/notes?page=1"</span>,
+        <span style="color:red;">"last"</span>: <span style="color:blue;">"http://www.noteapi.ga/api/notes?page=2"</span>,
+        <span style="color:red;">"prev"</span>: <span style="color:blue;">null</span>,
+        <span style="color:red;">"next"</span>: <span style="color:blue;">"http://www.noteapi.ga/api/notes?page=2"</span>
+    },
+    <span style="color:red;">"meta"</span>: {
+        <span style="color:red;">"current_page"</span>: <span style="color:green;">1</span>,
+        <span style="color:red;">"from"</span>: <span style="color:green;">1</span>,
+        <span style="color:red;">"last_page"</span>: <span style="color:green;">2</span>,
+        <span style="color:red;">"links"</span>: [
             {
-                <span style="color:red;">"usuario"</span>: <span style="color:blue;">"angel"</span>,
-                <span style="color:red;">"user_id"</span>: <span style="color:green;">1</span>,
-                <span style="color:red;">"comentario"</span>: <span style="color:blue;">"Illo qui earum recusandae. Rem cum dicta necessitatibus illum est. Quibusdam qui nihil expedita est ratione laborum."</span>
-            }
-        ],
-        <span style="color:red;">"reacciones 2"</span>: [
-            {
-                <span style="color:red;">"id"</span>: <span style="color:green;">5</span>,
-                <span style="color:red;">"usuario"</span>: <span style="color:blue;">"angel"</span>,
-                <span style="color:red;">"user_id"</span>: <span style="color:green;">1</span>,
-                <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me gusta"</span>,
-                <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">1</span>
+                <span style="color:red;">"url"</span>: <span style="color:blue;">null</span>,
+                <span style="color:red;">"label"</span>: <span style="color:blue;">"&laquo; Anterior"</span>,
+                <span style="color:red;">"active"</span>: <span style="color:blue;">false</span>
             },
             {
-                <span style="color:red;">"id"</span>: <span style="color:green;">15</span>,
-                <span style="color:red;">"usuario"</span>: <span style="color:blue;">"alberto"</span>,
-                <span style="color:red;">"user_id"</span>: <span style="color:green;">4</span>,
-                <span style="color:red;">"reaction"</span>: <span style="color:blue;">"Me gusta"</span>,
-                <span style="color:red;">"typereaction_id"</span>: <span style="color:green;">1</span>
+                <span style="color:red;">"url"</span>: <span style="color:blue;">"http://www.noteapi.ga/api/notes?page=1"</span>,
+                <span style="color:red;">"label"</span>: <span style="color:blue;">"1"</span>,
+                <span style="color:red;">"active"</span>: <span style="color:blue;">true</span>
+            },
+            {
+                <span style="color:red;">"url"</span>: <span style="color:blue;">"http://www.noteapi.ga/api/notes?page=2"</span>,
+                <span style="color:red;">"label"</span>: <span style="color:blue;">"2"</span>,
+                <span style="color:red;">"active"</span>: <span style="color:blue;">false</span>
+            },
+            {
+                <span style="color:red;">"url"</span>: <span style="color:blue;">"http://www.noteapi.ga/api/notes?page=2"</span>,
+                <span style="color:red;">"label"</span>: <span style="color:blue;">"Siguiente &raquo;"</span>,
+                <span style="color:red;">"active"</span>: <span style="color:blue;">false</span>
             }
         ],
-        <span style="color:red;">"nota creada "</span>: <span style="color:blue;">"Hace 1 hora"</span>,
-        <span style="color:red;">"status"</span>: <span style="color:blue;">"ACTIVE"</span>
+        <span style="color:red;">"path"</span>: <span style="color:blue;">"http://www.noteapi.ga/api/notes"</span>,
+        <span style="color:red;">"per_page"</span>: <span style="color:green;">10</span>,
+        <span style="color:red;">"to"</span>: <span style="color:green;">10</span>,
+        <span style="color:red;">"total"</span>: <span style="color:green;">20</span>
     }
 }
             </code>
@@ -89,7 +242,7 @@
 
 <style>
     .size {
-        height: 283px;
+        height: 275.45px;
         width: 800px;
         }
 </style>

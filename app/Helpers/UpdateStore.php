@@ -21,19 +21,18 @@ class UpdateStoreFiles{
 
     public static function UpdateNote($request, $nota_object){
 
-
         // pregunta si tiene publicaciones
         $user_notes = Note::where('user_id', Auth::user()->id)->get();
-        //return $user_notes;
+
         if($user_notes){
             foreach($user_notes as $user_note){
 
                 if($user_note->id == $nota_object->id){
-                    $url_image = $user_note->image->url;
 
-                    //$nota_object->image->imageable_id;
+                    $url_image = $user_note->image->url;
                     $prop_note = true;
                     break;
+
                 }else{
                     $prop_note = false;
                 }
@@ -196,21 +195,8 @@ class UpdateStoreFiles{
                                      'updated_password' => true,
                                      'msj' => 'updated user'
                                  ]);
-                            // return 'imagen nueva';
+
                         }
-                        // //borro la imagen antigua en s3
-                        // $oldimage_path = $image_object->url;
-                        // $path_filter = Url::filterUrl($oldimage_path );
-                        // Storage::disk('s3')->delete($path_filter);
-
-                        // // Guardo la imagen nueva en s3
-                        // $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
-                        // $path = Storage::disk('s3')->url($documentPath);
-
-                        // // Actualizo la URL de la imagen en la tabla images
-                        // $image_object->update([
-                        //     'url' => $path
-                        // ]);
 
                     }else{
                         $path = $user->image->url;

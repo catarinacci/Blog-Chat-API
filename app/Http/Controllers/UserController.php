@@ -33,10 +33,12 @@ class UserController extends Controller
         // return $request;
         $user_object = Auth::user();
 
+
         // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
         $updated_user = UpdateStoreFiles::UpdateUser($request, $user_object);
 
         if ($updated_user) {
+
             return $updated_user;
 
         }
