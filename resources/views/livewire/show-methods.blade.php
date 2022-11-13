@@ -87,6 +87,12 @@
         </x-contenedor>
         @break
 
+        @case('Delete_Note')
+        <x-contenedor>
+            <x-note.delete />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 
