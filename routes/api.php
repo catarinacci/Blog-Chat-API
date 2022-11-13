@@ -46,15 +46,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::post('note/{note}', [NoteController::class, 'update']);
     Route::get('notes', [NoteController::class, 'index']);
     Route::delete('note/{note}', [NoteController::class, 'destroy']);
-
-    //Route::get('note/{note}/image', [NoteController::class, 'image']);
     Route::get('notes-user', [NoteController::class, 'noteUser']);
     Route::get('search/{value}', [NoteController::class, 'search']);
 
     //Comments
     // Route::apiResource('comment', CommentController::class);
     // Route::get('comments', [CommentController::class, 'index']);
-    // Route::post('comment', [CommentController::class, 'store']);
+     Route::post('comment', [CommentController::class, 'store']);
     // Route::get('comment/{comment}', [CommentController::class, 'show']);
     // Route::put('comment/{comment}', [CommentController::class, 'update']);
     // Route::delete('comment/{comment}', [CommentController::class, 'destroy']);

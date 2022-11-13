@@ -19,7 +19,9 @@ class NoteResource extends JsonResource
                 $comments[] = [
                     'usuario' => $comment->user->name,
                     'user_id' => $comment->user_id,
-                    'comentario' => $comment->content];
+                    'comentario' => $comment->content,
+                    'id' => $comment->id
+                ];
             }
         }else{
             $comments = 'No tiene comentarios';

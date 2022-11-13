@@ -18,7 +18,7 @@
        Permite al usuario Autenticado bloquear una de sus publicaciones.<br>
     </div>
     <div class=" flex mb-6 lg:mt-0 overflow-auto items-center bg-blue-100 rounded-lg ">
-        <div class="bg-blue-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
+        <div class="bg-red-700 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
             <span>DELETE</span>
         </div>
         <div>
