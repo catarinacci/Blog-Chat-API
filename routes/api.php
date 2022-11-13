@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     //Route::get('note/{note}/image', [NoteController::class, 'image']);
     Route::get('notes-user', [NoteController::class, 'noteUser']);
+    Route::get('search/{value}', [NoteController::class, 'search']);
 
     //Comments
     // Route::apiResource('comment', CommentController::class);

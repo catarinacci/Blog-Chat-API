@@ -73,7 +73,7 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '2',
-                'name' => 'Search_Note'
+                'name' => 'Search_Notes'
             ],
             [
                 'module_id' => '2',

@@ -187,4 +187,15 @@ class NoteController extends Controller
 
     }
 
+    public function search($value)
+    {
+        $notes = Note::where('title', 'LIKE', '%'.$value.'%')
+                        ->orWhere('content', 'LIKE', '%'.$value.'%')
+                        ->where('status', 1)
+                        ->orderBy('updated_at', 'desc')
+                        ->paginate(10);
+        // return $value;
+        return new NoteCollection($notes);
+    }
+
 }

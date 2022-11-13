@@ -99,6 +99,12 @@
         </x-contenedor>
         @break
 
+        @case('Search_Notes')
+        <x-contenedor>
+            <x-note.search />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 
