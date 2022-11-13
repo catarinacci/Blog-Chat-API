@@ -93,6 +93,12 @@
         </x-contenedor>
         @break
 
+        @case('My_Notes')
+        <x-contenedor>
+            <x-note.my_notes />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 

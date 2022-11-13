@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::delete('note/{note}', [NoteController::class, 'destroy']);
 
     //Route::get('note/{note}/image', [NoteController::class, 'image']);
-    Route::get('note_user', [NoteController::class, 'noteUser']);
+    Route::get('notes-user', [NoteController::class, 'noteUser']);
 
     //Comments
     // Route::apiResource('comment', CommentController::class);

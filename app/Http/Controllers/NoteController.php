@@ -38,15 +38,15 @@ class NoteController extends Controller
 
     public function noteUser()
     {
-        $notas1= Note::where('user_id', Auth::user()->id)->get();
+        $my_notes= Note::where('user_id', Auth::user()->id)->get();
 
-       if(!$notas1->isEmpty()){
-            $notas= Note::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->paginate(10);
+       if($my_notes){
+            $notas= Note::where('user_id', Auth::user()->id)->where('status',1)->orderBy('updated_at', 'desc')->paginate(10);
 
             return new NoteCollection($notas);
        }
        return response()->json([
-            'msg' => 'No tiene ninguna nota',
+            'msg' => 'No tiene ninguna publicación.',
        ], 400);
 
     }
