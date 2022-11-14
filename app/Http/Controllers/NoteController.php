@@ -154,37 +154,6 @@ class NoteController extends Controller
                 'msj' => 'La publicación no existe'
             ], 400);
         }
-
-
-
-
-
-
-        $nota->update(
-            ['status' => 2]
-        );
-
-        return response()->json(
-            [
-                "res" => "La Nota se bloqueó correctamente"
-            ],
-            200
-        );
-
-
-        //  if (Auth::user()->id == $nota->user_id) {
-
-        //     $nota->delete();
-
-        //     return response()->json([
-
-        //         "res"=>"La nota " .$nota->id." se eliminó correctamente"], 200);
-        // } else {
-        //     return response()->json([
-        //         'res' => 'Usted no es el propietario de ésta nota, no la puede borrar',
-        //     ], 400);
-        // }
-
     }
 
     public function search($value)

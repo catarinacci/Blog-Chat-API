@@ -136,9 +136,10 @@
                         </div>>
                     </div>
                 </a>
-                <a x-on:click="open = false" href="">
+
                     <div>
                         @foreach ($modules->find(3)->methods as $method)
+                        <a x-on:click="open = false" href="/{{ $method->name }}">
                             <div :class="{ 'block': comment, 'hidden': !comment }"
                                 class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
                                 <li
@@ -166,9 +167,10 @@
                         </div>
                     </div>
                 </a>
-                <a x-on:click="open = false" href="">
+
                     <div>
                         @foreach ($modules->find(4)->methods as $method)
+                        <a x-on:click="open = false" href="/{{ $method->name }}">
                             <div :class="{ 'block': reaction, 'hidden': !reaction }"
                                 class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
                                 <li
@@ -196,9 +198,10 @@
                         </div>
                     </div>
                 </a>
-                <a x-on:click="open = false" href="">
+
                     <div>
                         @foreach ($modules->find(5)->methods as $method)
+                        <a x-on:click="open = false" href="/{{ $method->name }}">
                             <div :class="{ 'block': notification, 'hidden': !notification }"
                                 class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
                                 <li

@@ -90,10 +90,56 @@ class CommentController extends Controller
     }
 
 
-    public function destroy(Request $request, Comment $comment)
+    public function destroy($comment_id)
     {
+        $comment = Comment::where('id',$comment_id)->first();
+
+        if($comment){
+            // pregunta si tiene publicaciones
+            $user_notes = Note::where('user_id', Auth::user()->id)->get();
+            if($user_notes){
+                foreach($user_notes as $user_note){
+
+                    if($user_note->id == $comment->id){
+
+                        $prop_note = true;
+                        break;
+                    }else{
+                        $prop_note = false;
+                    }
+                }
+                if($prop_note){
+
+                    $comment->update(
+                        ['status' => 2]
+                    );
+
+                    return response()->json([
+                            "res" => "El comentario se bloqueó correctamente"
+                        ],200);
+                }else{
+                    return response()->json([
+                        'res' => false,
+                        'msj' => 'Usted no es el propietario del comentario'
+                    ],400);
+                }
+            }else{
+                return response()->json([
+                    'res' => false,
+                    'msj' => 'No tiene comentarios'
+                ],400);
+            }
+        }else{
+            return response()->json([
+                "res" => false,
+                'msj' => 'El comentario no existe'
+            ], 400);
+        }
+
+
 
         if(Auth::user()->id == $comment->user_id){
+
             $comment->delete();
 
             return response()->json([

@@ -105,6 +105,18 @@
         </x-contenedor>
         @break
 
+        @case('Create_Comment')
+        <x-contenedor>
+            <x-comment.create />
+        </x-contenedor>
+        @break
+
+        @case('Delete_Comment')
+        <x-contenedor>
+            <x-comment.delete />
+        </x-contenedor>
+        @break
+
         @default
     @endswitch
 
