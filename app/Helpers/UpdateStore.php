@@ -104,7 +104,7 @@ class UpdateStoreFiles{
                     return (new NoteResource($nota_object))->additional([
                         'res' => true,
                         'msj' => 'updated note'
-                    ]);;
+                    ]);
                 }
             }else{
                 return response()->json([

@@ -93,4 +93,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordNotification($url));
     }
 
+    // Relación de uno a muchos
+    public function reactionms(){
+        return $this->hasMany(Reactionm::class);
+    }
+
 }

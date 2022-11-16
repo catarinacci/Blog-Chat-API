@@ -18,6 +18,13 @@ class Comment extends Model
 
     use HasFactory;
 
+    public function reactionms(){
+        return $this->morphMany(Reactionm::class, 'reactionmable');
+    }
+    // public function reactionms(){
+    //     return $this->hasMany(Reactionm::class);
+    // }
+
     // Relación muchos a uno
     public function user(){
         return $this->belongsTo(User::class);
@@ -28,13 +35,9 @@ class Comment extends Model
     }
 
     // Relación uno a muchos
-    public function reactions(){
-        return $this->hasMany(Reaction::class);
-    }
+    // public function reactions(){
+    //     return $this->hasMany(Reaction::class);
+    // }
     // Relación polimórfica uno a mucho
 
-    public function reactionmorph(){
-
-        return $this->morphToMany(ReactionMorph::class,'reactionmorphable');
-    }
 }

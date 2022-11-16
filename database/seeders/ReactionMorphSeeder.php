@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Reaction;
 use App\Models\ReactionMorph;
+use Illuminate\Database\Seeder;
 
-class ReactionSeeder extends Seeder
+class ReactionMorphSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +15,5 @@ class ReactionSeeder extends Seeder
     public function run()
     {
         ReactionMorph::factory(20)->create();
-
     }
 }

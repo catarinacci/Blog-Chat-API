@@ -6,7 +6,7 @@ use App\Http\Controllers\AutenticateController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\TypeReactionController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ReactionController;
+use App\Http\Controllers\ReactionmController;
 use App\Http\Controllers\CommentController;
 //use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Api\NewPasswordController;
@@ -51,19 +51,18 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     //Comments
     // Route::apiResource('comment', CommentController::class);
-    // Route::get('comments', [CommentController::class, 'index']);
-     Route::post('comment', [CommentController::class, 'store']);
+    // Route::get('comments', [CommentController::class, 'index'])
     // Route::get('comment/{comment}', [CommentController::class, 'show']);
     // Route::put('comment/{comment}', [CommentController::class, 'update']);
-     Route::delete('comment/{comment}', [CommentController::class, 'destroy']);
-
+    Route::post('comment', [CommentController::class, 'store']);
+    Route::delete('comment/{comment}', [CommentController::class, 'destroy']);
     Route::get('comment_user', [CommentController::class, 'commentUser']);
     Route::get('comment_nota/{nota}', [CommentController::class, 'commentNote']);
 
     //Reactions
-    Route::apiResource('reaction', ReactionController::class);
-    // Route::get('reactions', [ReactionController::class, 'index']);
-    Route::post('reaction-note', [ReactionController::class, 'storeNote']);
+    //Route::apiResource('reaction', ReactionController::class);
+    Route::get('reactions', [ReactionmController::class, 'index']);
+    Route::post('reaction-note', [ReactionmController::class, 'reactionNote']);
     Route::post('reaction-comment', [ReactionController::class, 'storeComment']);
     // Route::get('reaction/{reaction}', [ReactionController::class, 'show']);
     // Route::put('reaction/{reaction}', [ReactionController::class, 'update']);

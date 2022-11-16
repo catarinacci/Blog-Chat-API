@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             NoteSeeder::class,
             CommentSeeder::class,
-            ReactionSeeder::class,
+            ReactionmSeeder::class,
             ModuleSeeder::class,
             MethodSeeder::class,
             ImageSeeder::class,

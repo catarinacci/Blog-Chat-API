@@ -96,19 +96,19 @@ class CommentController extends Controller
 
         if($comment){
             // pregunta si tiene publicaciones
-            $user_notes = Note::where('user_id', Auth::user()->id)->get();
-            if($user_notes){
-                foreach($user_notes as $user_note){
+            $user_comments = Comment::where('user_id', Auth::user()->id)->get();
+            if($user_comments){
+                foreach($user_comments as $user_comment){
 
-                    if($user_note->id == $comment->id){
+                    if($user_comment->id == $comment->id){
 
-                        $prop_note = true;
+                        $prop_comment = true;
                         break;
                     }else{
-                        $prop_note = false;
+                        $prop_comment = false;
                     }
                 }
-                if($prop_note){
+                if($prop_comment){
 
                     $comment->update(
                         ['status' => 2]
@@ -138,18 +138,18 @@ class CommentController extends Controller
 
 
 
-        if(Auth::user()->id == $comment->user_id){
+        // if(Auth::user()->id == $comment->user_id){
 
-            $comment->delete();
+        //     $comment->delete();
 
-            return response()->json([
-                'res' => 'El comentario se eliminó correctamente'
-            ], 200);
-        }else{
-            return response()->json([
-                'res' => 'Usted no es el autor de éste comentario, no lo puede borrar'
-            ], 200);
-        }
+        //     return response()->json([
+        //         'res' => 'El comentario se eliminó correctamente'
+        //     ], 200);
+        // }else{
+        //     return response()->json([
+        //         'res' => 'Usted no es el autor de éste comentario, no lo puede borrar'
+        //     ], 200);
+        // }
 
     }
 }

@@ -65,17 +65,18 @@ class ReactionController extends Controller
         $typereaction = TypeReaction::where('id', $request->typereaction_id)->find(1);
                 $messaje = 'El usuario '. Auth::user()->name .' reaccionó a la nota, con un ';
                 $nota = Note::where('id', $request->note_id)->find(1);
-                // return $nota->reactionmorphs;
-                 $reaction = $nota->reactionmorphs()->create([
+                return $nota->reactionmorphs;
+                 $reaction = $nota->reactionms()->create([
 
-                    'mensaje' => $typereaction->name
+                    'mensaje' => $typereaction->name,
+                    'user_id' => $nota->user_id
 
                 ]);
                 // $reaction = ReactionMorph::create([
                 //     'messaje' => $messaje
                 // ]);
                 // return $nota ;
-                event(new ReactionEvent($reaction));
+                //event(new ReactionEvent($reaction));
                 // $nota = Note::where('id', $reaction->reactionmorphable_id)->first();
                 // return $nota;
                 return new ReactionResource($reaction);

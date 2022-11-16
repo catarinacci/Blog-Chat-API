@@ -29,7 +29,7 @@ class ReactionListener
     public function handle($event)
     {
 
-        $nota = Note::where('id', $event->reaction->reactionmorphable_id)->first();
+        $nota = Note::where('id', $event->reactionm->reactionmable_id)->first();
         $user = User::where('id', $nota->user_id)->first();
         Notification::send($user, new ReactioNotification($event->reaction));
     }

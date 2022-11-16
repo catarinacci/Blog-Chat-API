@@ -32,7 +32,7 @@
     </div>
     <div class=" mt-5 overflow-auto">
         <div class="size ">
-            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/comment_delete_token.jpg" alt="">
+            <img src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/comment_delete_token_prod.jpg" alt="">
         </div>
     </div>
 
@@ -44,18 +44,11 @@
         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">RESPUESTA</div>
     </div>
     <div class=" mt-5 overflow-auto bg-slate-100">
-        <div class="size">
+        <div class="size_code">
         <pre>
             <code data-lang="php" >
 {
-    <span style="color:red;">"data"</span>: {
-        <span style="color:red;">"id"</span>: <span style="color:green;">21</span>,
-        <span style="color:red;">"user_id"</span>: <span style="color:blue;">"/api/user/1"</span>,
-        <span style="color:red;">"name"</span>: <span style="color:blue;">"angel"</span>,
-        <span style="color:red;">"content"</span>: <span style="color:blue;">"Comentario nota 20"</span>,
-        <span style="color:red;">"note_id"</span>: <span style="color:blue;">"/api/note/20"</span>,
-        <span style="color:red;">"comentario creado "</span>: <span style="color:blue;">"Hace 0 segundos"</span>
-    }
+    <span style="color:red;">"res"</span>: <span style="color:blue;">"El comentario se bloqueó correctamente"</span>
 }
             </code>
         </pre>
@@ -65,7 +58,11 @@
 
 <style>
     .size {
-        height: 310px;
+        height: 274.3px;
+        width: 800px;
+        }
+        .size_code {
+        height: 100px;
         width: 800px;
         }
 </style>

@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 use App\Models\Note;
 use App\Models\TypeReaction;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ReactionFactory extends Factory
+class ReactionMorphFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,10 +15,11 @@ class ReactionFactory extends Factory
      */
     public function definition()
     {
+        $array=["App\Model\Note","App\Model\Comment"];
         return [
             'mensaje' => TypeReaction::all()->random()->name,
             'reactionmorphable_id' => Note::all()->random()->id,
-            'reactionmorphable_type' => 'App\Model\Note'
+            'reactionmorphable_type' => $array[ mt_rand(0,1)]
         ];
     }
 }

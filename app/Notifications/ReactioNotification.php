@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Reactionm;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,6 +11,7 @@ use App\Models\Reaction;
 use App\Models\User;
 use App\Helpers\FormatTime;
 use App\Models\ReactionMorph;
+
 
 class ReactioNotification extends Notification
 {
@@ -21,7 +23,7 @@ class ReactioNotification extends Notification
      *
      * @return void
      */
-    public function __construct(ReactionMorph $reaction)
+    public function __construct(Reactionm $reaction)
     {
         $this->reaction = $reaction;
     }
@@ -59,9 +61,9 @@ class ReactioNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        $reaction = Reaction::where('id', $this->reaction->typereaction_id)->first();
+        $reaction = Reaction::where('id', $this->reactionms->typereaction_id)->first();
        // $name = User:: $reaction->name;
-        $time = FormatTime::LongTimeFilter($this->reaction->created_at);
+        $time = FormatTime::LongTimeFilter($this->reactionms->created_at);
         return [
             'reaction_id' => $this->reaction->id,
             // 'note_id' => "/api/note/" . $this->reaction->note_id,

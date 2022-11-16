@@ -25,9 +25,9 @@ class Note extends Model
     }
 
     // Relación uno a muchos
-    public function reactions(){
-        return $this->hasMany(Reaction::class);
-    }
+    // public function reactions(){
+    //     return $this->hasMany(Reaction::class);
+    // }
 
     // Relación muchos a uno
     public function user(){
@@ -41,8 +41,8 @@ class Note extends Model
 
     // Relación polimórfica uno a mucho
 
-    public function reactionmorphs(){
-        return $this->morphMany(ReactionMorph::class,'reactionmorphable');
+    public function reactionms(){
+        return $this->morphMany(Reactionm::class, 'reactionmable');
     }
     use HasFactory;
 }
