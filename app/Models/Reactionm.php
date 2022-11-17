@@ -15,7 +15,8 @@ class Reactionm extends Model
         'mensaje',
         'reactionmable_id',
         'reactionmable_type',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     //relación polimórfica

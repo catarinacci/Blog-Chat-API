@@ -63,10 +63,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     //Route::apiResource('reaction', ReactionController::class);
     Route::get('reactions', [ReactionmController::class, 'index']);
     Route::post('reaction-note', [ReactionmController::class, 'reactionNote']);
-    Route::post('reaction-comment', [ReactionController::class, 'storeComment']);
+    Route::post('reaction-comment', [ReactionmController::class, 'reactionComment']);
     // Route::get('reaction/{reaction}', [ReactionController::class, 'show']);
     // Route::put('reaction/{reaction}', [ReactionController::class, 'update']);
-    // Route::delete('reaction/{reaction}', [ReactionController::class, 'destroy']);
+    Route::delete('reaction/{reaction}', [ReactionmController::class, 'reactionDelete']);
 
     Route::get('reaction_user', [ReactionController::class, 'reactionUser']);
     Route::get('reaction_nota/{nota}', [ReactionController::class, 'reactionNote']);

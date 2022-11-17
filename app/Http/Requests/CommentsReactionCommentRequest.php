@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Comments;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GuardarComentarioRequest extends FormRequest
+class CommentsReactionCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class GuardarComentarioRequest extends FormRequest
     public function rules()
     {
         return [
-
-            'content' => "required|string",
-            'note_id' => "required|exists:notes,id"
+            'comment_id' => "required|exists:comments,id",
+            'typereaction_id' => "required|exists:typereactions,id"
         ];
     }
 }
