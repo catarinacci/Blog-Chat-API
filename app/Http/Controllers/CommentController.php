@@ -97,11 +97,10 @@ class CommentController extends Controller
         if($comment){
             // pregunta si tiene publicaciones
             $user_comments = Comment::where('user_id', Auth::user()->id)->get();
-            if($user_comments){
+            if(!$user_comments->count() == 0){
                 foreach($user_comments as $user_comment){
 
                     if($user_comment->id == $comment->id){
-
                         $prop_comment = true;
                         break;
                     }else{

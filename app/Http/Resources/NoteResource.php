@@ -58,7 +58,7 @@ class NoteResource extends JsonResource
             'title' => $this->title,
             'content'=> $this->content,
             'image_note_path' => $this->image_note_path,
-            'comentarios ' => $comment1,
+            'comentarios: ' => $comment1,
             //'reacciones '.$this->reactions->count() => $reactions,
             'reacciones_nota' => $reactions_note,
             'updated_at' => $this->updated_at,

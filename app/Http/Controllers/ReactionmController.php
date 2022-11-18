@@ -78,24 +78,43 @@ class ReactionmController extends Controller
 
     public function reactionDelete($reaction_id){
 
-        //return $reaction_id;
         $reaction = Reactionm::where('id', $reaction_id)->first();
 
-        //return $reaction;
-
+        $reactions_user = Reactionm::where('user_id', Auth::user()->id)->get();
+        if(!$reactions_user->count() == 0){
+            return $reactions_user;
+        }
+        else{
+            return 'notiene';
+        }
         if($reaction){
+            if(empty($reactions_user)){
 
-            $reaction->update(
-                ['status' => 2]
-            );
-            return response()->json(
-                [
-                    "res" => "La Reacción se bloqueó correctamente"
-                ],200 );
+                foreach($reactions_user as $reaction_user){
+
+                    if($reaction_user->id == $reaction->id){
+                        return 'propietario';
+                        // break();
+                    }
+                    return 'no propietarrio';
+                }
+                $reaction->update(
+                    ['status' => 2]
+                );
+                return response()->json(
+                    [
+                        "res" => "La Reacción se bloqueó correctamente"
+                    ],200 );
+            }else{
+                return response()->json([
+                    "res" => 'No tiene reacciones'
+                ],400);
+            }
         }else{
             return response()->json([
-                "res" => 'La Reacción con el id = '.$reaction_id.' no existe'
-            ],400);
+                "res" => false,
+                'msj' => 'La Reacción con el id = '.$reaction_id.' no existe'
+            ],200);
         }
 
 

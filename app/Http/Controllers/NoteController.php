@@ -159,12 +159,20 @@ class NoteController extends Controller
     public function destroy($nota_id)
     {
 
+
         $nota = Note::where('id',$nota_id)->first();
 
         if($nota){
             // pregunta si tiene publicaciones
             $user_notes = Note::where('user_id', Auth::user()->id)->get();
-            if($user_notes){
+
+            // if(empty($user_notes)){
+            //     return 'tiene';
+            // }else{
+            //     return 'no tiene';
+            // }
+
+            if(!$user_notes->count() == 0){
                 foreach($user_notes as $user_note){
 
                     if($user_note->id == $nota->id){
