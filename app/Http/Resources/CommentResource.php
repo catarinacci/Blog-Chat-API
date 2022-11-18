@@ -17,6 +17,8 @@ class CommentResource extends JsonResource
             "name" => $this->user->name,
             'content' => $this->content,
             'note_id' => "/api/note/".$this->note_id,
+            'created_at' => now(),
+            'updated_at' => now(),
             'comentario creado '=> $time,
 
         ];

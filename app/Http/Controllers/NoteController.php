@@ -166,12 +166,6 @@ class NoteController extends Controller
             // pregunta si tiene publicaciones
             $user_notes = Note::where('user_id', Auth::user()->id)->get();
 
-            // if(empty($user_notes)){
-            //     return 'tiene';
-            // }else{
-            //     return 'no tiene';
-            // }
-
             if(!$user_notes->count() == 0){
                 foreach($user_notes as $user_note){
 

@@ -24,7 +24,7 @@ class UpdateStoreFiles{
         // pregunta si tiene publicaciones
         $user_notes = Note::where('user_id', Auth::user()->id)->get();
 
-        if($user_notes){
+        if(!$user_notes->count() == 0){
             foreach($user_notes as $user_note){
 
                 if($user_note->id == $nota_object->id){
@@ -293,53 +293,82 @@ class UpdateStoreFiles{
         ],200);
      }
 
-     public static function UpdateComment($request, $comment_id){
-        $comment_exist = Comment::where('id', $comment_id)->exists();
+    //  public static function UpdateComment($request, $comment_id){
 
-        if($comment_exist){
-            $comment = Comment::findOrFail($comment_id);
-            if (Auth::user()->id == $comment->user_id) {
+    //     $comment_object = Comment::where('id', $comment_id)->first();
 
-                $comment->update([
-                    'user_id' => Auth::user()->id,
-                    'note_id' => $comment->note_id,
-                    'content' => $request->content
-                ]);
-                return new CommentResource($comment);
+    //      // pregunta si tiene publicaciones
+    //      $user_comments = Comment::where('user_id', Auth::user()->id)->get();
 
-            } else {
-                return response()->json([
-                    'res' => 'Usted no es el autor de éste comentario, no lo puede modificar',
-                ], 400);
-            };
-        }
-        return response()->json([
-            'res' => 'El comentario '.$comment_id.' no existe ' ,
-        ], 400);
-     }
+    //     if($comment_object){
 
-     public static function UpdateReaction($request, $reaction_id){
-        $reaction_exists = Reaction::where('id', $reaction_id)->exists();
+    //         if(!$user_comments->count() == 0){
+    //             foreach($user_comments as $user_comment){
 
-        if( $reaction_exists){
+    //                 if($user_comment->id == $comment_object->id){
 
-            $reaction = Reaction::findOrFail($reaction_id);
+    //                     $prop_note = true;
+    //                     break;
 
-            if (Auth::user()->id == $reaction->user_id){
-                $reaction->update([
-                    'user_id' => Auth::user()->id,
-                    'note_id' => $reaction->note_id,
-                    'typereaction_id' => $request->typereaction_id
-                ]);
-                return new ReactionResource($reaction);
-            }else{
-            return response()->json([
-                'res' => 'Usted no es el autor de ésta reacción, no la puede modificar'
-            ], 400);
-            }
-        }
-        return response()->json([
-            'res' => 'La reacción '.$reaction_id.' no existe ' ,
-        ], 400);
-     }
+    //                 }else{
+    //                     $prop_note = false;
+    //                 }
+    //             }
+    //             if($prop_note){
+    //                 $comment_object->update([
+    //                     'user_id' => Auth::user()->id,
+    //                     'note_id' => $comment_object->note_id,
+    //                     'content' => $request->content
+    //                 ]);
+    //                 return new CommentResource($comment_object);
+    //             }else{
+    //                 return response()->json([
+    //                     'res' => 'Usted no es el autor de éste comentario, no lo puede modificar',
+    //                 ], 400);
+    //             }
+    //         }else{
+    //             return response()->json([
+    //                 'res' => 'Usted no tiene commentarios',
+    //             ], 400);
+    //         }
+    //         // $comment = Comment::findOrFail($comment_id);
+    //         // if (Auth::user()->id == $comment->user_id) {
+
+
+
+    //         // } else {
+    //         //     return response()->json([
+    //         //         'res' => 'Usted no es el autor de éste comentario, no lo puede modificar',
+    //         //     ], 400);
+    //         // };
+    //     }
+    //     return response()->json([
+    //         'res' => 'El comentario '.$comment_id.' no existe ' ,
+    //     ], 400);
+    //  }
+
+    //  public static function UpdateReaction($request, $reaction_id){
+    //     $reaction_exists = Reaction::where('id', $reaction_id)->exists();
+
+    //     if( $reaction_exists){
+
+    //         $reaction = Reaction::findOrFail($reaction_id);
+
+    //         if (Auth::user()->id == $reaction->user_id){
+    //             $reaction->update([
+    //                 'user_id' => Auth::user()->id,
+    //                 'note_id' => $reaction->note_id,
+    //                 'typereaction_id' => $request->typereaction_id
+    //             ]);
+    //             return new ReactionResource($reaction);
+    //         }else{
+    //         return response()->json([
+    //             'res' => 'Usted no es el autor de ésta reacción, no la puede modificar'
+    //         ], 400);
+    //         }
+    //     }
+    //     return response()->json([
+    //         'res' => 'La reacción '.$reaction_id.' no existe ' ,
+    //     ], 400);
+    //  }
 }

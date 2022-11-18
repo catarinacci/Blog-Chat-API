@@ -81,30 +81,35 @@ class ReactionmController extends Controller
         $reaction = Reactionm::where('id', $reaction_id)->first();
 
         $reactions_user = Reactionm::where('user_id', Auth::user()->id)->get();
-        if(!$reactions_user->count() == 0){
-            return $reactions_user;
-        }
-        else{
-            return 'notiene';
-        }
         if($reaction){
-            if(empty($reactions_user)){
+            if((!$reactions_user->count() == 0)){
 
                 foreach($reactions_user as $reaction_user){
 
                     if($reaction_user->id == $reaction->id){
-                        return 'propietario';
-                        // break();
+                        $prop_note = true;
+                        break;
+                    }else{
+                        $prop_note = false;
                     }
-                    return 'no propietarrio';
                 }
-                $reaction->update(
-                    ['status' => 2]
-                );
-                return response()->json(
-                    [
-                        "res" => "La Reacción se bloqueó correctamente"
-                    ],200 );
+                if($prop_note){
+
+                    $reaction->update(
+                        ['status' => 2]
+                    );
+                    return response()->json(
+                        [
+                            "res" => "La Reacción se bloqueó correctamente"
+                        ],200 );
+                }else{
+                    return response()->json([
+                        'res' => false,
+                        'msj' => 'Usted no es el propietatio de esta reacción'
+                    ],400);
+                }
+
+
             }else{
                 return response()->json([
                     "res" => 'No tiene reacciones'

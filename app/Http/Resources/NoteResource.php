@@ -20,25 +20,40 @@ class NoteResource extends JsonResource
         ->get();
         //return $reactions_note;
 
-        $reactions_comment = Reactionm::where('reactionmable_id',$this->id)
-        ->where('reactionmable_type', 'App\Model\Comment')
-        ->get();
-
         $comments = Comment::where('note_id', $this->id)->get();
         $comment1 = array();
-        foreach ($comments as $comment){
-            foreach($reactions_comment as $Rc){
-              $reacciones = Reactionm::where('reactionmable_id', $comment->id)
-              ->where('reactionmable_type', 'App\Model\Comment')
-              ->where('status', 1 )
-              ->get();
+        foreach($comments as $comment){
+            $reactions_comment = Reactionm::where('reactionmable_id',$comment->id)
+            ->where('reactionmable_type', 'App\Model\Comment')
+            ->get();
+            foreach($reactions_comment as $reaction){
 
-             $comment1 []= [
-                 array('comment' => $comment, array('reaccion_comentario' => $reacciones))
-             ];
-           }
-         }
-         $c = $comment1;
+            }
+
+            // $comment1 []= [
+            //     array('comment' => $comment)
+            // ];
+            array_push($comment1, [
+                'comment' => $comment, array('reaccion_comentario' => $reaction)
+            ]);
+
+        }
+        // return $comment1;
+
+        //return $reactions_comment;
+        // $comment1 = array();
+        // foreach ($comments as $comment){
+        //     foreach($reactions_comment as $c){
+        //       $c = Reactionm::where('reactionmable_id', $comment->id)
+        //       ->where('reactionmable_type', 'App\Model\Comment')
+        //       ->where('status', 1 )
+        //       ->get();
+        //       $comment1 []= [
+        //         array('comment' => $comment, array('reaccion_comentario' => $c))
+        //     ];
+        //    }
+        //  }
+        //  $c = $comment1;
 
         if($this->status == 1 || $this->status == null){
             $status = 'ACTIVE';
