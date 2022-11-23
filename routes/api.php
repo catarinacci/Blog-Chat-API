@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     //Tags
     Route::get('tags',[TagController::class, 'show']);
     Route::get('tag/{tag_id}',[TagController::class, 'search']);
+    Route::post('tag-note', [TagController::class, 'addNote']);
 });
 
 

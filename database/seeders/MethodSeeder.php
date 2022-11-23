@@ -65,6 +65,10 @@ class MethodSeeder extends Seeder
             ],
             [
                 'module_id' => '3',
+                'name' => 'Add_Tag_Note'
+            ],
+            [
+                'module_id' => '3',
                 'name' => 'Search'
             ],
 
