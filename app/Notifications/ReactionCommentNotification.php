@@ -6,23 +6,20 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Comment;
-use Carbon\Traits\Timestamp;
 use App\Helpers\FormatTime;
 
-class CommentNotification extends Notification
+class ReactionCommentNotification extends Notification
 {
     use Queueable;
-
-    public $comment;
+    public $reactionComment;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Comment $comment)
+    public function __construct($reactionComment)
     {
-        $this->comment = $comment;
+        $this->reactionComment = $reactionComment;
     }
 
     /**
@@ -58,15 +55,14 @@ class CommentNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        // return $notifiable;
-        $time = FormatTime::LongTimeFilter($this->comment->created_at);
+        $time = FormatTime::LongTimeFilter($this->reactionComment->created_at);
         return [
-            'comment_id' => $this->comment->id,
-            'note_id' => $this->comment->note_id,
-            'user_id' => $this->comment->user_id,
-            'content' => $this->comment->content,
-            'created_at' => $this->comment->create_at,
-            'updated_at' => $this->comment->updated_at,
+            'reaction_id' => $this->reactionComment->id,
+            'note_id' => $this->reactionComment->reactionmable_id,
+            'user_id' => $this->reactionComment->user_id,
+            'typereaction_id' => $this->reactionComment->mensaje,
+            'ceated_at' => now(),
+            'updated_at' => now(),
             'time' => $time
         ];
     }

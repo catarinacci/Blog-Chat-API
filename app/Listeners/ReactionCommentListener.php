@@ -4,11 +4,13 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Models\Note;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\ReactioNotification;
-class ReactionListener
+
+use App\Notifications\ReactionCommentNotification;
+
+class ReactionCommentListener
 {
     /**
      * Create the event listener.
@@ -28,9 +30,8 @@ class ReactionListener
      */
     public function handle($event)
     {
-
-        $nota = Note::where('id', $event->res->reactionmable_id)->first();
-        $user = User::where('id', $nota->user_id)->first();
-        Notification::send($user, new ReactioNotification($event->res));
+        $comment = Comment::where('id', $event->reactionComment->comment_id)->first();
+        $user = User::where('id', $comment->user_id)->first();
+        Notification::send($user, new ReactionCommentNotification($event->reactionComment));
     }
 }

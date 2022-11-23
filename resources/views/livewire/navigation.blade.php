@@ -212,6 +212,68 @@
                     </div>
                 </a>
             </div>
+            {{-- REACTION --}}
+            <div x-data="{ notification: false }">
+                <a x-on:click="notification = !notification">
+                    <div
+                        class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+
+                        <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(6)->icon !!}</div>
+
+                        <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(6)->name }}</p>
+
+                        <div class="ml-2" :class="{ 'block': notification, 'rotate-180': notification, }">
+                            <span class="text-xl text-gray-300 rotate-0">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                    <div>
+                        @foreach ($modules->find(6)->methods as $method)
+                        <a x-on:click="open = false" href="/{{ $method->name }}">
+                            <div :class="{ 'block': notification, 'hidden': !notification }"
+                                class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
+                                <li
+                                    class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">
+                                    {{ $method->name }}</li>
+                            </div>
+                        @endforeach
+                    </div>
+                </a>
+            </div>
+            {{-- NOTIFICATION --}}
+            <div x-data="{ notification: false }">
+                <a x-on:click="notification = !notification">
+                    <div
+                        class=" mt-6 flex items-center text-2xl rounded-md transition duration-500 ease-in cursor-pointer hover:bg-indigo-700">
+
+                        <div class="text-gray-300 mr-4 ml-4"> {!! $modules->find(7)->icon !!}</div>
+
+                        <p class="font-extrabold text-gray-300 text-base">{{ $modules->find(7)->name }}</p>
+
+                        <div class="ml-2" :class="{ 'block': notification, 'rotate-180': notification, }">
+                            <span class="text-xl text-gray-300 rotate-0">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                    <div>
+                        @foreach ($modules->find(7)->methods as $method)
+                        <a x-on:click="open = false" href="/{{ $method->name }}">
+                            <div :class="{ 'block': notification, 'hidden': !notification }"
+                                class="leading-7 text-left text-base text-gray-300 mt-1 w-4/5 mx-auto hidden  ">
+                                <li
+                                    class="cursor-pointer p-2 transition duration-300 ease-in hover:bg-gray-700 rounded-md">
+                                    {{ $method->name }}</li>
+                            </div>
+                        @endforeach
+                    </div>
+                </a>
+            </div>
         </nav>
     </div>
 

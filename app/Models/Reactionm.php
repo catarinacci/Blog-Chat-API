@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Reactionm extends Model
 {
     use HasFactory;
+
 
     protected $table = 'reactionms';
 
@@ -25,7 +27,7 @@ class Reactionm extends Model
     }
     // Relación uno a muchos inversa
     public function user(){
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
 }

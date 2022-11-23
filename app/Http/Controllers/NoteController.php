@@ -133,16 +133,17 @@ class NoteController extends Controller
     {
         $nota = Note::where('id', $nota_id)->first();
 
-        $status = $nota->status;
+        if($nota){
+            $status = $nota->status;
 
-        if($status == 1){
-            if($nota){
+            if($status == 1){
 
                 // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
                 $nota_object = UpdateStoreFiles::UpdateNote($request, $nota);
             }else{
                 return response()->json([
-                'res' => 'La nota '.' '.$nota_id.' '.' no existe',
+                'res' => false,
+                'msj' => 'La publicación se encuentra bloqueada',
                 ], 400);
             }
 
@@ -150,7 +151,8 @@ class NoteController extends Controller
         }else{
             return response()->json([
                 'res' => false,
-                'msj' => 'La publicación se encuentra bloqueada'
+
+                'msj' => 'La nota '.' '.$nota_id.' '.' no existe',
             ],400);
         }
 
@@ -158,7 +160,6 @@ class NoteController extends Controller
 
     public function destroy($nota_id)
     {
-
 
         $nota = Note::where('id',$nota_id)->first();
 

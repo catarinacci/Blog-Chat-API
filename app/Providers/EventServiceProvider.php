@@ -29,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ReactionEvent::class =>[
             ReactionListener::class,
         ],
+        ReactionCommentEvent::class =>[
+            ReactionCommentListener::class,
+        ]
     ];
 
     /**

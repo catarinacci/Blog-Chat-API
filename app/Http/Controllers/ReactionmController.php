@@ -7,73 +7,110 @@ use App\Http\Requests\Reactions\GuardarReaccionRequest;
 use App\Http\Resources\NoteResource;
 use App\Models\Comment;
 use App\Models\Note;
-
+use App\Events\ReactionEvent;
 use App\Models\Reactionm;
 use App\Models\TypeReaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\ReactionCommentEvent;
 
 class ReactionmController extends Controller
 {
     public function index(){
         // $reaction = Reactionm::find(88);
-        $reaction = Reactionm::all();
-        return $reaction;
+        // return $reaction->user;
+        // $user = Auth::user();
+        // return $user->reactionms;
+        // $reaction = Reactionm::all();
+        // return $reaction;
         // return $reactions;
-        $note = Note::find(3);
-        $user = User::find(1);
+    //     $note = Note::find(55);
+    //    return $note->reactionms;
+       // $user = User::find(1);
         // $a = $note->reactionms;
         // $a = $user->reactionms;
         // return $a;
-        $comment = Comment::find(3);
-        // $a = $comment->id;
-        // return $a;
-        $reactions = Reactionm::where('reactionmable_id',$comment->id)
-                                ->where('reactionmable_type', 'App\Model\Comment')
+       $comment = Comment::find(3);
+
+        return $comment->reactionms;
+        $reactions = Reactionm::where('reactionmable_id',$note->id)
+                                ->where('reactionmable_type', 'App\Model\Note')
                                 ->get();
+        return $reactions;
 
        //$reactions = Reactionm::all();
        return new NoteResource($note);
     }
     public function reactionNote(GuardarReaccionRequest $request){
 
-        $reaction_msj = TypeReaction::where('id', $request->typereaction_id)->first();
+        $status_note = Note::where('id', $request->note_id)
+        ->where('status', 1)->first();
+        if ($status_note){
 
-        $reaction_note = new Reactionm;
+            $reaction_msj = TypeReaction::where('id', $request->typereaction_id)->first();
 
-        $res = $reaction_note->create([
-            'mensaje' => $reaction_msj->name,
-            'reactionmable_id' => $request->note_id,
-            'reactionmable_type' => 'App\Model\Note',
-            'user_id' => Auth::user()->id
-        ]);
+            $reaction_note = new Reactionm;
 
+            $res = $reaction_note->create([
+                'mensaje' => $reaction_msj->name,
+                'reactionmable_id' => $request->note_id,
+                'reactionmable_type' => 'App\Model\Note',
+                'user_id' => Auth::user()->id,
+                'create_at' => now(),
+                'update_at' => now()
+            ]);
+            event(new ReactionEvent($res));
+
+            return response()->json([
+                'reaction_note' => $res,
+                'res' => true,
+                'msg' => 'Reaccionó a la nota con id = '. $res->reactionmable_id,
+           ], 200);
+
+        }else{
         return response()->json([
-            'reaction_note' => $res,
-            'res' => true,
-            'msg' => 'Reaccionó a la nota con id = '. $res->reactionmable_id,
-       ], 200);
+        'res' => false,
+        'msj' => 'La publicación se encuentra bloqueada'
+        ]);
+        }
     }
 
     public function reactionComment(CommentsReactionCommentRequest $request){
 
-        $reaction_msj = TypeReaction::where('id', $request->typereaction_id)->first();
 
-        $reaction_comment = new Reactionm;
+        $status_comment = Comment::where('id', $request->comment_id)
 
-        $res = $reaction_comment->create([
-            'mensaje' => $reaction_msj->name,
-            'reactionmable_id' => $request->comment_id,
-            'reactionmable_type' => 'App\Model\Comment',
-            'user_id' => Auth::user()->id
-        ]);
+        ->where('status', 1)->first();
+        if ($status_comment){
 
+            $reaction_msj = TypeReaction::where('id', $request->typereaction_id)->first();
+
+            $reaction_comment = new Reactionm;
+
+            $reactionComment = $reaction_comment->create([
+                'mensaje' => $reaction_msj->name,
+                'reactionmable_id' => $request->comment_id,
+                'reactionmable_type' => 'App\Model\Comment',
+                'user_id' => Auth::user()->id
+            ]);
+
+            event(new ReactionCommentEvent($reactionComment));
+
+            return response()->json([
+                'reaction_comment' => $reactionComment,
+                'res' => true,
+                'msg' => 'Reaccionó al commentario con id = '. $reactionComment->reactionmable_id,
+           ], 200);
+
+        }else{
         return response()->json([
-            'reaction_comment' => $res,
-            'res' => true,
-            'msg' => 'Reaccionó al commentario con id = '. $res->reactionmable_id,
-       ], 200);
+        'res' => false,
+        'msj' => 'El comentario se encuentra bloqueado'
+        ]);
+        }
+
+
     }
 
     public function reactionDelete($reaction_id){
@@ -123,6 +160,11 @@ class ReactionmController extends Controller
         }
 
 
+    }
+
+    public function show(){
+        $type_reactions = TypeReaction::all();
+        return $type_reactions;
     }
 
 }

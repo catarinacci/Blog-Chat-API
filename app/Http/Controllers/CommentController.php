@@ -58,6 +58,9 @@ class CommentController extends Controller
 
     public function store(GuardarComentarioRequest $request)
     {
+        $status_note = Note::where('id', $request->note_id)
+                            ->where('status', 1)->first();
+        if ($status_note){
             $coment = Comment::create([
                 'content' => $request->content,
                 'user_id' => Auth::user()->id,
@@ -65,6 +68,12 @@ class CommentController extends Controller
             ]);
             event(new CommentEvent($coment));
             return new CommentResource($coment);
+        }else{
+            return response()->json([
+                'res' => false,
+                'msj' => 'La publicación se encuentra bloqueada'
+            ]);
+        }
     }
 
     // public function show($comment_id)

@@ -5,6 +5,8 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Note;
 use App\Models\User;
+use App\Models\Category;
+use Faker\Provider\Lorem;
 
 class NoteFactory extends Factory
 {
@@ -17,7 +19,15 @@ class NoteFactory extends Factory
     public function definition()
     {
         return[
-                    ];
+
+
+                'category_id' => Category::all()->random()->id,
+                'user_id' => User::all()->random()->id,
+                'title' => implode(" ", Lorem::words(3)) ,
+                'content' => implode(" ", Lorem::sentences(3)),
+                'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+
+        ];
 
     }
 }

@@ -21,21 +21,35 @@ class NoteResource extends JsonResource
         //return $reactions_note;
 
         $comments = Comment::where('note_id', $this->id)->get();
+
         $comment1 = array();
+        $r = array();
+
         foreach($comments as $comment){
+
             $reactions_comment = Reactionm::where('reactionmable_id',$comment->id)
             ->where('reactionmable_type', 'App\Model\Comment')
             ->get();
-            foreach($reactions_comment as $reaction){
 
+            if(!$reactions_comment->isEmpty()){
+                //return true;
+                foreach($reactions_comment as $reaction){
+
+                     array_push($r, [
+                         'reaccion_comentario' => $reaction
+                    ]);
+                }
+
+                array_push($comment1, [
+                    'comment' => $comment, array('reaccion_comentario' => $r)
+                ]);
+                $r = [];
+            }else{
+                //return false;
+                array_push($comment1, [
+                    'comment' => $comment, array('reaccion_comentario' => null)
+                ]);
             }
-
-            // $comment1 []= [
-            //     array('comment' => $comment)
-            // ];
-            array_push($comment1, [
-                'comment' => $comment, array('reaccion_comentario' => $reaction)
-            ]);
 
         }
         // return $comment1;

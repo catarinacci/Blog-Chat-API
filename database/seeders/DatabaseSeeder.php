@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TypeReactionSeeder::class,
+            CategorySeeder::class,
+            TagSeeder::class,
             UserSeeder::class,
             NoteSeeder::class,
             CommentSeeder::class,
@@ -22,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ModuleSeeder::class,
             MethodSeeder::class,
             ImageSeeder::class,
+
         ]);
     }
 }

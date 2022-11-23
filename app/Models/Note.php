@@ -16,7 +16,8 @@ class Note extends Model
         'content',
         'user_id',
         'image_note_path',
-        'status'
+        'status',
+        'category_id'
     ];
 
     // Relación uno a muchos
@@ -29,9 +30,19 @@ class Note extends Model
     //     return $this->hasMany(Reaction::class);
     // }
 
+    //relación de muchos a muchos
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'note_tag', 'note_id', 'tag_id');
+    }
+
     // Relación muchos a uno
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    // Relación muchos a uno
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
     // Relación uno a uno polimorfica

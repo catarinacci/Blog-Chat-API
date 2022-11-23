@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Note;
 use App\Http\Requests\Users\ActualizarUserRequest;
 use App\Helpers\Url;
 use App\Helpers\UpdateStore;
@@ -58,7 +59,13 @@ class UserController extends Controller
         $user->update(
             ['status' => 2]
         );
-
+         $notes = Note::where('user_id', $user->id)->get();
+         //return $notes;
+         foreach($notes as $note){
+            $note->update(
+                ['status' =>2]
+            );
+        }
         return response()->json(
             [
                 "res" => "El Usuario se bloqueó correctamente"

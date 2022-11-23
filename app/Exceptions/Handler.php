@@ -7,6 +7,7 @@ use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Database\QueryException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -54,6 +55,14 @@ class Handler extends ExceptionHandler
             if ($request->is('api/*')) {
                 return response()->json([
                     'message' => 'You entered the URL wrong or Your email address is not verified.'
+                ], 404);
+            }
+        });
+        $this->renderable(function (QueryException $e, $request) {
+
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'You entered the ID wrong.'
                 ], 404);
             }
         });

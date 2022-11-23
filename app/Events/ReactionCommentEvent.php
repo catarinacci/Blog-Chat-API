@@ -10,19 +10,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ReactionEvent
+class ReactionCommentEvent
 {
-    public $res;
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $reactionComment;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($res)
+    public function __construct($reactionComment)
     {
-        $this->res = $res;
+        $this->$reactionComment = $reactionComment;
     }
 
     /**

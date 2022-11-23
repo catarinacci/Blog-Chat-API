@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutenticateController;
@@ -8,9 +9,10 @@ use App\Http\Controllers\TypeReactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReactionmController;
 use App\Http\Controllers\CommentController;
-//use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CategoryCotroller;
 use App\Http\Controllers\Api\NewPasswordController;
 use App\Http\Controllers\Api\EmailVerificationController;
+use App\Http\Controllers\TagController;
 
 
 Route::post('register', [AutenticateController::class, 'register']);
@@ -50,34 +52,31 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('search/{value}', [NoteController::class, 'search']);
 
     //Comments
-    // Route::apiResource('comment', CommentController::class);
-    // Route::get('comments', [CommentController::class, 'index'])
-    // Route::get('comment/{comment}', [CommentController::class, 'show']);
-    // Route::put('comment/{comment}', [CommentController::class, 'update']);
     Route::post('comment', [CommentController::class, 'store']);
     Route::delete('comment/{comment}', [CommentController::class, 'destroy']);
-    Route::get('comment_user', [CommentController::class, 'commentUser']);
-    Route::get('comment_nota/{nota}', [CommentController::class, 'commentNote']);
+    // Route::get('comment_user', [CommentController::class, 'commentUser']);
+    // Route::get('comment_nota/{nota}', [CommentController::class, 'commentNote']);
 
     //Reactions
-    //Route::apiResource('reaction', ReactionController::class);
     Route::get('reactions', [ReactionmController::class, 'index']);
     Route::post('reaction-note', [ReactionmController::class, 'reactionNote']);
     Route::post('reaction-comment', [ReactionmController::class, 'reactionComment']);
-    // Route::get('reaction/{reaction}', [ReactionController::class, 'show']);
-    // Route::put('reaction/{reaction}', [ReactionController::class, 'update']);
+    Route::get('reaction-type', [ReactionmController::class, 'show']);
     Route::delete('reaction/{reaction}', [ReactionmController::class, 'reactionDelete']);
 
-    Route::get('reaction_user', [ReactionController::class, 'reactionUser']);
-    Route::get('reaction_nota/{nota}', [ReactionController::class, 'reactionNote']);
+    //Notifications
+    Route::get('notifications', [NotificationController::class, 'show']);
+    Route::get('notifications/unread', [NotificationController::class, 'unread']);
+    Route::get('notifications/read', [NotificationController::class, 'read']);
+    Route::get('notifications/{notification_id}', [NotificationController::class, 'maskasread']);
 
-    //TypeReactions
-    Route::apiResource('typereaction', TypeReactionController::class);
-    // Route::get('typereactions', [TypeReactionController::class, 'index']);
-    Route::post('typereaction', [TypeReactionController::class, 'store']);
-    // Route::get('typereaction/{typereaction}', [TypeReactionController::class, 'show']);
-    // Route::put('typereaction/{typereaction}', [TypeReactionController::class, 'update']);
-    // Route::delete('typereaction/{typereaction}', [TypeReactionController::class, 'destroy']);
+    //Categories
+    Route::get('categories',[CategoryCotroller::class, 'show']);
+    Route::get('categories/{category_id}',[CategoryCotroller::class, 'searchCategory']);
+
+    //Tags
+    Route::get('tags',[TagController::class, 'show']);
+    Route::get('tag/{tag_id}',[TagController::class, 'search']);
 });
 
 

@@ -17,15 +17,15 @@ class ReactioNotification extends Notification
 {
     use Queueable;
 
-    public $reaction;
+    public $res;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Reactionm $reaction)
+    public function __construct(Reactionm $res)
     {
-        $this->reaction = $reaction;
+        $this->res = $res;
     }
 
     /**
@@ -61,23 +61,15 @@ class ReactioNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        $reaction = Reaction::where('id', $this->reactionms->typereaction_id)->first();
-       // $name = User:: $reaction->name;
-        $time = FormatTime::LongTimeFilter($this->reactionms->created_at);
+        $time = FormatTime::LongTimeFilter($this->res->created_at);
         return [
-            'reaction_id' => $this->reaction->id,
-            // 'note_id' => "/api/note/" . $this->reaction->note_id,
-            // 'user_id' => "/api/user/" . $this->reaction->user_id,
-            // 'content' => $this->reaction->content,
-            // 'typereaction_name' => $name,
-            // "id" => $this->id,
-            // 'note_id' =>"/api/note/". $this->note_id,
-            // 'user_id' => "/api/user/".$this->user_id,
-            // "name" => User::find($this->reaction->user_id)->name,
-            'typereaction_id' => $this->reaction->typereaction_id,
-            //'typereaction' => TypeReaction::find($this->typereaction_id)->name,
-            //"type" => $this->typereaction->name,
-            'reacción creada '=> $time,
+            'reaction_id' => $this->res->id,
+            'note_id' => $this->res->reactionmable_id,
+            'user_id' => $this->res->user_id,
+            'typereaction_id' => $this->res->mensaje,
+            'ceated_at' => now(),
+            'updated_at' => now(),
+            'time' => $time
         ];
     }
 }
