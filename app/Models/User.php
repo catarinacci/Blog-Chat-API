@@ -13,14 +13,16 @@ use Laravel\Jetstream\HasProfilePhoto;
 use MohamedGaber\SanctumRefreshToken\Traits\HasApiTokens;
 use App\Notifications\ResetPasswordNotification;
 use App\Models\Note;
+use Filament\Models\Contracts\FilamentUser;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -69,6 +71,11 @@ class User extends Authenticatable implements MustVerifyEmail
    /*  protected $appends = [
         'profile_photo_url',
     ]; */
+
+    public function canAccessFilament(): bool
+    {
+        return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
+    }
 
         //Relacion de uno a muchos
     public function notes(){
