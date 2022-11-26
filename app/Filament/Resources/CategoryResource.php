@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Models\Category;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -14,24 +13,18 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class UserResource extends Resource
+class CategoryResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Category::class;
 
-    protected static ?int $navigationSort = 1;
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function form(Form $form): Form
     {
         return $form
-
-        ->schema([
-            TextInput::make('id'),
-            TextInput::make('name'),
-            TextInput::make('surname'),
-            TextInput::make('nickname'),
-            TextInput::make('email'),
-            TextInput::make('status')
+            ->schema([
+                //
             ]);
     }
 
@@ -41,10 +34,6 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
-                Tables\Columns\ImageColumn::make('profile_photo_path')->disk('s3')->circular(),
-                Tables\Columns\TextColumn::make('email_verified_at'),
-                Tables\Columns\TextColumn::make('status')
             ])
             ->filters([
                 //
@@ -67,9 +56,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
 }

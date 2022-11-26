@@ -19,7 +19,7 @@ class ImageSeeder extends Seeder
 
         foreach($users as $user){
             $user->image()->create([
-                'url' => $user->image_profile_path,
+                'url' => $user->profile_photo_path,
                 'imageable_id' =>$user->id
             ]);
         }
