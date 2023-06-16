@@ -4,9 +4,11 @@ namespace App\Http\Resources;
 
 use App\Models\Comment;
 use App\Models\Reactionm;
+use App\Models\Tag;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Helpers\FormatTime;
-use App\Models\Nota;
+use App\Models\Category;
+use App\Models\Note;
 use App\Models\TypeReaction;
 use Illuminate\Support\Facades\Auth;
 class NoteResource extends JsonResource
@@ -76,8 +78,10 @@ class NoteResource extends JsonResource
         }
 
        // $reactions = $this->reactionms->user_id;
-
+        $category = Category::where('id',$this->category_id)->get();
         $time = FormatTime::LongTimeFilter($this->created_at);
+        $nota = Note::where('id', $this->id)->first();
+        $tags= $nota->tags()->get();
         // $this->user_id = Auth::user()->id;
         return[
             'id'=> $this->id,
@@ -87,12 +91,14 @@ class NoteResource extends JsonResource
             'title' => $this->title,
             'content'=> $this->content,
             'image_note_path' => $this->image_note_path,
+            'category' => $category,
             'comentarios: ' => $comment1,
+            'tags' => $tags,
+            'status' => $status,
             //'reacciones '.$this->reactions->count() => $reactions,
             'reacciones_nota' => $reactions_note,
             'updated_at' => $this->updated_at,
-            'nota creada '=> $time,
-            'status' => $status
+            'nota creada '=> $time
         ];
 
     }

@@ -105,4 +105,8 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         return $this->hasMany(Reactionm::class);
     }
 
+    public function chats()
+    {
+        return $this->belongsToMany('App\Models\Chat');
+    }
 }

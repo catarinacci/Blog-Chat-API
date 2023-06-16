@@ -29,7 +29,7 @@ class UpdateStoreFiles{
 
                 if($user_note->id == $nota_object->id){
 
-                    $url_image = $user_note->image->url;
+                    //$url_image = $user_note->image->url; ultima modificacion
                     $prop_note = true;
                     break;
 
@@ -42,13 +42,13 @@ class UpdateStoreFiles{
 
                 if($request->image_note_path){
                     $path_defecto = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg';
-                    //$image_object = Image::where('imageable_id', $nota_object->id)->first();
+
                     $image_object =  Image::where('imageable_id', $user_note->id)
                                             ->where('imageable_type', 'App\Models\Note')->first();
-                    // return $request->image_note_path;
-                    //return $image_object;
 
-                    if($path_defecto = $url_image){
+                    // if($path_defecto = $url_image){ultima modificacion
+                        $path_defecto = false;//ultima modificacion
+                        if($path_defecto){
                         // Guardo la imagen en s3
                         $image_object_save = $request->file('image_note_path')->store('noteapi', 's3');
                         $imagen = Storage::disk('s3')->url($image_object_save);
@@ -70,20 +70,21 @@ class UpdateStoreFiles{
                             ]);
                     }else{
                         // Borro la imagen en s3
-                        $path_filter = Url::filterUrl($url_image);
-                        Storage::disk('s3')->delete($path_filter);
+                        // $path_filter = Url::filterUrl($url_image);ultima modificacion
+                        // Storage::disk('s3')->delete($path_filter);ultima modificacion
                         // Guardo la imagen en s3
-                        $image_object_save = $request->file('image_note_path')->store('noteapi', 's3');
-                        $imagen = Storage::disk('s3')->url($image_object_save);
+                        // $image_object_save = $request->file('image_note_path')->store('noteapi', 's3');ultima modificacion
+                        // $imagen = Storage::disk('s3')->url($image_object_save);ultima modificacion
                         // Actualizo en la bd
-                        $image_object->update([   'url' => $imagen,
-                        ]);
+                        // $image_object->update([   'url' => $imagen,ultima modificacion
+                        // ]);ultima modificacion
                         // Actualizo la nota
                         $nota_object->update([
                             'title' => $request->title,
                             'content' => $request->content,
                             'user_id' => Auth::user()->id,
-                            'image_note_path' => $imagen]);
+                            // 'image_note_path' => $imagen]);ultima modificacion
+                            'image_note_path' => null]);
 
                             return (new NoteResource($nota_object))->additional([
                                 'res' => true,
@@ -99,7 +100,9 @@ class UpdateStoreFiles{
                     'title' => $request->title,
                     'content' => $request->content,
                     'user_id' => Auth::user()->id,
-                    'image' => $url_image]);
+                    'category_id' => $request->category_id,
+                    // 'image' => $url_image]);ultima modificacion
+                    'image' => null]);
 
                     return (new NoteResource($nota_object))->additional([
                         'res' => true,
@@ -278,7 +281,8 @@ class UpdateStoreFiles{
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => Auth::user()->id,
-            'image_note_path' => $path
+            'image_note_path' => $path,
+            'category_id' => $request->category_id
         ]);
 
         if($path){

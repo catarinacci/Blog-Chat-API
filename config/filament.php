@@ -228,7 +228,11 @@ return [
                     'alignment' => 'left',
                 ],
             ],
+            'cell' => [
+                'alignment' => 'right', // `right`, `left` or `center`
+            ],
         ],
+
         'forms' => [
             'actions' => [
                 'alignment' => 'left',

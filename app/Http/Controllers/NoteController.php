@@ -23,7 +23,9 @@ class NoteController extends Controller
 {
     public function index()
     {
+        //$orden_desc = Note::all();
         $orden_desc = Note::where('status', 1)->orderBy('updated_at', 'desc')->paginate(10);
+        //return $orden_desc;
         return new NoteCollection($orden_desc);
     }
 
