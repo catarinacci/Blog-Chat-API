@@ -109,4 +109,9 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     {
         return $this->belongsToMany('App\Models\Chat');
     }
+
+    public function messages() {
+        return $this->hasMany('App\Models\Message');
+    }
+
 }

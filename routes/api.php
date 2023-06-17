@@ -13,6 +13,7 @@ use App\Http\Controllers\CategoryCotroller;
 use App\Http\Controllers\Api\NewPasswordController;
 use App\Http\Controllers\Api\EmailVerificationController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ChatController;
 
 
 Route::post('register', [AutenticateController::class, 'register']);
@@ -78,6 +79,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('tags',[TagController::class, 'show']);
     Route::get('tag/{tag_id}',[TagController::class, 'search']);
     Route::post('tag-note', [TagController::class, 'addNote']);
+
+    //Chat
+    Route::post('chatroom', [ChatController::class, 'chatroomCreate']);
 });
 
 
