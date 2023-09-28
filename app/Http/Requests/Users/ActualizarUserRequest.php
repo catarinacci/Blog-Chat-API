@@ -26,7 +26,7 @@ class ActualizarUserRequest extends FormRequest
         return [
             'name' => 'nullable|regex:/^[\pL\s\-]+$/u',
             'surname' => 'nullable|regex:/^[\pL\s\-]+$/u',
-            'image_profile_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ];
     }

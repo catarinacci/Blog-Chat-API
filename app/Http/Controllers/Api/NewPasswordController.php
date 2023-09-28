@@ -37,17 +37,18 @@ class NewPasswordController extends Controller
         if ($verify) {
             DB::table('password_resets')->where('email', $email)->delete();
         }
-
-        $token = mb_strtoupper(Str::random(6));
-
+        
+        $pin = mb_strtoupper(Str::random(6));
+        
+        
         $password_reset = DB::table('password_resets')->insert([
             'email' => $request->email,
-            'token' => $token,
+            'token' => $pin,
             'created_at' => Carbon::now()
         ]);
 
         if ($password_reset) {
-            Mail::to($request->email)->send(new ResetPassword($user, $token));
+            Mail::to($request->email)->send(new ResetPassword($user, $pin));
             return [
                 'succes' => true,
                 'messaje' => ' Please check your email for a 6 digit pin '];

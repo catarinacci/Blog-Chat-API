@@ -58,9 +58,15 @@ class NoteController extends Controller
 
     public function store(GuardarNotaRequest $request)
     {
-
-        $note =UpdateStoreFiles::storeNote($request);
-        return $note;
+        if(!$user = Auth::user()->status == 2){
+            $note =UpdateStoreFiles::storeNote($request);
+            return $note;
+        }
+        else{
+            return response()->json([
+                'msg' => 'User LOCKED',
+           ], 400);;
+        };
     }
 
     public function show ($nota_id)

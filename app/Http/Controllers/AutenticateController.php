@@ -22,34 +22,35 @@ class AutenticateController extends Controller
 {
     public function register(RegisterRequest $request){
 
-        if($request->hasFile('image_profile_path')) {
+        
+        if($request->hasFile('profile_photo_path')) {
 
-            $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
+            $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
 
             $path = Storage::disk('s3')->url($documentPath);
 
         } else {
+            
             $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg';
         }
 
         $request->validate([
             'password' => ['required', 'confirmed', RulesPassword::defaults()],
         ]);
-
+        
         $user = new User();
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->nickname = $request->nickname;
         $user->email = $request->email;
-        $user->image_profile_path = $path;
+        $user->profile_photo_path = $path;
         $user->email_verified_at = $request->email_verified_at;
         $user->password = bcrypt($request->password);
         $user->save();
-
         if($path){
             $user->image()->create(['url' => $path]);
         }
-
+        
         event(new Registered($user));
 
         $user_authtoken = $user->createAuthToken('api',20);

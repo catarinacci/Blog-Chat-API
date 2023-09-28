@@ -139,7 +139,7 @@ class UpdateStoreFiles{
 
                     //$image_object = Image::where('imageable_id', $user->id)->first();
 
-                    if($request->hasFile('image_profile_path')){
+                    if($request->hasFile('profile_photo_path')){
 
                         $path_defecto = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg';
                         $image_object =  Image::where('imageable_id', $user->id)
@@ -147,7 +147,7 @@ class UpdateStoreFiles{
                         if($path_defecto = $user->image->url){
 
                             // Guardo la imagen nueva en s3
-                            $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
+                            $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
                             $path = Storage::disk('s3')->url($documentPath);
 
                             // Actualizo la URL de la imagen en la tabla images
@@ -161,7 +161,7 @@ class UpdateStoreFiles{
                                 'surname' => $request->surname,
                                 'nickname' => $request->nickname,
                                 'password' => Hash::make($request->password),
-                                'image_profile_path' => $path
+                                'profile_photo_path' => $path
                             ]);
                             return (new UserResource($user))->additional([
                                 'res' => true,
@@ -177,7 +177,7 @@ class UpdateStoreFiles{
                                 Storage::disk('s3')->delete($path_filter);
 
                                  // Guardo la imagen nueva en s3
-                                 $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
+                                 $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
                                  $path = Storage::disk('s3')->url($documentPath);
 
                                  // Actualizo la URL de la imagen en la tabla images
@@ -191,7 +191,7 @@ class UpdateStoreFiles{
                                      'surname' => $request->surname,
                                      'nickname' => $request->nickname,
                                      'password' => Hash::make($request->password),
-                                     'image_profile_path' => $path
+                                     'profile_photo_path' => $path
                                  ]);
                                  return (new UserResource($user))->additional([
                                      'res' => true,
@@ -210,7 +210,7 @@ class UpdateStoreFiles{
                         'surname' => $request->surname,
                         'nickname' => $request->nickname,
                         'password' => Hash::make($request->password),
-                        'image_profile_path' => $path
+                        'profile_photo_path' => $path
                     ]);
                     return (new UserResource($user))->additional([
                         'res' => true,
@@ -227,7 +227,7 @@ class UpdateStoreFiles{
 
             $image_object = Image::where('imageable_id', $user->id)->first();
 
-            if($request->hasFile('image_profile_path')){
+            if($request->hasFile('profile_photo_path')){
 
                 //borro la imagen antigua en s3
                 $oldimage_path = $image_object->url;
@@ -235,7 +235,7 @@ class UpdateStoreFiles{
                 Storage::disk('s3')->delete($path_filter);
 
                 // Guardo la imagen nueva en s3
-                $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
+                $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
                 $path = Storage::disk('s3')->url($documentPath);
 
                 // Actualizo la URL de la imagen en la tabla images
@@ -252,7 +252,7 @@ class UpdateStoreFiles{
                 'surname' => $request->surname,
                 'nickname' => $request->nickname,
 
-                'image_profile_path' => $path
+                'profile_photo_path' => $path
             ]);
             return (new UserResource($user))->additional([
                 'res' => true,

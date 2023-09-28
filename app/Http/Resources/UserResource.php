@@ -30,7 +30,7 @@ class UserResource extends JsonResource
                 'nick_name'=>Str::ucfirst($this->nickname),
                 'email'=>$this->email,
                 'email_verified_at'=> $this->email_verified_at,
-                'image_profile_path'=> $this->image_profile_path,
+                'profile_photo_path'=> $this->profile_photo_path,
                 'created_at'=> $this->created_at,
                 'updated_at'=> $this->updated_at,
                 'user_status' => $status
