@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e243866482e109b745d27bf4cb8a2d4",
+    "content-hash": "ee51babf9870dbdf4c890c0c2848f2d2",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -2385,6 +2385,60 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "jtolj/simple-blade-heroicons",
+            "version": "v2.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jtolj/simple-blade-heroicons.git",
+                "reference": "2236fb975978191a6bd424653ce2ba113d882fe9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jtolj/simple-blade-heroicons/zipball/2236fb975978191a6bd424653ce2ba113d882fe9",
+                "reference": "2236fb975978191a6bd424653ce2ba113d882fe9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^7.3|^8.0|^8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jtolj\\SimpleBladeHeroicons\\SimpleBladeHeroiconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jtolj\\SimpleBladeHeroicons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jesse Tolj",
+                    "email": "jesse@objectfactory.io"
+                }
+            ],
+            "description": "A simple way to use Heroicons in Blade templates.",
+            "homepage": "https://github.com/jtolj/simple-blade-heroicons",
+            "keywords": [
+                "Heroicons",
+                "blade",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/jtolj/simple-blade-heroicons/issues",
+                "source": "https://github.com/jtolj/simple-blade-heroicons/tree/v2.0.14"
+            },
+            "time": "2023-03-27T11:47:59+00:00"
         },
         {
             "name": "laravel/fortify",
