@@ -19,7 +19,10 @@ class UserCount extends BaseWidget
             Card::make(label: 'Users', value:$users)
             ->icon(icon: 'heroicon-o-users')
             ->description(description: 'Total de usuarios en el sistema')
-            ->descriptionIcon(icon: 'heroicon-o-trending-up'),
+            ->descriptionIcon(icon: 'heroicon-o-trending-up')
+            ->descriptionColor(color: 'success')
+            ->color(color:'success' )
+            ->chart([9, 15, 8, 6, 13, 8, 15]),
         ];
     }
 }
