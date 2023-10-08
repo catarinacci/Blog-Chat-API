@@ -11,8 +11,10 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Card;
 
 class UserResource extends Resource
 {
@@ -26,12 +28,17 @@ class UserResource extends Resource
         return $form
 
         ->schema([
-            TextInput::make('id'),
-            TextInput::make('name'),
-            TextInput::make('surname'),
-            TextInput::make('nickname'),
-            TextInput::make('email'),
-            TextInput::make('status')
+            Card::make()
+                ->schema([
+                    TextInput::make('name'),
+                        TextInput::make('surname'),
+                        TextInput::make('nickname'),
+                        TextInput::make('email'),
+                        TextInput::make('password'),
+                        TextInput::make('password_confirmation'),
+                        FileUpload::make('profile_photo_path')
+                ])
+                        
             ]);
     }
 
@@ -55,7 +62,15 @@ class UserResource extends Resource
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
+            
     }
+
+    public static function getWidgets(): array
+{
+    return [
+        UserResource\Widgets\UsersOverview::class,
+    ];
+}
 
     public static function getRelations(): array
     {
@@ -69,6 +84,7 @@ class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
+          
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
