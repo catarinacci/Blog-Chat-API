@@ -1,8 +1,11 @@
 <?php
 
+use App\Filament\Pages\User\ListUser;
 use App\Http\Livewire\ShowMethods;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
+use App\Http\Livewire\ListUsers;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +19,8 @@ use App\Http\Controllers\ImageController;
 // Route::get('/',[ ShowMethods::class, 'home']);
 //Route::get('/{module}', ['ShowMethods@modules']);
  Route::get('/{module?}', ShowMethods::class);
+
+ Route::get('admin/list-users', ListUsers::class);
 
 
 // Route::get('/', [ImageController::class, 'create']);

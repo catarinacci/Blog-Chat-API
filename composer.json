@@ -12,6 +12,7 @@
         "ecrmnn/lorem": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "filament/filament": "^2.0",
+        "filament/tables": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jtolj/simple-blade-heroicons": "^2.0",
@@ -57,7 +58,8 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan filament:upgrade"
 
         ],
         "post-root-package-install": [

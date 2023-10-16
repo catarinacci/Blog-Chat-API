@@ -235,7 +235,7 @@ return [
 
         'forms' => [
             'actions' => [
-                'alignment' => 'left',
+                'alignment' => 'right',
             ],
             'have_inline_labels' => false,
         ],

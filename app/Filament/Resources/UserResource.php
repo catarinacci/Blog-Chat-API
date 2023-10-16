@@ -15,7 +15,13 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
+use Filament\Pages\Actions\Action;
+use Filament\Pages\Actions;
+use App\Filament\Pages\Actions\CreatedUserAction;
 
+
+// class UserResource extends Resource
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
@@ -37,7 +43,7 @@ class UserResource extends Resource
                         TextInput::make('password'),
                         TextInput::make('password_confirmation'),
                         FileUpload::make('profile_photo_path')
-                ])
+                ])->statePath('data')
                         
             ]);
     }
@@ -66,11 +72,11 @@ class UserResource extends Resource
     }
 
     public static function getWidgets(): array
-{
-    return [
-        UserResource\Widgets\UsersOverview::class,
-    ];
-}
+    {
+        return [
+            UserResource\Widgets\UsersOverview::class,
+        ];
+    }
 
     public static function getRelations(): array
     {
@@ -84,7 +90,7 @@ class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
-          
+            //'create' => Pages\ListUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
