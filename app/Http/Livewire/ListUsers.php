@@ -8,28 +8,10 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
 
-class ListUsers extends Component implements Tables\Contracts\HasTable 
+class ListUsers extends Component 
 {
 
-    use Tables\Concerns\InteractsWithTable;
-
-    protected function getTableQuery(): Builder 
-    {
-        return User::query();
-    } 
-
-    protected function getTableColumns(): array 
-    {
-        return [ 
-            Tables\Columns\TextColumn::make('id')->sortable()->searchable(),
-            Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-            Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
-            Tables\Columns\ImageColumn::make('profile_photo_path')->disk('s3')->circular(),
-            Tables\Columns\TextColumn::make('email_verified_at'),
-            Tables\Columns\TextColumn::make('status')
-        ]; 
-    }
-
+ 
 
     public function render()
     {
