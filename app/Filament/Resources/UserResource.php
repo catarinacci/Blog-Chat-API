@@ -21,6 +21,7 @@ use Filament\Pages\Actions;
 use App\Filament\Pages\Actions\CreatedUserAction;
 
 
+
 // class UserResource extends Resource
 class UserResource extends Resource
 {
@@ -40,9 +41,10 @@ class UserResource extends Resource
                         TextInput::make('surname'),
                         TextInput::make('nickname'),
                         TextInput::make('email'),
-                        TextInput::make('password'),
+                        TextInput::make('password')->password()
+                        ->dehydrated(false),
                         TextInput::make('password_confirmation'),
-                        FileUpload::make('profile_photo_path')
+                        FileUpload::make('profile_photo_path')->disk('s3'),
                 ])->statePath('data')
                         
             ]);
