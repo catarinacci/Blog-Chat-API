@@ -8,6 +8,7 @@ module.exports = {
     "./resources/**/*.js",
     "./resources/**/*.vue",
     './vendor/filament/**/*.blade.php',
+    './vendor/awcodes/filament-curator/resources/**/*.blade.php',
   ],
   theme: {
     extend: {

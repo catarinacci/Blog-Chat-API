@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
+use App\Forms\Components\Image;
 use App\Models\User;
 use Filament\Resources\Pages\Page;
 use Filament\Forms;
@@ -15,6 +16,12 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Wizard;
 use Filament\Pages\Actions\Action;
 use Filament\Support\Exceptions\Halt;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use FilamentCurator\Forms\Components\MediaPicker;
+use Filament\Pages\Contracts\HasFormActions;
+use Illuminate\Support\Facades\Redirect;
+
+//use awcodes/filament-curator/src/Forms/Components/MediaPicker
 
 
 class EditarUsuario extends Page implements Forms\Contracts\HasForms 
@@ -26,8 +33,6 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     protected static string $view = 'filament.resources.user-resource.pages.editar-usuario';
 
     public User $user;
-
-    //public $user = User::where();
     
     public $record; 
     public $name ;
@@ -37,22 +42,18 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     public $password;
     public $password_confirmation;
     public $profile_photo_path;
-
-    //dd($record);
+    public array $data=[];
 
     public function mount($record): void
     {
-        //dd($this->record);
-        
         $user = User::where('id', $this->record)->first();
-        
-        //dd($user->profile_photo_path);
+    
         $this->form->fill([
             'name' => $user->name,
             'surname' => $user->surname,
             'nickname' => $user->nickname,
             'email' => $user->email,
-            //'password' => $user->password,
+            'password' => $user->password,
             'password_confirmation' => $user->password_confirmation,
             'profile_photo_path' => $user->profile_photo_path,
             
@@ -61,20 +62,15 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
 
     protected function getFormSchema(): array 
     {
+        
+        $user = User::where('id', $this->record)->first();
+        
         return [
-            // Card::make()
-            //     ->schema([
-            //         TextInput::make('name'),
-            //         TextInput::make('surname'),
-            //         TextInput::make('nickname'),
-            //         TextInput::make('email'),
-            //         TextInput::make('password'),
-            //         TextInput::make('password_confirmation'),
-            //         //ImageColumn::make('profile_photo_path')->disk('s3'),
-            //         FileUpload::make('profile_photo_path')->disk('s3'),
-                    
-            //     ])
+           
+            Card::make()
+                ->schema([
                 Wizard::make([
+                    
                     Wizard\Step::make('Personal Information')
                         ->schema([
                             TextInput::make('name'),
@@ -89,32 +85,66 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                         ]),
                     Wizard\Step::make('change Image')
                         ->schema([
+                            
+                            Image::make('profile_photo_path')->items([
+                                'path' => $user->profile_photo_path
+                            ]),
+
                             FileUpload::make('profile_photo_path')->disk('s3'),
+                           
                         ]),
-                ])
-                
+                     
+                    
+                    ]),
+                ])  
         ];
         
     }
+
+    protected function getActions(): array
+    {
+        return [
+            Action::make('Back')->url(function(){
+                return route('filament.resources.users.index', ['user'=> $this->getRedirectUrl()]);
+            })
+        ];
+    }
+
+    protected function getRedirectUrl(): ?string
+    {
+        return static::getResource()::getUrl('index');
+    }
+
   
     protected function getFormActions(): array
     {
         return [
+
                 Action::make('Save Change')
-                ->submit('save'),
-                
+                ->submit('save')           
+            
         ];
     }
 
     public function save(): void
     {
+        $user = User::where('id', $this->record)->first();     
+
+        $data = $this->form->getState();
+
+        $this->dispatchBrowserEvent('refresh-page');
+
         try {
-            $data = $this->form->getState();
-            dd($data);
-            //auth()->user()->company->update($data);
+
+            $user->update([
+                "name" => $data['name'],
+            ]);
+          
         } catch (Halt $exception) {
             return;
         }
+
+     
     }
   
 }

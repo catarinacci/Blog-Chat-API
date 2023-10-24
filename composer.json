@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "awcodes/filament-curator": "^1.1",
         "aws/aws-sdk-php": "3.220.3",
         "blade-ui-kit/blade-heroicons": "^1.4",
         "doctrine/dbal": "^3.5",
@@ -22,7 +23,8 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^2.5",
-        "mohamedgaber-intake40/sanctum-refresh-token": "^1.24"
+        "mohamedgaber-intake40/sanctum-refresh-token": "^1.24",
+        "spatie/laravel-tags": "^4.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

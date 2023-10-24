@@ -30,26 +30,6 @@ class UserResource extends Resource
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
-    public static function form(Form $form): Form
-    {
-        return $form
-
-        ->schema([
-            Card::make()
-                ->schema([
-                    TextInput::make('name'),
-                        TextInput::make('surname'),
-                        TextInput::make('nickname'),
-                        TextInput::make('email'),
-                        TextInput::make('password')->password()
-                        ->dehydrated(false),
-                        TextInput::make('password_confirmation'),
-                        FileUpload::make('profile_photo_path')->disk('s3'),
-                ])->statePath('data')
-                        
-            ]);
-    }
-
     public static function table(Table $table): Table
     {
         return $table
@@ -73,13 +53,7 @@ class UserResource extends Resource
             
     }
 
-    public static function getWidgets(): array
-    {
-        return [
-            UserResource\Widgets\UsersOverview::class,
-        ];
-    }
-
+ 
     public static function getRelations(): array
     {
         return [

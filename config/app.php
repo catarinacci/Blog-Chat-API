@@ -181,6 +181,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         App\Providers\FormatTimeServiceProvider::class,
         \MohamedGaber\SanctumRefreshToken\SanctumRefreshTokenServiceProvider::class,
+        Spatie\Tags\TagsServiceProvider::class,
 
     ],
 

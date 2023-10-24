@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Collection;
 use Filament\Tables\Actions\Action;
+use Closure;
 
 class ListarUsuario extends Page implements HasTable
 {
@@ -33,6 +34,7 @@ class ListarUsuario extends Page implements HasTable
             Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
             Tables\Columns\ImageColumn::make('profile_photo_path')->disk('s3')->circular(),
+            Tables\Columns\TextColumn::make('updated_at')->sortable(),
             Tables\Columns\TextColumn::make('email_verified_at'),
             Tables\Columns\TextColumn::make('status')
         ]; 
@@ -47,6 +49,10 @@ class ListarUsuario extends Page implements HasTable
               ->action(fn (User $record) => redirect()->route('filament.resources.users.edit', ['record' => $record]))             
         ]; 
     }
+    protected function getTableRecordUrlUsing(): ?Closure
+{
+    return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
+}
 
     protected function getTableBulkActions(): array
     {
