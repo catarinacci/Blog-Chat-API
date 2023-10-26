@@ -11,7 +11,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Collection;
 use Filament\Tables\Actions\Action;
+//use Illuminate\Database\Query\Builder;
+//use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 use Closure;
+use Illuminate\Support\Facades\DB;
 
 class ListarUsuario extends Page implements HasTable
 {
@@ -24,11 +28,13 @@ class ListarUsuario extends Page implements HasTable
 
     protected function getTableQuery(): Builder 
     {
-        return User::query();
+
+        return User::query()->orderBy('updated_at', 'desc');
     } 
 
     protected function getTableColumns(): array 
     {
+
         return [ 
             Tables\Columns\TextColumn::make('id')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
@@ -40,19 +46,20 @@ class ListarUsuario extends Page implements HasTable
         ]; 
     }
 
-    protected function getTableActions(): array
-    {   
-        $resource = static::getResource();
-        //dd($resource);
-        return [ 
-              Action::make('edit')
-              ->action(fn (User $record) => redirect()->route('filament.resources.users.edit', ['record' => $record]))             
-        ]; 
-    }
+
+    // protected function getTableActions(): array
+    // {   
+    //     // $resource = static::getResource();
+    //     // //dd($resource);
+    //     // return [ 
+    //     //       Action::make('edit')
+    //     //       ->action(fn (User $record) => redirect()->route('filament.resources.users.edit', ['record' => $record]))             
+    //     // ]; 
+    // }
     protected function getTableRecordUrlUsing(): ?Closure
-{
-    return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
-}
+    {
+        return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
+    }
 
     protected function getTableBulkActions(): array
     {

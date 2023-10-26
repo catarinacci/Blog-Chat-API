@@ -53,8 +53,8 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
             'surname' => $user->surname,
             'nickname' => $user->nickname,
             'email' => $user->email,
-            'password' => $user->password,
-            'password_confirmation' => $user->password_confirmation,
+            //'password' => $user->password,
+            //'password_confirmation' => $user->password_confirmation,
             'profile_photo_path' => $user->profile_photo_path,
             
         ]);
@@ -73,15 +73,15 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                     
                     Wizard\Step::make('Personal Information')
                         ->schema([
-                            TextInput::make('name'),
-                            TextInput::make('surname'),
-                            TextInput::make('nickname'),
-                            TextInput::make('email'),
+                            TextInput::make('name')->required()->maxValue(20),
+                            TextInput::make('surname')->maxLength(20),
+                            TextInput::make('nickname')->maxLength(20),
+                            TextInput::make('email')->required()->email(),
                                 ]),
                     Wizard\Step::make('Passwor Reset')
                         ->schema([
-                            TextInput::make('password'),
-                            TextInput::make('password_confirmation'),
+                            TextInput::make('password')->password()->maxLength(8),
+                            TextInput::make('password_confirmation')->maxLength(8),
                         ]),
                     Wizard\Step::make('change Image')
                         ->schema([
@@ -132,7 +132,13 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
 
         $data = $this->form->getState();
 
-        $this->dispatchBrowserEvent('refresh-page');
+        //$this->dispatchBrowserEvent('refresh-page');
+        dd($data);
+        if($data){
+            dd($data['password']);
+        }else{
+            dd(false);
+        }
 
         try {
 
