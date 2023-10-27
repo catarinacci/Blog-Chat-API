@@ -1,9 +1,9 @@
 
-<div class="max-w-sm rounded-full overflow-hidden shadow-lg">
-    <div class="m-20">
+<div class="w-32 mx-auto rounded-full overflow-hidden shadow-lg">
+    <div class=" ">
         @foreach($getItems() as $term => $description)
 
-        <img class="w-full " src={{ $description}} alt="">
+        <img class="" src={{ $description}} alt="">
     
         @endforeach
     </div>

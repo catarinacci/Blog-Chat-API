@@ -33,10 +33,10 @@ class ListarUsuario extends Page implements HasTable
     } 
 
     protected function getTableColumns(): array 
-    {
+    {  
 
         return [ 
-            Tables\Columns\TextColumn::make('id')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('id')->color('primary')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
             Tables\Columns\ImageColumn::make('profile_photo_path')->disk('s3')->circular(),

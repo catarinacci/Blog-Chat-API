@@ -20,6 +20,7 @@ use Awcodes\Curator\Components\Forms\CuratorPicker;
 use FilamentCurator\Forms\Components\MediaPicker;
 use Filament\Pages\Contracts\HasFormActions;
 use Illuminate\Support\Facades\Redirect;
+use Filament\Notifications\Notification; 
 
 //use awcodes/filament-curator/src/Forms/Components/MediaPicker
 
@@ -133,7 +134,8 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
         $data = $this->form->getState();
 
         //$this->dispatchBrowserEvent('refresh-page');
-        dd($data);
+        //dd($data);
+
         if($data){
             dd($data['password']);
         }else{
@@ -145,9 +147,12 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
             $user->update([
                 "name" => $data['name'],
             ]);
-          
+            Notification::make() 
+            ->title('Saved successfully')
+            ->success()
+            ->send(); 
         } catch (Halt $exception) {
-            return;
+            
         }
 
      
