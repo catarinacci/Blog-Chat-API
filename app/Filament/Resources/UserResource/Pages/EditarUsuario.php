@@ -91,7 +91,7 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                                 'path' => $user->profile_photo_path
                             ]),
 
-                            FileUpload::make('profile_photo_path')->disk('s3'),
+                            FileUpload::make('profile_photo_path')->disk('s3')->image(),
                            
                         ]),
                      
@@ -136,8 +136,28 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
         //$this->dispatchBrowserEvent('refresh-page');
         //dd($data);
 
-        if($data){
-            dd($data['password']);
+        $path = $data['profile_photo_path'];
+
+        if($data['password'] && $data['password_confirmation']){
+            //dd($data['profile_photo_path']);
+            if($data['password'] == $data['password_confirmation']){
+                dd('iguales');
+            }else{
+                // Tables\Actions\ViewAction::make('comments')
+                //     ->modalContent(fn ($record) => view('test', compact('record')));
+                    Notification::make()
+                    ->title('Password error')
+                    ->danger()
+                    ->body('Password field does not match')
+                    ->persistent()
+     
+                    ->send();
+                    
+            
+                //dd('desiguales');
+            }
+            //dd($data['password']);
+          
         }else{
             dd(false);
         }

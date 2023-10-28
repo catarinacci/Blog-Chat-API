@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Collection;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\BulkAction;
 //use Illuminate\Database\Query\Builder;
 //use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Model;
 use Closure;
 use Illuminate\Support\Facades\DB;
+use Filament\Notifications\Notification; 
 
 class ListarUsuario extends Page implements HasTable
 {
@@ -47,15 +49,47 @@ class ListarUsuario extends Page implements HasTable
     }
 
 
-    // protected function getTableActions(): array
-    // {   
-    //     // $resource = static::getResource();
-    //     // //dd($resource);
-    //     // return [ 
-    //     //       Action::make('edit')
-    //     //       ->action(fn (User $record) => redirect()->route('filament.resources.users.edit', ['record' => $record]))             
-    //     // ]; 
-    // }
+    protected function getTableActions(): array
+    {   
+        // $resource = static::getResource();
+        // //dd($resource);
+        // return [ 
+        //       Action::make('edit')
+        //       ->action(fn (User $record) => redirect()->route('filament.resources.users.edit', ['record' => $record]))             
+        // ];
+    return [ 
+        Action::make('Block')
+            ->label('Block')
+            ->color('danger')
+            ->action(function (User $record): void {
+                //dd($record);
+                $record->update([
+                    "status" => '2',
+                ]);
+                Notification::make() 
+                ->title('Block successfully')
+                ->success()
+                ->send();
+                //$record->each->delete();
+            })
+            ->requiresConfirmation(),
+            Action::make('Unlock')
+            ->label('Unlok')
+            ->color('success')
+            ->action(function (User $record): void {
+                //dd($record);
+                $record->update([
+                    "status" => '1',
+                ]);
+                Notification::make() 
+                ->title('Unlock successfully')
+                ->success()
+                ->send();
+                //$record->each->delete();
+            })
+            ->requiresConfirmation(),
+    ];  
+     }
     protected function getTableRecordUrlUsing(): ?Closure
     {
         return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);

@@ -3333,9 +3333,6 @@ select{
 .\!m-0{
   margin: 0px !important;
 }
-.m-20{
-  margin: 5rem;
-}
 .-mx-2{
   margin-left: -0.5rem;
   margin-right: -0.5rem;
@@ -3708,9 +3705,6 @@ select{
 }
 .w-screen{
   width: 100vw;
-}
-.w-40{
-  width: 10rem;
 }
 .min-w-0{
   min-width: 0px;
