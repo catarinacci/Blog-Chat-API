@@ -1,4 +1,3 @@
-
 <div class="w-32 mx-auto rounded-full overflow-hidden shadow-lg">
     <div class=" ">
         @foreach($getItems() as $term => $description)

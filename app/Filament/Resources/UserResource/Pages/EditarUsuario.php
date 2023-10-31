@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
-use App\Forms\Components\Image;
+use App\Forms\Components\ImageProfile;
 use App\Models\User;
 use Filament\Resources\Pages\Page;
 use Filament\Forms;
@@ -21,6 +21,10 @@ use FilamentCurator\Forms\Components\MediaPicker;
 use Filament\Pages\Contracts\HasFormActions;
 use Illuminate\Support\Facades\Redirect;
 use Filament\Notifications\Notification; 
+use Livewire\TemporaryUploadedFile;
+use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 //use awcodes/filament-curator/src/Forms/Components/MediaPicker
 
@@ -44,6 +48,7 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     public $password_confirmation;
     public $profile_photo_path;
     public array $data=[];
+    public $path_image = '';
 
     public function mount($record): void
     {
@@ -77,21 +82,29 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                             TextInput::make('name')->required()->maxValue(20),
                             TextInput::make('surname')->maxLength(20),
                             TextInput::make('nickname')->maxLength(20),
-                            TextInput::make('email')->required()->email(),
+                            TextInput::make('email')->disabled(),
                                 ]),
                     Wizard\Step::make('Passwor Reset')
                         ->schema([
-                            TextInput::make('password')->password()->maxLength(8),
+                            TextInput::make('password')->maxLength(8),
                             TextInput::make('password_confirmation')->maxLength(8),
                         ]),
                     Wizard\Step::make('change Image')
                         ->schema([
                             
-                            Image::make('profile_photo_path')->items([
+                            ImageProfile::make('profile_photo_path')->items([
                                 'path' => $user->profile_photo_path
                             ]),
 
                             FileUpload::make('profile_photo_path')->disk('s3')->image(),
+                           
+            
+ 
+
+                            // ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                            //     //dd($file);
+                            //     return (string) $file->getClientOriginalName()->prepend('custom-prefix-');
+                            // })->image(),
                            
                         ]),
                      
@@ -133,24 +146,52 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
 
         $data = $this->form->getState();
 
-        //$this->dispatchBrowserEvent('refresh-page');
-        //dd($data);
-
-        $path = $data['profile_photo_path'];
+        $path_image = $data['profile_photo_path'];
+        $path_json = json_encode($data);
+       //$path = strval($path_image);
 
         if($data['password'] && $data['password_confirmation']){
             //dd($data['profile_photo_path']);
             if($data['password'] == $data['password_confirmation']){
-                dd('iguales');
+                //dd('iguales');//Passwords iguales
+                //dd($path_image);
+                if($path_image){
+                    //dd($path_image);
+                    //Igreso una imagen,  Guardar nueva imagen
+                    //$documentPath = $path_image->file('profile_photo_path')->store('noteapi', 's3');
+                    //$request->file('image_note_path')
+                    //dd($documentPath);
+                    // $path = Storage::disk('s3')->url($documentPath);
+                     //dd($path_image);
+                    //https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/nGcgiwJMcTLrWt42ko64EXAs0G5MuC-metaw61uZGljZS5qcGc%3D-.jpg
+                    $image_object =  Image::where('imageable_id', $user->id)
+                                            ->where('imageable_type', 'App\Models\User')->first();
+                    $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/'.$path_image;
+                    $image_object->update([
+                        'url' => $paths3
+                    ]);
+                    $user->update([
+                        'name' => $data['name'],
+                        'surname' => $data['surname'],
+                        'nickname' => $data['nickname'],
+                        'password' => Hash::make($data['password']),
+                        'profile_photo_path' => $paths3 
+                    ]);
+                }else{
+                    dd('no ingreso imagen');
+                }
+
+                $image_object =  Image::where('imageable_id', $user->id)
+                                            ->where('imageable_type', 'App\Models\User')->first();
+                dd($image_object);
             }else{
+
                 // Tables\Actions\ViewAction::make('comments')
                 //     ->modalContent(fn ($record) => view('test', compact('record')));
                     Notification::make()
                     ->title('Password error')
                     ->danger()
                     ->body('Password field does not match')
-                    ->persistent()
-     
                     ->send();
                     
             
