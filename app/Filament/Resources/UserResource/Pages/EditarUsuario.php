@@ -25,11 +25,13 @@ use Livewire\TemporaryUploadedFile;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Filament\Notifications\Actions\Action as Actiond;
+use Filament\Resources\Pages\EditRecord;
+
 
 //use awcodes/filament-curator/src/Forms/Components/MediaPicker
 
-
-class EditarUsuario extends Page implements Forms\Contracts\HasForms 
+class EditarUsuario extends Page implements Forms\Contracts\HasForms
 {
     use Forms\Concerns\InteractsWithForms;
 
@@ -78,48 +80,40 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                 Wizard::make([
                     
                     Wizard\Step::make('Personal Information')
-                        ->schema([
+                        ->schema([                          
                             TextInput::make('name')->required()->maxValue(20),
                             TextInput::make('surname')->maxLength(20),
                             TextInput::make('nickname')->maxLength(20),
                             TextInput::make('email')->disabled(),
                                 ]),
+
                     Wizard\Step::make('Passwor Reset')
                         ->schema([
                             TextInput::make('password')->maxLength(8),
                             TextInput::make('password_confirmation')->maxLength(8),
                         ]),
+                        
                     Wizard\Step::make('change Image')
                         ->schema([
                             
                             ImageProfile::make('profile_photo_path')->items([
                                 'path' => $user->profile_photo_path
-                            ]),
+                            ])->reactive(),
 
-                            FileUpload::make('profile_photo_path')->disk('s3')->image(),
-                           
-            
- 
-
-                            // ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                            //     //dd($file);
-                            //     return (string) $file->getClientOriginalName()->prepend('custom-prefix-');
-                            // })->image(),
-                           
-                        ]),
-                     
-                    
-                    ]),
-                ])  
-        ];
-        
+                            FileUpload::make('profile_photo_path')->disk('s3')
+                            ->image()->enableOpen(),
+                        ]),                  
+                ]),                   
+            ])  
+        ];        
     }
-
+    
     protected function getActions(): array
     {
         return [
             Action::make('Back')->url(function(){
                 return route('filament.resources.users.index', ['user'=> $this->getRedirectUrl()]);
+                //return route('filament.resources.users.index');
             })
         ];
     }
@@ -127,49 +121,48 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     protected function getRedirectUrl(): ?string
     {
         return static::getResource()::getUrl('index');
+        //return route('filament.resources.users.index');
     }
 
   
     protected function getFormActions(): array
     {
-        return [
+        $user = User::where('id', $this->record)->first();
 
-                Action::make('Save Change')
-                ->submit('save')           
+        $data = $this->form->getState();
+
+        return [
             
+                Action::make('Save Change')
+                ->submit('save')
         ];
     }
 
-    public function save(): void
+    public function save():array
     {
         $user = User::where('id', $this->record)->first();     
 
         $data = $this->form->getState();
 
         $path_image = $data['profile_photo_path'];
-        $path_json = json_encode($data);
-       //$path = strval($path_image);
-
+    
         if($data['password'] && $data['password_confirmation']){
             //dd($data['profile_photo_path']);
             if($data['password'] == $data['password_confirmation']){
                 //dd('iguales');//Passwords iguales
                 //dd($path_image);
                 if($path_image){
-                    //dd($path_image);
-                    //Igreso una imagen,  Guardar nueva imagen
-                    //$documentPath = $path_image->file('profile_photo_path')->store('noteapi', 's3');
-                    //$request->file('image_note_path')
-                    //dd($documentPath);
-                    // $path = Storage::disk('s3')->url($documentPath);
-                     //dd($path_image);
-                    //https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/nGcgiwJMcTLrWt42ko64EXAs0G5MuC-metaw61uZGljZS5qcGc%3D-.jpg
+
                     $image_object =  Image::where('imageable_id', $user->id)
                                             ->where('imageable_type', 'App\Models\User')->first();
+                                            
                     $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/'.$path_image;
+                    
                     $image_object->update([
                         'url' => $paths3
                     ]);
+
+                  
                     $user->update([
                         'name' => $data['name'],
                         'surname' => $data['surname'],
@@ -177,13 +170,21 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                         'password' => Hash::make($data['password']),
                         'profile_photo_path' => $paths3 
                     ]);
+
+                    Notification::make() 
+                    ->title('Udated successfully')
+                    ->success()
+                    ->send();
+                                  
+                    return [Redirect()->route('filament.resources.users.index')];
+        
                 }else{
                     dd('no ingreso imagen');
                 }
 
-                $image_object =  Image::where('imageable_id', $user->id)
-                                            ->where('imageable_type', 'App\Models\User')->first();
-                dd($image_object);
+                //$image_object =  Image::where('imageable_id', $user->id)
+                                            //->where('imageable_type', 'App\Models\User')->first();
+                //dd($image_object);
             }else{
 
                 // Tables\Actions\ViewAction::make('comments')
@@ -200,21 +201,21 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
             //dd($data['password']);
           
         }else{
-            dd(false);
+            //dd(false);
         }
 
-        try {
+        // try {
 
-            $user->update([
-                "name" => $data['name'],
-            ]);
-            Notification::make() 
-            ->title('Saved successfully')
-            ->success()
-            ->send(); 
-        } catch (Halt $exception) {
+        //     $user->update([
+        //         "name" => $data['name'],
+        //     ]);
+        //     Notification::make() 
+        //     ->title('Saved successfully')
+        //     ->success()
+        //     ->send(); 
+        // } catch (Halt $exception) {
             
-        }
+        // }
 
      
     }

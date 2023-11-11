@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use Closure;
 use Illuminate\Support\Facades\DB;
 use Filament\Notifications\Notification; 
+//use Filament\Pages\Actions\Action;
 
 class ListarUsuario extends Page implements HasTable
 {
@@ -44,7 +45,7 @@ class ListarUsuario extends Page implements HasTable
             Tables\Columns\ImageColumn::make('profile_photo_path')->disk('s3')->circular(),
             Tables\Columns\TextColumn::make('updated_at')->sortable(),
             Tables\Columns\TextColumn::make('email_verified_at'),
-            Tables\Columns\TextColumn::make('status')
+            Tables\Columns\TextColumn::make('status')->sortable()->searchable()
         ]; 
     }
 
@@ -58,6 +59,7 @@ class ListarUsuario extends Page implements HasTable
         //       ->action(fn (User $record) => redirect()->route('filament.resources.users.edit', ['record' => $record]))             
         // ];
     return [ 
+        
         Action::make('Block')
             ->label('Block')
             ->color('danger')
@@ -94,24 +96,38 @@ class ListarUsuario extends Page implements HasTable
     {
         return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
     }
-
-    protected function getTableBulkActions(): array
+    protected function getHeaderActions(): array
     {
-        return [ 
-            Tables\Actions\BulkAction::make('delete')
-                ->label('Delete selected')
-                ->color('danger')
-                ->action(function (Collection $records): void {
-                    $records->each->delete();
-                })
-                ->requiresConfirmation(),
-        ]; 
+        return [
+            Action::make('Create')
+     ];
     }
+    // protected function getTableActions(): array
+    // {
+    //     return [
+    //         Action::make('Back')->url(function(){
+    //             return route('filament.resources.users.index', ['user'=> $this->getRedirectUrl()]);
+    //         })
+    //     ];
+    // }
+    // protected function getTableBulkActions(): array
+    // {
+    //     return [ 
+    //         Tables\Actions\BulkAction::make('delete')
+    //             ->label('Delete selected')
+    //             ->color('danger')
+    //             ->action(function (Collection $records): void {
+    //                 $records->each->delete();
+    //             })
+    //             ->requiresConfirmation(),
+    //     ]; 
+    // }
 
     protected function getHeaderWidgets(): array
     
     {
         return [
+          
             UserResource\Widgets\UsersOverview::class,
         ];
     }

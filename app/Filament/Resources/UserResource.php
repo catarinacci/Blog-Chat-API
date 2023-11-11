@@ -30,6 +30,14 @@ class UserResource extends Resource
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
+        public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                //
+            ]);
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -61,6 +69,11 @@ class UserResource extends Resource
         ];
     }
 
+    protected function getRedirectUrl(): ?string
+    {
+        return static::getResource()::getUrl('index');
+    }
+
     public static function getPages(): array
     {
         return [
@@ -68,6 +81,7 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             //'create' => Pages\ListUser::route('/create'),
             'edit' => Pages\EditarUsuario::route('/{record}/edit'),
+            //'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }
