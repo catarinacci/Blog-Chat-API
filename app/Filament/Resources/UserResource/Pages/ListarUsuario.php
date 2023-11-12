@@ -40,11 +40,11 @@ class ListarUsuario extends Page implements HasTable
 
         return [ 
             Tables\Columns\TextColumn::make('id')->color('primary')->sortable()->searchable(),
-            Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('name')->sortable()->searchable()->wrap(),
             Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
-            Tables\Columns\ImageColumn::make('profile_photo_path')->disk('s3')->circular(),
-            Tables\Columns\TextColumn::make('updated_at')->sortable(),
-            Tables\Columns\TextColumn::make('email_verified_at'),
+            Tables\Columns\ImageColumn::make('profile_photo_path')->label('Profile photo')->disk('s3')->circular(),
+            Tables\Columns\TextColumn::make('updated_at')->sortable()->date(),
+            Tables\Columns\TextColumn::make('email_verified_at')->date(),
             Tables\Columns\TextColumn::make('status')->sortable()->searchable()
         ]; 
     }

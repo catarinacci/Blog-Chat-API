@@ -4,29 +4,30 @@ namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
 use App\Forms\Components\ImageProfile;
+use App\Forms\Components\StatusUser;
 use App\Models\User;
 use Filament\Resources\Pages\Page;
 use Filament\Forms;
-use Illuminate\Contracts\View\View;
+//use Illuminate\Contracts\View\View;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
-use Filament\Tables\Columns\ImageColumn;
+//use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\Placeholder;
+//use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Wizard;
 use Filament\Pages\Actions\Action;
-use Filament\Support\Exceptions\Halt;
-use Awcodes\Curator\Components\Forms\CuratorPicker;
-use FilamentCurator\Forms\Components\MediaPicker;
-use Filament\Pages\Contracts\HasFormActions;
-use Illuminate\Support\Facades\Redirect;
+// use Filament\Support\Exceptions\Halt;
+// use Awcodes\Curator\Components\Forms\CuratorPicker;
+// use FilamentCurator\Forms\Components\MediaPicker;
+// use Filament\Pages\Contracts\HasFormActions;
+// use Illuminate\Support\Facades\Redirect;
 use Filament\Notifications\Notification; 
-use Livewire\TemporaryUploadedFile;
+// use Livewire\TemporaryUploadedFile;
 use App\Models\Image;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
-use Filament\Notifications\Actions\Action as Actiond;
-use Filament\Resources\Pages\EditRecord;
+// use Filament\Notifications\Actions\Action as Actiond;
+// use Filament\Resources\Pages\EditRecord;
 
 
 //use awcodes/filament-curator/src/Forms/Components/MediaPicker
@@ -77,6 +78,11 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
            
             Card::make()
                 ->schema([
+
+                    StatusUser::make('')->items([
+                        'status' => $user->status
+                    ]),
+
                 Wizard::make([
                     
                     Wizard\Step::make('Personal Information')
@@ -101,7 +107,7 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                             ])->reactive(),
 
                             FileUpload::make('profile_photo_path')->disk('s3')
-                            ->image()->enableOpen(),
+                            ->image()->enableOpen()->imageResizeMode('cover'),
                         ]),                  
                 ]),                   
             ])  
@@ -112,24 +118,16 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     {
         return [
             Action::make('Back')->url(function(){
-                return route('filament.resources.users.index', ['user'=> $this->getRedirectUrl()]);
-                //return route('filament.resources.users.index');
+                return route('filament.resources.users.index');
             })
         ];
     }
-
-    protected function getRedirectUrl(): ?string
-    {
-        return static::getResource()::getUrl('index');
-        //return route('filament.resources.users.index');
-    }
-
   
     protected function getFormActions(): array
     {
-        $user = User::where('id', $this->record)->first();
+        // $user = User::where('id', $this->record)->first();
 
-        $data = $this->form->getState();
+        // $data = $this->form->getState();
 
         return [
             
@@ -145,14 +143,75 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
         $data = $this->form->getState();
 
         $path_image = $data['profile_photo_path'];
-    
-        if($data['password'] && $data['password_confirmation']){
-            //dd($data['profile_photo_path']);
-            if($data['password'] == $data['password_confirmation']){
-                //dd('iguales');//Passwords iguales
-                //dd($path_image);
-                if($path_image){
 
+        if($user->status == 1){            
+
+            if($data['password'] && $data['password_confirmation']){
+               
+                if($data['password'] == $data['password_confirmation']){
+                    //dd('iguales');//Passwords iguales
+                    //dd($path_image);
+                    if($path_image){
+    
+                        $image_object =  Image::where('imageable_id', $user->id)
+                                                ->where('imageable_type', 'App\Models\User')->first();
+                                                
+                        $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/'.$path_image;
+                        
+                        $image_object->update([
+                            'url' => $paths3
+                        ]);
+    
+                      
+                        $user->update([
+                            'name' => $data['name'],
+                            'surname' => $data['surname'],
+                            'nickname' => $data['nickname'],
+                            'password' => Hash::make($data['password']),
+                            'profile_photo_path' => $paths3 
+                        ]);
+    
+                        Notification::make() 
+                        ->title('Udated successfully')
+                        ->success()
+                        ->send();
+                                      
+                        return [Redirect()->route('filament.resources.users.index')];
+            
+                    }else{
+
+                        //dd('ingreso pass y no ingreso imagen');
+                        $user->update([
+                            'name' => $data['name'],
+                            'surname' => $data['surname'],
+                            'nickname' => $data['nickname'],
+                            'password' => Hash::make($data['password']),
+                            //'profile_photo_path' => $paths3 
+                        ]);
+    
+                        Notification::make() 
+                        ->title('Udated successfully')
+                        ->success()
+                        ->send();
+                                      
+                        return [Redirect()->route('filament.resources.users.index')];
+                    }
+    
+                   
+                }else{
+
+                        Notification::make()
+                        ->title('Password error')
+                        ->danger()
+                        ->body('Password field does not match')
+                        ->send();
+                        return[];
+                }
+              
+            }else{
+
+                if($path_image){
+                    //no ingreso password, pero si imagen
                     $image_object =  Image::where('imageable_id', $user->id)
                                             ->where('imageable_type', 'App\Models\User')->first();
                                             
@@ -167,7 +226,7 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                         'name' => $data['name'],
                         'surname' => $data['surname'],
                         'nickname' => $data['nickname'],
-                        'password' => Hash::make($data['password']),
+                        //'password' => Hash::make($data['password']),
                         'profile_photo_path' => $paths3 
                     ]);
 
@@ -179,44 +238,34 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                     return [Redirect()->route('filament.resources.users.index')];
         
                 }else{
-                    dd('no ingreso imagen');
-                }
-
-                //$image_object =  Image::where('imageable_id', $user->id)
-                                            //->where('imageable_type', 'App\Models\User')->first();
-                //dd($image_object);
-            }else{
-
-                // Tables\Actions\ViewAction::make('comments')
-                //     ->modalContent(fn ($record) => view('test', compact('record')));
-                    Notification::make()
-                    ->title('Password error')
-                    ->danger()
-                    ->body('Password field does not match')
+                    $user->update([
+                        'name' => $data['name'],
+                        'surname' => $data['surname'],
+                        'nickname' => $data['nickname'],
+                        //'password' => Hash::make($data['password']),
+                        //'profile_photo_path' => $paths3 
+                    ]);
+    
+                    Notification::make() 
+                    ->title('Udated successfully')
+                    ->success()
                     ->send();
-                    
-            
-                //dd('desiguales');
+                                  
+                    return [Redirect()->route('filament.resources.users.index')];
+                }
+               
             }
-            //dd($data['password']);
-          
+
         }else{
-            //dd(false);
+            Notification::make()
+                        ->title('User LOKED')
+                        ->danger()
+                        ->body('Data cannot be updated')
+                        ->send();
+                        return[];
         }
-
-        // try {
-
-        //     $user->update([
-        //         "name" => $data['name'],
-        //     ]);
-        //     Notification::make() 
-        //     ->title('Saved successfully')
-        //     ->success()
-        //     ->send(); 
-        // } catch (Halt $exception) {
-            
-        // }
-
+    
+       
      
     }
   

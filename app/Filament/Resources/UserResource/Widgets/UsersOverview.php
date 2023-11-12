@@ -28,7 +28,7 @@ class UsersOverview extends BaseWidget
 
             Card::make(label: 'Users Unverified', value:$users_unverified)
             ->icon(icon: 'heroicon-o-users')
-            ->description(description: 'Total de usuarios en el sistema')
+            ->description(description: 'Total de usuarios no verificados')
             ->descriptionIcon(icon: 'heroicon-o-trending-up')
             ->descriptionColor(color: 'warning')
             ->color(color:'warning' )
@@ -36,7 +36,7 @@ class UsersOverview extends BaseWidget
 
             Card::make(label: 'Users Loked', value:$users_loked)
             ->icon(icon: 'heroicon-o-users')
-            ->description(description: 'Total de usuarios en el sistema')
+            ->description(description: 'Total de usuarios bloqueados')
             ->descriptionIcon(icon: 'heroicon-o-trending-up')
             ->descriptionColor(color: 'danger')
             ->color(color:'danger' )
