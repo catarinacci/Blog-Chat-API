@@ -16,21 +16,9 @@ use Filament\Forms\Components\Card;
 //use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Wizard;
 use Filament\Pages\Actions\Action;
-// use Filament\Support\Exceptions\Halt;
-// use Awcodes\Curator\Components\Forms\CuratorPicker;
-// use FilamentCurator\Forms\Components\MediaPicker;
-// use Filament\Pages\Contracts\HasFormActions;
-// use Illuminate\Support\Facades\Redirect;
 use Filament\Notifications\Notification; 
-// use Livewire\TemporaryUploadedFile;
 use App\Models\Image;
-// use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
-// use Filament\Notifications\Actions\Action as Actiond;
-// use Filament\Resources\Pages\EditRecord;
-
-
-//use awcodes/filament-curator/src/Forms/Components/MediaPicker
 
 class EditarUsuario extends Page implements Forms\Contracts\HasForms
 {

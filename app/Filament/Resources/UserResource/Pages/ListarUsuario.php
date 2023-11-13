@@ -6,23 +6,17 @@ use App\Filament\Resources\UserResource;
 use Filament\Resources\Pages\Page;
 use App\Models\User;
 use Filament\Tables;
-use Filament\Resources\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
-use Illuminate\Database\Eloquent\Collection;
 use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\BulkAction;
-//use Illuminate\Database\Query\Builder;
-//use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Model;
 use Closure;
-use Illuminate\Support\Facades\DB;
-use Filament\Notifications\Notification; 
-//use Filament\Pages\Actions\Action;
+use Filament\Notifications\Notification;
+use Filament\Pages\Actions\Action as Actionn;
 
 class ListarUsuario extends Page implements HasTable
 {
     use Tables\Concerns\InteractsWithTable;
+    
 
     protected static string $resource = UserResource::class;
 
@@ -37,9 +31,9 @@ class ListarUsuario extends Page implements HasTable
 
     protected function getTableColumns(): array 
     {  
-
+        
         return [ 
-            Tables\Columns\TextColumn::make('id')->color('primary')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->sortable()->searchable(),
             Tables\Columns\TextColumn::make('name')->sortable()->searchable()->wrap(),
             Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
             Tables\Columns\ImageColumn::make('profile_photo_path')->label('Profile photo')->disk('s3')->circular(),
@@ -52,12 +46,6 @@ class ListarUsuario extends Page implements HasTable
 
     protected function getTableActions(): array
     {   
-        // $resource = static::getResource();
-        // //dd($resource);
-        // return [ 
-        //       Action::make('edit')
-        //       ->action(fn (User $record) => redirect()->route('filament.resources.users.edit', ['record' => $record]))             
-        // ];
     return [ 
         
         Action::make('Block')
@@ -96,32 +84,14 @@ class ListarUsuario extends Page implements HasTable
     {
         return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
     }
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('Create')
-     ];
-    }
-    // protected function getTableActions(): array
-    // {
-    //     return [
-    //         Action::make('Back')->url(function(){
-    //             return route('filament.resources.users.index', ['user'=> $this->getRedirectUrl()]);
-    //         })
-    //     ];
-    // }
-    // protected function getTableBulkActions(): array
-    // {
-    //     return [ 
-    //         Tables\Actions\BulkAction::make('delete')
-    //             ->label('Delete selected')
-    //             ->color('danger')
-    //             ->action(function (Collection $records): void {
-    //                 $records->each->delete();
-    //             })
-    //             ->requiresConfirmation(),
-    //     ]; 
-    // }
+
+    protected function getActions(): array
+     {
+         return [
+            Actionn::make('Create User')
+            ->url(route('filament.resources.users.create')),
+         ];
+     }
 
     protected function getHeaderWidgets(): array
     
