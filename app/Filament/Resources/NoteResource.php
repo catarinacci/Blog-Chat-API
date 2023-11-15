@@ -17,7 +17,7 @@ use Filament\Forms\Components\Select;
 class NoteResource extends Resource
 {
     protected static ?string $model = Note::class;
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 2;
     protected static ?string $navigationIcon = 'heroicon-o-collection';
    
     public static function form(Form $form): Form
