@@ -26,10 +26,10 @@ class UserCount extends BaseWidget
     { 
         return[Redirect()->route('filament.resources.users.index')];
     } 
-    // public function redirecN(): array 
-    // { 
-    //     return[Redirect()->route('filament.resources.notes.index')];
-    // }
+    public function redirecN(): array 
+    { 
+        return[Redirect()->route('filament.resources.notes.index')];
+    }
     // public function redirecC(): array 
     // { 
     //     return[Redirect()->route('filament.resources.comments.index')];
@@ -66,7 +66,10 @@ class UserCount extends BaseWidget
             ->descriptionIcon(icon: 'heroicon-o-trending-up')
             ->descriptionColor(color: 'success')
             ->color(color:'success' )
-            ->chart([9, 15, 8, 6, 13, 8, 15]),
+            ->chart([9, 15, 8, 6, 13, 8, 15])->extraAttributes([
+                'class' => 'cursor-pointer',
+                'wire:click' => '$emitUp("redirectNote")',
+            ]),
 
             Card::make(label: 'Comments', value:$comments)
             ->icon(icon: 'heroicon-o-chat')

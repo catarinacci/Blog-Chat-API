@@ -64,7 +64,7 @@ class UsersOverview extends BaseWidget
             Card::make(label: 'Users Loked', value:$users_loked)
             ->icon(icon: 'heroicon-o-users')
             ->description(description: 'Total de usuarios bloqueados')
-            ->descriptionIcon(icon: 'heroicon-o-trending-up')
+            ->descriptionIcon(icon: 'heroicon-o-trending-down')
             ->descriptionColor(color: 'danger')
             ->color(color:'danger' )
             ->chart([9, 15, 8, 6, 13, 8, 15])
