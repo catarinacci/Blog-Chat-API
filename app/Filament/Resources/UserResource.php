@@ -77,11 +77,12 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
+            //'index' => Pages\ListUsers::route('/'),
             'index' => Pages\ListarUsuario::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            //'create' => Pages\ListUser::route('/create'),
-            'edit' => Pages\EditarUsuario::route('/{record}/edit'),
+            //'create' => Pages\CreateUser::route('/create'),
+            'create' => Pages\CrearUsuario::route('/create'),
             //'edit' => Pages\EditUser::route('/{record}/edit'),
+            'edit' => Pages\EditarUsuario::route('/{record}/edit'),           
         ];
     }
 }

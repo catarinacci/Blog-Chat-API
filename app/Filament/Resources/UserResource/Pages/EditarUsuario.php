@@ -8,12 +8,9 @@ use App\Forms\Components\StatusUser;
 use App\Models\User;
 use Filament\Resources\Pages\Page;
 use Filament\Forms;
-//use Illuminate\Contracts\View\View;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
-//use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Card;
-//use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Wizard;
 use Filament\Pages\Actions\Action;
 use Filament\Notifications\Notification; 
@@ -31,13 +28,6 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     public User $user;
     
     public $record; 
-    public $name ;
-    public $surname;
-    public $nickname;
-    public $email;
-    public $password;
-    public $password_confirmation;
-    public $profile_photo_path;
     public array $data=[];
     public $path_image = '';
 
@@ -113,9 +103,6 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
   
     protected function getFormActions(): array
     {
-        // $user = User::where('id', $this->record)->first();
-
-        // $data = $this->form->getState();
 
         return [
             
@@ -138,7 +125,7 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
                
                 if($data['password'] == $data['password_confirmation']){
                     //dd('iguales');//Passwords iguales
-                    //dd($path_image);
+                    
                     if($path_image){
     
                         $image_object =  Image::where('imageable_id', $user->id)
