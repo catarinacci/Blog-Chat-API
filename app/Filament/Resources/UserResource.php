@@ -67,12 +67,10 @@ class UserResource extends Resource
         return [
             'unverifyed' => Pages\Unverifyed::route('/unverifyed'),
             'loked' => Pages\Locked::route('loked'),
-            //'index' => Pages\ListUsers::route('/'),
             'index' => Pages\ListarUsuario::route('/'),
-            //'create' => Pages\CreateUser::route('/create'),
             'create' => Pages\CrearUsuario::route('/create'),
-            //'edit' => Pages\EditUser::route('/{record}/edit'),
-            'edit' => Pages\EditarUsuario::route('/{record}/edit'),           
+            'edit' => Pages\EditarUsuario::route('/{record}/edit'),
+            'posts' => Pages\ListPosts::route('/{record}/posts'),           
         ];
     }
 }

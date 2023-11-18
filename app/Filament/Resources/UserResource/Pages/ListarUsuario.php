@@ -5,6 +5,7 @@ namespace App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource;
 use Filament\Resources\Pages\Page;
 use App\Models\User;
+use App\Models\Note;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
@@ -31,16 +32,28 @@ class ListarUsuario extends Page implements HasTable
 
     protected function getTableColumns(): array 
     {  
+        // $user = User::
+        // dd();
         
         return [ 
-            Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->sortable()->searchable(),
-            Tables\Columns\TextColumn::make('name')->sortable()->searchable()->wrap(),
-            Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->searchable(),
+            Tables\Columns\TextColumn::make('name')->searchable()->wrap(),
             Tables\Columns\ImageColumn::make('profile_photo_path')->label('Profile photo')->disk('s3')->circular(),
+            Tables\Columns\TextColumn::make('Posts')->getStateUsing( function (User $record){
+                return $record->notes()->count();
+             }),
+             Tables\Columns\TextColumn::make('Comments')->getStateUsing( function (User $record){
+                return $record->comments()->count();
+             }),
+             Tables\Columns\TextColumn::make('Reactions')->getStateUsing( function (User $record){
+                return $record->reactionms()->count();
+             }),    
+            //Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
+            
             Tables\Columns\TextColumn::make('updated_at')->sortable()->date(),
-            Tables\Columns\TextColumn::make('email_verified_at')->date(),
-            Tables\Columns\TextColumn::make('status')->sortable()->searchable()
-        ]; 
+            //Tables\Columns\TextColumn::make('email_verified_at')->date(),
+            //Tables\Columns\TextColumn::make('status')->sortable()->searchable(),
+        ];
     }
 
 
@@ -78,8 +91,9 @@ class ListarUsuario extends Page implements HasTable
                 //$record->each->delete();
             })
             ->requiresConfirmation(),
-    ];  
+        ];  
      }
+
     protected function getTableRecordUrlUsing(): ?Closure
     {
         return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
@@ -89,12 +103,14 @@ class ListarUsuario extends Page implements HasTable
      {
          return [
             Actionn::make('Create User')
-            ->url(route('filament.resources.users.create')),
+            ->url(route('filament.resources.users.create'))
+            ->color('success')
+            ->icon('heroicon-o-plus')
+            ->button(),
          ];
      }
 
-    protected function getHeaderWidgets(): array
-    
+    protected function getHeaderWidgets(): array 
     {
         return [
           

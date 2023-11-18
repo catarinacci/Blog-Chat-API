@@ -82,54 +82,32 @@ class CrearUsuario extends Page implements Forms\Contracts\HasForms
         if(!$email_exist){
             if($data['password'] == $data['password_confirmation']){
                 //dd('iguales');
+               
+                $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/'.$data['profile_photo_path'];
+                
+                $newuser = new User();
+
+                $newuser->name = $data['name'];
+                $newuser->surname = $data['surname'];
+                $newuser->nickname = $data['nickname'];
+                $newuser->email = $data['email'];
+                
+                $newuser->email_verified_at = $date;
+                $newuser->password = bcrypt($data['password']);
+                $newuser->profile_photo_path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png';
                 if($data['profile_photo_path']){
-
-                    $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/'.$data['profile_photo_path'];
-                   
-                    $newuser = new User();
-
-                    $newuser->name = $data['name'];
-                    $newuser->surname = $data['surname'];
-                    $newuser->nickname = $data['nickname'];
-                    $newuser->email = $data['email'];
                     $newuser->profile_photo_path = $paths3;
-                    $newuser->email_verified_at = $date;
-                    $newuser->password = bcrypt($data['password']);
-                    $newuser->save();
-
-                    $newuser->image()->create(['url' => $paths3]);
-
-                    Notification::make() 
-                    ->title('Created successfully')
-                    ->success()
-                    ->send();
-                                  
-                    return [Redirect()->route('filament.resources.users.index')];
                 }
-                else{
+                $newuser->save();
 
-                    $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png';
-                   
-                    $newuser = new User();
+                $newuser->image()->create(['url' => $paths3]);
 
-                    $newuser->name = $data['name'];
-                    $newuser->surname = $data['surname'];
-                    $newuser->nickname = $data['nickname'];
-                    $newuser->email = $data['email'];
-                    $newuser->profile_photo_path = $paths3;
-                    $newuser->email_verified_at = $date;
-                    $newuser->password = bcrypt($data['password']);
-                    $newuser->save();
-
-                    $newuser->image()->create(['url' => $paths3]);
-
-                    Notification::make() 
-                    ->title('Created successfully')
-                    ->success()
-                    ->send();
-                                  
-                    return [Redirect()->route('filament.resources.users.index')];
-                }
+                Notification::make() 
+                ->title('Created successfully')
+                ->success()
+                ->send();
+                                
+                return [Redirect()->route('filament.resources.users.index')];
             }else{
                 Notification::make()
                 ->title('Password error')

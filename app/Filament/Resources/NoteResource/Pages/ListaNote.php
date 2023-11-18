@@ -39,6 +39,8 @@ class ListaNote extends Page implements HasTable
             Tables\Columns\TextColumn::make('title')->limit(10)->sortable()->searchable(),
             Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
             Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
+            Tables\Columns\TextColumn::make('status'),
+            Tables\Columns\TextColumn::make('updated_at')->date(),
 
         ]; 
     }
@@ -88,7 +90,10 @@ class ListaNote extends Page implements HasTable
      {
          return [
             Actionn::make('Create Post')
-            ->url(route('filament.resources.notes.create')),
+            ->url(route('filament.resources.notes.create'))
+            ->color('success')
+            ->icon('heroicon-o-plus')
+            ->button(),
          ];
      }
 

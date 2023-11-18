@@ -2,20 +2,28 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
-use App\Filament\Resources\UserResource;
+use App\Filament\Resources\UserResource;;
 use App\Forms\Components\ImageProfile;
 use App\Forms\Components\StatusUser;
+use App\Forms\Components\Verified;
 use App\Models\User;
 use Filament\Resources\Pages\Page;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Card;
+use App\Forms\Components\UserActions;
 use Filament\Forms\Components\Wizard;
 use Filament\Pages\Actions\Action;
 use Filament\Notifications\Notification; 
 use App\Models\Image;
+use App\Models\Note;
+use App\Models\Reactionm;
+use App\Models\Comment;
+use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Hash;
+
+
 
 class EditarUsuario extends Page implements Forms\Contracts\HasForms
 {
@@ -34,7 +42,8 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     public function mount($record): void
     {
         $user = User::where('id', $this->record)->first();
-    
+       
+        //dd($notes);
         $this->form->fill([
             'name' => $user->name,
             'surname' => $user->surname,
@@ -51,15 +60,28 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     {
         
         $user = User::where('id', $this->record)->first();
-        
+        $notes = Note::where('user_id', $user->id)->count();
+        $comments = Comment::where('user_id', $user->id)->count();
+        $reaction = Reactionm::where('user_id', $user->id)->count();
         return [
-           
+            Card::make()
+            ->schema([
+
+                StatusUser::make('')->items([
+                    'status' => $user->status,
+                    'email_verified_at' => $user->email_verified_at,                
+                ]),
+
+            ]),
+
+            Card::make()
+            ->schema([
+                UserActions::make('')->items(['posts' => $notes, 'comments' => $comments, 'reactions' => $reaction,  'user_id' => $user->id]),
+                           
+                ]),              
+
             Card::make()
                 ->schema([
-
-                    StatusUser::make('')->items([
-                        'status' => $user->status
-                    ]),
 
                 Wizard::make([
                     
@@ -91,13 +113,14 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
             ])  
         ];        
     }
-    
+   
     protected function getActions(): array
     {
         return [
+      
             Action::make('Back')->url(function(){
                 return route('filament.resources.users.index');
-            })
+            }),
         ];
     }
   
@@ -243,5 +266,18 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
        
      
     }
+
+    protected function getHeaderWidgets(): array 
+    {
+        $a = 'aaa';
+        return [
+          
+            //UserResource\Widgets\Reactions::make(['a' => '1'])
+            ///UserResource\Widgets\Reaction->items(['q'=>'a'])
+            //UserResource\Widgets\Reactions::class
+            //ImageProfile::class
+        ];
+    }
+
   
 }

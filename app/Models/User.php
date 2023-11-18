@@ -108,6 +108,10 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     public function reactionms(){
         return $this->hasMany(Reactionm::class);
     }
+    // Relación de uno a muchos
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 
     public function chats()
     {

@@ -7,6 +7,7 @@ use Filament\Widgets\Widget;
 use Filament\Widgets\StatsOverviewWidget\Card;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
+
 class NotesOverview extends BaseWidget
 {
     //protected static string $view = 'filament.resources.note-resource.widgets.notes-overview';
@@ -53,7 +54,8 @@ class NotesOverview extends BaseWidget
                 'class' => 'cursor-pointer',
                 'wire:click' => '$emitUp("redirectLoked")',
             ]),
-
+          
         ];
     }
+
 }
