@@ -274,7 +274,7 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
           
             //UserResource\Widgets\Reactions::make(['a' => '1'])
             ///UserResource\Widgets\Reaction->items(['q'=>'a'])
-            //UserResource\Widgets\Reactions::class
+            //UserResource\Widgets\PostsCount::class
             //ImageProfile::class
         ];
     }

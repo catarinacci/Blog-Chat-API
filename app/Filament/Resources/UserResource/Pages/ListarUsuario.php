@@ -96,7 +96,7 @@ class ListarUsuario extends Page implements HasTable
 
     protected function getTableRecordUrlUsing(): ?Closure
     {
-        return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
+        return fn (User $record): string => route('filament.resources.users.view', ['record' => $record]);
     }
 
     protected function getActions(): array

@@ -3330,9 +3330,6 @@ select{
 .\!m-0{
   margin: 0px !important;
 }
-.m-auto{
-  margin: auto;
-}
 .-mx-2{
   margin-left: -0.5rem;
   margin-right: -0.5rem;
@@ -3380,10 +3377,6 @@ select{
 .my-auto{
   margin-top: auto;
   margin-bottom: auto;
-}
-.my-16{
-  margin-top: 4rem;
-  margin-bottom: 4rem;
 }
 .-mb-1{
   margin-bottom: -0.25rem;
@@ -3522,9 +3515,6 @@ select{
 }
 .mt-\[calc\(-1rem-1px\)\]{
   margin-top: calc(-1rem - 1px);
-}
-.mt-16{
-  margin-top: 4rem;
 }
 .block{
   display: block;
@@ -4045,9 +4035,6 @@ select{
 .justify-between{
   justify-content: space-between;
 }
-.justify-items-center{
-  justify-items: center;
-}
 .gap-0{
   gap: 0px;
 }
@@ -4482,10 +4469,6 @@ select{
 .bg-white\/50{
   background-color: rgb(255 255 255 / 0.5);
 }
-.bg-black{
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
 .bg-opacity-25{
   --tw-bg-opacity: 0.25;
 }
@@ -4743,6 +4726,9 @@ select{
 }
 .font-medium{
   font-weight: 500;
+}
+.font-normal{
+  font-weight: 400;
 }
 .font-semibold{
   font-weight: 600;

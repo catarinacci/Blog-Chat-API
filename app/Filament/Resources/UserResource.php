@@ -70,7 +70,8 @@ class UserResource extends Resource
             'index' => Pages\ListarUsuario::route('/'),
             'create' => Pages\CrearUsuario::route('/create'),
             'edit' => Pages\EditarUsuario::route('/{record}/edit'),
-            'posts' => Pages\ListPosts::route('/{record}/posts'),           
+            'posts' => Pages\ListPosts::route('/{record}/posts'),
+            'view' => Pages\ViewUser::route('/{record}/view')           
         ];
     }
 }
