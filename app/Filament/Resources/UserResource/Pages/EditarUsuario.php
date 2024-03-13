@@ -64,21 +64,21 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
         $comments = Comment::where('user_id', $user->id)->count();
         $reaction = Reactionm::where('user_id', $user->id)->count();
         return [
-            Card::make()
-            ->schema([
+            // Card::make()
+            // ->schema([
 
-                StatusUser::make('')->items([
-                    'status' => $user->status,
-                    'email_verified_at' => $user->email_verified_at,                
-                ]),
+            //     StatusUser::make('')->items([
+            //         'status' => $user->status,
+            //         'email_verified_at' => $user->email_verified_at,                
+            //     ]),
 
-            ]),
+            // ]),
 
-            Card::make()
-            ->schema([
-                UserActions::make('')->items(['posts' => $notes, 'comments' => $comments, 'reactions' => $reaction,  'user_id' => $user->id]),
+            // Card::make()
+            // ->schema([
+            //     UserActions::make('')->items(['posts' => $notes, 'comments' => $comments, 'reactions' => $reaction,  'user_id' => $user->id]),
                            
-                ]),              
+            //     ]),              
 
             Card::make()
                 ->schema([
@@ -118,9 +118,14 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
     {
         return [
       
-            Action::make('Back')->url(function(){
+            Action::make('Back')
+            ->url(function(){
                 return route('filament.resources.users.index');
             }),
+            Action::make('Back')
+            ->url(route('filament.resources.users.view',['record' => $this->record]))
+            ->color('secondary')
+            ->button()
         ];
     }
   
