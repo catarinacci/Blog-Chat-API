@@ -4,8 +4,6 @@ namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;;
 use App\Forms\Components\ImageProfile;
-use App\Forms\Components\StatusUser;
-use App\Forms\Components\Verified;
 use App\Models\User;
 use Filament\Resources\Pages\Page;
 use Filament\Forms;
@@ -20,7 +18,6 @@ use App\Models\Image;
 use App\Models\Note;
 use App\Models\Reactionm;
 use App\Models\Comment;
-use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -64,22 +61,6 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
         $comments = Comment::where('user_id', $user->id)->count();
         $reaction = Reactionm::where('user_id', $user->id)->count();
         return [
-            // Card::make()
-            // ->schema([
-
-            //     StatusUser::make('')->items([
-            //         'status' => $user->status,
-            //         'email_verified_at' => $user->email_verified_at,                
-            //     ]),
-
-            // ]),
-
-            // Card::make()
-            // ->schema([
-            //     UserActions::make('')->items(['posts' => $notes, 'comments' => $comments, 'reactions' => $reaction,  'user_id' => $user->id]),
-                           
-            //     ]),              
-
             Card::make()
                 ->schema([
 

@@ -7,9 +7,9 @@ use Filament\Resources\Pages\Page;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
-use Filament\Tables\Actions\Action;
-use App\Models\User;
 use App\Models\Note;
+use App\Models\User;
+use Closure;
 use Filament\Pages\Actions\Action as Actionn;
 
 class ListPosts extends Page implements HasTable
@@ -41,6 +41,12 @@ class ListPosts extends Page implements HasTable
         Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
         Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
         Tables\Columns\TextColumn::make('status'),
+        Tables\Columns\TextColumn::make('Comments')->getStateUsing( function (Note $record){
+            return $record->comments()->count();
+         }),
+         Tables\Columns\TextColumn::make('Reactions')->getStateUsing( function (Note $record){
+            return $record->reactionms()->count();
+         }),
         Tables\Columns\TextColumn::make('updated_at')->date(),
         ];
     }
@@ -49,9 +55,13 @@ class ListPosts extends Page implements HasTable
     {
         return [
            Actionn::make('Back')
-           ->url(route('filament.resources.users.edit',['record' => $this->record]))
+           ->url(route('filament.resources.users.view',['record' => $this->record]))
            ->color('secondary')
            ->button(),
         ];
+    }
+    protected function getTableRecordUrlUsing(): ?Closure
+    {
+        return fn (Note $record): string => route('filament.resources.users.show-post-user', ['record' => $record]);
     }
 }

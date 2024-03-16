@@ -13,12 +13,7 @@ use App\Models\Reactionm;
 use Filament\Resources\Pages\Page;
 use App\Models\User;
 use Filament\Pages\Actions\Action;
-use Closure;
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Wizard;
-use Filament\Pages\Actions\Action as Actionn;
 
 class ViewUser extends Page
 {
@@ -56,17 +51,6 @@ class ViewUser extends Page
         $comments = Comment::where('user_id', $user->id)->count();
         $reaction = Reactionm::where('user_id', $user->id)->count();
         return [
-            Card::make()
-                ->schema([
-                    ProfileCard::make('')->items([
-                        'name' => $user->name,
-                        'surname' => $user->surname,
-                        'nickname' => $user->nickname,
-                        'email' => $user->email,
-                        'profile_photo_path' => $user->profile_photo_path,
-                    ]),
-
-                ]),
 
 
             Card::make()
@@ -85,42 +69,21 @@ class ViewUser extends Page
 
                 ]),
 
-            Card::make()
+                Card::make()
                 ->schema([
-
-                    Wizard::make([
-
-                        Wizard\Step::make('Personal Information')
-                            ->schema([
-                                TextInput::make('name')->required()->maxValue(20),
-                                TextInput::make('surname')->maxLength(20),
-                                TextInput::make('nickname')->maxLength(20),
-                                TextInput::make('email')->disabled(),
-                            ]),
-
-                        Wizard\Step::make('Passwor Reset')
-                            ->schema([
-                                TextInput::make('password')->maxLength(8),
-                                TextInput::make('password_confirmation')->maxLength(8),
-                            ]),
-
-                        Wizard\Step::make('change Image')
-                            ->schema([
-
-                                ImageProfile::make('profile_photo_path')->items([
-                                    'path' => $user->profile_photo_path
-                                ])->reactive(),
-
-                                FileUpload::make('profile_photo_path')->disk('s3')
-                                    ->image()->enableOpen()->imageResizeMode('cover'),
-                            ]),
+                    ProfileCard::make('')->items([
+                        'name' => $user->name,
+                        'surname' => $user->surname,
+                        'nickname' => $user->nickname,
+                        'email' => $user->email,
+                        'profile_photo_path' => $user->profile_photo_path,
                     ]),
-                ])
+
+                ]),
+
+
         ];
     }
-
-
-
 
     protected function getActions(): array
     {
@@ -146,27 +109,4 @@ class ViewUser extends Page
                 ->button()
         ];
     }
-    // protected function edit(): ?Closure
-    // {
-    //     return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
-    // }
-
-
-    // public function save():array
-    // {
-    //   return [
-    //     Actionn::make('Back')
-    //     ->url(route('filament.resources.users.edit',['record' => $this->record]))
-    //     ->color('secondary')
-    //     ->button(),
-    // ];
-
-    //     ];
-
-    //}
-
-    // protected function edit(): ?Closure
-    // {
-    //     return fn (User $record): string => route('filament.resources.users.edit', ['record' => $record]);
-    // // }
 }

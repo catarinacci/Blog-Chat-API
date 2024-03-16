@@ -65,13 +65,17 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'unverifyed' => Pages\Unverifyed::route('/unverifyed'),
-            'loked' => Pages\Locked::route('loked'),
             'index' => Pages\ListarUsuario::route('/'),
             'create' => Pages\CrearUsuario::route('/create'),
             'edit' => Pages\EditarUsuario::route('/{record}/edit'),
-            'posts' => Pages\ListPosts::route('/{record}/posts'),
-            'view' => Pages\ViewUser::route('/{record}/view')           
+            'view' => Pages\ViewUser::route('/{record}/view'),
+            'unverifyed' => Pages\Unverifyed::route('/unverifyed'),
+            'loked' => Pages\Locked::route('loked'),
+            'posts-user' => Pages\ListPosts::route('/{record}/posts-user'),
+            'comments-user' => Pages\ListComment::route('/{record}/comments-user'),
+            'likes-user' => Pages\ListPosts::route('/{record}/likes-user'),
+            'show-post-user' =>  Pages\ShowPost::route('/{record}/show-post-user'), 
+            'show-comment-user' =>  Pages\ShowComment::route('/{record}/show-comment-user'),                
         ];
     }
 }
