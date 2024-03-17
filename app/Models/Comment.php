@@ -21,6 +21,7 @@ class Comment extends Model
     public function reactionms(){
         return $this->morphMany(Reactionm::class, 'reactionmable');
     }
+    
     // public function reactionms(){
     //     return $this->hasMany(Reactionm::class);
     // }

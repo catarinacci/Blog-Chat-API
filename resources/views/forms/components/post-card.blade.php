@@ -47,7 +47,7 @@
             <x-filament::dropdown>
                 <x-slot name="trigger">
                     <x-filament::button>
-                        Likes
+                        Likes ( {{ $getItemsl()->count() }} )
                     </x-filament::button>
                 </x-slot>
         

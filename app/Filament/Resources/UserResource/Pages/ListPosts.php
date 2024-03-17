@@ -8,9 +8,11 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
 use App\Models\Note;
+use App\Models\Reactionm;
 use App\Models\User;
 use Closure;
 use Filament\Pages\Actions\Action as Actionn;
+use Illuminate\Support\Facades\DB;
 
 class ListPosts extends Page implements HasTable
 {
@@ -22,13 +24,21 @@ class ListPosts extends Page implements HasTable
 
     public $record;
 
+    public $a ;
+
     public function mount(): void
     {
-  
+        //$this->a = Reactionm::where('reactionmable_id', $this->record)->count();
+        //dd($a);
+        //$this->a = DB::table('notes')->join('reactionms', 'reactionms.reactionmable_id','=',)->count();
+        // $this->a = Note::where('notes.id', 70)->with('reactionms')->get();
+        // dd($this->a);
+
     }
  
 
     protected function getTableQuery(): Builder 
+
     {
         return Note::query()->where('user_id', $this->record)->orderBy('updated_at', 'desc');
     } 
@@ -44,8 +54,14 @@ class ListPosts extends Page implements HasTable
         Tables\Columns\TextColumn::make('Comments')->getStateUsing( function (Note $record){
             return $record->comments()->count();
          }),
-         Tables\Columns\TextColumn::make('Reactions')->getStateUsing( function (Note $record){
+         Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
             return $record->reactionms()->count();
+         }),
+        //  Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
+        //     return $record->where('notes.id', $record->id)->with('reactionms')->count();
+        //  }),
+        Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
+            return Reactionm::where('reactionmable_id',$record->id)->count();
          }),
         Tables\Columns\TextColumn::make('updated_at')->date(),
         ];

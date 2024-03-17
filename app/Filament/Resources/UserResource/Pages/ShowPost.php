@@ -40,7 +40,7 @@ class ShowPost extends Page
         $note = Note::where('id', $this->record)->first();
         //dd($note);
         $this->comments = Comment::where('note_id', $note->id)->get();
-        $this->reactionms = Reactionm::where('note_id', $note->id)->get();
+        $this->reactionms = Reactionm::where('reactionmable_id', $note->id)->get();
         //dd($this->comments[0]->id);
 
         return [
