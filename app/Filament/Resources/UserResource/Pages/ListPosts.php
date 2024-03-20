@@ -28,11 +28,6 @@ class ListPosts extends Page implements HasTable
 
     public function mount(): void
     {
-        //$this->a = Reactionm::where('reactionmable_id', $this->record)->count();
-        //dd($a);
-        //$this->a = DB::table('notes')->join('reactionms', 'reactionms.reactionmable_id','=',)->count();
-        // $this->a = Note::where('notes.id', 70)->with('reactionms')->get();
-        // dd($this->a);
 
     }
  
@@ -57,9 +52,6 @@ class ListPosts extends Page implements HasTable
          Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
             return $record->reactionms()->count();
          }),
-        //  Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
-        //     return $record->where('notes.id', $record->id)->with('reactionms')->count();
-        //  }),
         Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
             return Reactionm::where('reactionmable_id',$record->id)->count();
          }),

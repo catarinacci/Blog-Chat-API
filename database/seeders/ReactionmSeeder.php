@@ -14,6 +14,6 @@ class ReactionmSeeder extends Seeder
      */
     public function run()
     {
-        Reactionm::factory(20)->create();
+        Reactionm::factory(50)->create();
     }
 }

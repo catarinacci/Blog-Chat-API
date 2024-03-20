@@ -63,6 +63,8 @@ class NoteResource extends Resource
             'create' => Pages\CrearNote::route('/create'),
             'edit' => Pages\EditarNote::route('/{record}/edit'),
             'locked' => Pages\Loked::route('/locked'),
+            'show-comment' => Pages\ShowComment::route('/{record}/show-comment'),
+            'show-likes' => Pages\ShowLikes::route('/{record}/show-likes'),
         ];
     }    
 }

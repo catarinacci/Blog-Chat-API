@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
 use App\Models\Comment;
 use App\Models\Note;
+use App\Models\Reactionm;
 use App\Models\User;
 use Filament\Pages\Actions\Action as Actionn;
 
@@ -43,8 +44,15 @@ class ListComment extends Page implements HasTable
         // Tables\Columns\TextColumn::make('title')->limit(10)->sortable()->searchable(),
         Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
         Tables\Columns\TextColumn::make('note_id')->color('primary')->words(1)->sortable()->searchable(),
+        Tables\Columns\TextColumn::make('note_title')->limit(20)->sortable()->searchable()->html()->getStateUsing( function (Comment $record){
+            $note_title = Note::where('id',$record->note_id)->select('notes.title')->first();
+            return $note_title->title;
+         }),
+         Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Comment $record){
+            return Reactionm::where('reactionmable_id',$record->id)->count();
+         }),
         // Tables\Columns\TextColumn::make('title post')->label('title post')->limit(10)->sortable()->searchable(),
-        Tables\Columns\TextColumn::make('user_id')->color('primary')->words(1)->sortable()->searchable(), 
+        //Tables\Columns\TextColumn::make('user_id')->color('primary')->words(1)->sortable()->searchable(), 
         // Tables\Columns\TextColumn::make('post creator name')->label('post creator name')->limit(10)->sortable()->searchable(),
         // Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
         //Tables\Columns\TextColumn::make('status'),

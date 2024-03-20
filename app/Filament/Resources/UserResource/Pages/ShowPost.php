@@ -52,7 +52,7 @@ class ShowPost extends Page
                     //PostCard::make()->items(['post' => $note], [$this->comments]),
                     PostCard::make()->itemsc($this->comments)
                         ->itemsl($this->reactionms)
-                        ->items(['content' => $note->content, 'title' => $note->title, 'image_note_path' => $note->image_note_path])
+                        ->items(['id'=>$note->id,'content' => $note->content, 'title' => $note->title, 'image_note_path' => $note->image_note_path])
 
                 ]),
 
