@@ -1,18 +1,17 @@
-
 @php
     //$i = $getItems();
-    $comments = $getItemsc();
+    $comment = $getItems();
     //$reactions = $getItemsl();
     //dd($a[0]->id)
-    //dd($getItemsc())
+    //dd($comment)
 
 @endphp
 
 <div class="inline-flex flex-wrap items-center gap-3 mt-8 group">
-    @foreach ($comments as $item)
-        <p>{{ $item['content'] }}</p> 
+   
+        <p>{{ $comment->content }}</p> 
         @php
-            $reactionms = App\Models\Reactionm::where('reactionmable_id', $item['id'])->get();
+            $reactionms = App\Models\Reactionm::where('reactionmable_id', $comment->id)->get();
             //dd($reactionms);
         @endphp
         <x-filament::dropdown>
@@ -40,8 +39,6 @@
             @endif              
         </x-filament::dropdown>
 
-    @endforeach
+  
 </div>
         
-    
-

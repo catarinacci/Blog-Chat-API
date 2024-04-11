@@ -65,6 +65,7 @@ class NoteResource extends Resource
             'locked' => Pages\Loked::route('/locked'),
             'show-comment' => Pages\ShowComment::route('/{record}/show-comment'),
             'show-likes' => Pages\ShowLikes::route('/{record}/show-likes'),
+            'show-comment-likes' => Pages\ShowCommentLikes::route('/{record}/show-comment-likes'),
         ];
     }    
 }

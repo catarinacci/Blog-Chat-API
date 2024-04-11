@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Note;
 use App\Models\Reactionm;
 use App\Models\User;
+use Closure;
 use Filament\Pages\Actions\Action as Actionn;
 
 class ListComment extends Page implements HasTable
@@ -58,6 +59,12 @@ class ListComment extends Page implements HasTable
         //Tables\Columns\TextColumn::make('status'),
         Tables\Columns\TextColumn::make('updated_at')->date(),
         ];
+    }
+
+    protected function getTableRecordUrlUsing(): ?Closure
+    {
+        return fn (Comment $record): string => route('filament.resources.users.show-comment-user', ['record' => $record]);
+        
     }
 
 }
