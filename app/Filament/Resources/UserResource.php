@@ -76,7 +76,9 @@ class UserResource extends Resource
             'likes-user' => Pages\ListPosts::route('/{record}/likes-user'),
             'show-post-user' =>  Pages\ShowPost::route('/{record}/show-post-user'), 
             'show-comment-user' =>  Pages\ShowComment::route('/{record}/show-comment-user'), 
-            'show-comment-like-user' =>  Pages\ShowCommentLike::route('/{record}/show-comment-like-user'),               
+            'show-comment-like-user' =>  Pages\ShowCommentLike::route('/{record}/show-comment-like-user'),
+            'reactions-user' => Pages\ListReactions::route('/{record}/reactions-user'), 
+            'show-reaction-user' =>  Pages\ShowReactions::route('/{record}/show-reaction-user'),              
         ];
     }
 }

@@ -10,9 +10,7 @@ use Filament\Tables\Contracts\HasTable;
 use App\Models\Comment;
 use App\Models\Note;
 use App\Models\Reactionm;
-use App\Models\User;
 use Closure;
-use Filament\Pages\Actions\Action as Actionn;
 use Filament\Pages\Actions\Action;
 
 class ListComment extends Page implements HasTable
@@ -27,15 +25,12 @@ class ListComment extends Page implements HasTable
     public function mount(): void
     {
             ($this->record);
-        //     $a =Comment::query()->where('user_id', $this->record)->orderBy('updated_at', 'desc');
-        // dd($a->user());
+      
     }
 
     protected function getTableQuery(): Builder 
     {
         
-        // $a =Comment::query()->where('user_id', 1)->orderBy('updated_at', 'desc');
-        // dd($a);
         return Comment::query()->where('user_id', $this->record)->orderBy('updated_at', 'desc');
     } 
 
@@ -43,7 +38,6 @@ class ListComment extends Page implements HasTable
     {  
         return [            
         Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->sortable()->searchable(),
-        // Tables\Columns\TextColumn::make('title')->limit(10)->sortable()->searchable(),
         Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
         Tables\Columns\TextColumn::make('note_id')->color('primary')->words(1)->sortable()->searchable(),
         Tables\Columns\TextColumn::make('note_title')->limit(20)->sortable()->searchable()->html()->getStateUsing( function (Comment $record){
@@ -53,11 +47,6 @@ class ListComment extends Page implements HasTable
          Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Comment $record){
             return Reactionm::where('reactionmable_id',$record->id)->count();
          }),
-        // Tables\Columns\TextColumn::make('title post')->label('title post')->limit(10)->sortable()->searchable(),
-        //Tables\Columns\TextColumn::make('user_id')->color('primary')->words(1)->sortable()->searchable(), 
-        // Tables\Columns\TextColumn::make('post creator name')->label('post creator name')->limit(10)->sortable()->searchable(),
-        // Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
-        //Tables\Columns\TextColumn::make('status'),
         Tables\Columns\TextColumn::make('updated_at')->date(),
         ];
     }
@@ -73,7 +62,6 @@ class ListComment extends Page implements HasTable
         return [
             Action::make('back')
                 ->url(route('filament.resources.users.view', ['record' => $this->record]))
-                //->color('info')
                 ->button()
         ];
     }
