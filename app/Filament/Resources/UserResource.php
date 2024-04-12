@@ -75,7 +75,8 @@ class UserResource extends Resource
             'comments-user' => Pages\ListComment::route('/{record}/comments-user'),
             'likes-user' => Pages\ListPosts::route('/{record}/likes-user'),
             'show-post-user' =>  Pages\ShowPost::route('/{record}/show-post-user'), 
-            'show-comment-user' =>  Pages\ShowComment::route('/{record}/show-comment-user'),                
+            'show-comment-user' =>  Pages\ShowComment::route('/{record}/show-comment-user'), 
+            'show-comment-like-user' =>  Pages\ShowCommentLike::route('/{record}/show-comment-like-user'),               
         ];
     }
 }

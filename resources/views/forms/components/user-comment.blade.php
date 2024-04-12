@@ -23,7 +23,7 @@
             @if ($reactionms->count() != 0)
                 @foreach ($reactionms as $item)
                     <x-filament::dropdown.list >
-                        <x-filament::dropdown.list.item href="{{ route('filament.resources.notes.show-comment-likes', ['record' => $item['id']])}}" tag="a">
+                        <x-filament::dropdown.list.item href="{{ route('filament.resources.users.show-comment-like-user', ['record' => $item['id']])}}" tag="a">
                             {{ $item['mensaje'] }}
                         </x-filament::dropdown.list.item>
                     </x-filament::dropdown.list>

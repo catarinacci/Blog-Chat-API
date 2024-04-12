@@ -13,6 +13,7 @@ use App\Models\Reactionm;
 use App\Models\User;
 use Closure;
 use Filament\Pages\Actions\Action as Actionn;
+use Filament\Pages\Actions\Action;
 
 class ListComment extends Page implements HasTable
 {
@@ -25,7 +26,7 @@ class ListComment extends Page implements HasTable
 
     public function mount(): void
     {
-            //dd($this->record);
+            ($this->record);
         //     $a =Comment::query()->where('user_id', $this->record)->orderBy('updated_at', 'desc');
         // dd($a->user());
     }
@@ -65,6 +66,16 @@ class ListComment extends Page implements HasTable
     {
         return fn (Comment $record): string => route('filament.resources.users.show-comment-user', ['record' => $record]);
         
+    }
+
+    protected function getActions(): array
+    {
+        return [
+            Action::make('back')
+                ->url(route('filament.resources.users.view', ['record' => $this->record]))
+                //->color('info')
+                ->button()
+        ];
     }
 
 }
