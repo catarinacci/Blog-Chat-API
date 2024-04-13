@@ -13,10 +13,10 @@ class AddIdCategoryColumnUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->unsignedBigInteger('category_id')->unsigned()->default(1);
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-        });
+        // Schema::table('users', function(Blueprint $table){
+        //     $table->unsignedBigInteger('category_id')->unsigned()->default(1);
+        //     $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        // });
     }
 
     /**
@@ -26,8 +26,8 @@ class AddIdCategoryColumnUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->dropColumn('category_id');
-        });
+        // Schema::table('users', function(Blueprint $table){
+        //     $table->dropColumn('category_id');
+        // });
     }
 }

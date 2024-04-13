@@ -2,8 +2,9 @@
     //$i = $getItems();
     $comments = $getItemsc();
     $reactions = $getItemsl();
+    $tags = $getItemst();
     //dd($a[0]->id)
-    //dd($getItems()['id'])
+    //dd($getItemsl())
 
 @endphp
 
@@ -70,6 +71,31 @@
                     <x-filament::dropdown.list>
                         <x-filament::dropdown.list.item >
                             No hay Likes
+                        </x-filament::dropdown.list.item>
+                    </x-filament::dropdown.list>
+         
+                @endif              
+            </x-filament::dropdown>
+
+            <x-filament::dropdown>
+                <x-slot name="trigger">
+                    <x-filament::button>
+                        Tags ( {{ $getItemst()->count() }} )
+                    </x-filament::button>
+                </x-slot>
+                @if ($getItemsl()->count() != 0)
+                    @foreach ($tags as $item)
+                        <x-filament::dropdown.list>
+                            <x-filament::dropdown.list.item>
+                                {{ $item['name'] }}
+                            </x-filament::dropdown.list.item>
+                        </x-filament::dropdown.list>
+                    @endforeach
+                @else
+                    
+                    <x-filament::dropdown.list>
+                        <x-filament::dropdown.list.item >
+                            No hay Tags
                         </x-filament::dropdown.list.item>
                     </x-filament::dropdown.list>
          

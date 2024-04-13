@@ -20,7 +20,7 @@ class ReactionmFactory extends Factory
         return [
             'user_id' => User::all()->random(),
             'mensaje' => TypeReaction::all()->random()->name,
-            'reactionmable_id' => Note::all()->random()->id,
+            'reactionmable_id' => rand(1,100),
             'reactionmable_type' => $array[ mt_rand(0,1)]
         ];
     }

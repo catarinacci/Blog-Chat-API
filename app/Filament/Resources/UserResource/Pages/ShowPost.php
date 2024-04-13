@@ -28,6 +28,8 @@ class ShowPost extends Page
 
     public $reactionms;
 
+    public $tags;
+
     public function mount(): void
     {
         $note = Note::where('id', $this->record)->first();
@@ -41,7 +43,8 @@ class ShowPost extends Page
         //dd($note);
         $this->comments = Comment::where('note_id', $note->id)->get();
         $this->reactionms = Reactionm::where('reactionmable_id', $note->id)->get();
-        //dd($this->comments[0]->id);
+        $this->tags = $note->tags;
+        //dd($this->tags);
 
         return [
 
@@ -53,6 +56,7 @@ class ShowPost extends Page
                     PostCard::make()->itemsc($this->comments)
                         ->itemsl($this->reactionms)
                         ->items(['id'=>$note->id,'content' => $note->content, 'title' => $note->title, 'image_note_path' => $note->image_note_path])
+                        ->itemst($this->tags)
 
                 ]),
 

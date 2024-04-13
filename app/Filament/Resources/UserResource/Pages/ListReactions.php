@@ -47,7 +47,7 @@ class ListReactions extends Page implements HasTable
 
     protected function getTableRecordUrlUsing(): ?Closure
     {
-        return fn (Reactionm $record): string => route('filament.resources.users.show-reaction-user', ['record' => $record->reactionmable_id]);
+        return fn (Reactionm $record): string => route('filament.resources.users.show-reaction-user', ['record' => $record->id]);
         
     }
 

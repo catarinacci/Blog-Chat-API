@@ -13,9 +13,9 @@ class AddImageToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('image')->after('email')->nullable();
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->string('image')->after('email')->nullable();
+        // });
     }
 
     /**
@@ -25,8 +25,8 @@ class AddImageToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('image');
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->dropColumn('image');
+        // });
     }
 }

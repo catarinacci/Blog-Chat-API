@@ -11,6 +11,7 @@ class PostCard extends Component
     protected array $items = [];
     protected $itemsc ;
     protected $itemsl ;
+    protected $itemst ;
 
     public static function make(): static
     {
@@ -37,6 +38,17 @@ class PostCard extends Component
     public function getItemsl()
     {
         return $this->itemsl;
+    }
+
+    public function itemst($items): static
+    {
+        $this->itemst = $items;
+        
+        return $this;
+    }
+    public function getItemst()
+    {
+        return $this->itemst;
     }
 
     public function items(array $items): static

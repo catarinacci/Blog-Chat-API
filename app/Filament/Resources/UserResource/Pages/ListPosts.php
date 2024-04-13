@@ -24,48 +24,50 @@ class ListPosts extends Page implements HasTable
 
     public $record;
 
-    public $a ;
+    public $a;
 
     public function mount(): void
     {
-
     }
- 
 
-    protected function getTableQuery(): Builder 
+
+    protected function getTableQuery(): Builder
 
     {
         return Note::query()->where('user_id', $this->record)->orderBy('updated_at', 'desc');
-    } 
+    }
 
-    protected function getTableColumns(): array 
-    {  
-        return [            
-        Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->sortable()->searchable(),
-        Tables\Columns\TextColumn::make('title')->limit(10)->sortable()->searchable(),
-        Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
-        Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
-        Tables\Columns\TextColumn::make('status'),
-        Tables\Columns\TextColumn::make('Comments')->getStateUsing( function (Note $record){
-            return $record->comments()->count();
-         }),
-         Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
-            return $record->reactionms()->count();
-         }),
-        Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (Note $record){
-            return Reactionm::where('reactionmable_id',$record->id)->count();
-         }),
-        Tables\Columns\TextColumn::make('updated_at')->date(),
+    protected function getTableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('title')->limit(10)->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
+            Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
+            Tables\Columns\TextColumn::make('status'),
+            Tables\Columns\TextColumn::make('Comments')->getStateUsing(function (Note $record) {
+                return $record->comments()->count();
+            }),
+            Tables\Columns\TextColumn::make('Reactionms')->getStateUsing(function (Note $record) {
+                return $record->reactionms()->count();
+            }),
+            Tables\Columns\TextColumn::make('Reactionms')->getStateUsing(function (Note $record) {
+                return Reactionm::where('reactionmable_id', $record->id)->count();
+            }),
+            Tables\Columns\TextColumn::make('Tags')->getStateUsing(function (Note $record) {
+                return $record->tags()->count();
+            }),
+            Tables\Columns\TextColumn::make('updated_at')->date(),
         ];
     }
 
     protected function getActions(): array
     {
         return [
-           Actionn::make('Back')
-           ->url(route('filament.resources.users.view',['record' => $this->record]))
-           ->color('secondary')
-           ->button(),
+            Actionn::make('Back')
+                ->url(route('filament.resources.users.view', ['record' => $this->record]))
+                ->color('secondary')
+                ->button(),
         ];
     }
     protected function getTableRecordUrlUsing(): ?Closure

@@ -26,7 +26,7 @@ class AddCodeVerifyEmailToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('code_verify_imail');
+            $table->dropColumn('code_verify_email');
         });
     }
 }

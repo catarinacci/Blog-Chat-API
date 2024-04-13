@@ -13,9 +13,9 @@ class RenameImageInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('image','image_profile_path');
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->renameColumn('image','image_profile_path');
+        // });
     }
 
     /**
@@ -25,8 +25,8 @@ class RenameImageInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('image_profile_path','image');
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->renameColumn('image_profile_path','image');
+        // });
     }
 }
