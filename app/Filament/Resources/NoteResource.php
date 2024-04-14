@@ -31,9 +31,11 @@ class NoteResource extends Resource
             'create' => Pages\CreateNote::route('/create'),
             'edit' => Pages\EditarNote::route('/{record}/edit'),
             'locked' => Pages\Loked::route('/locked'),
+            'show-post' => Pages\ShowNote::route('/{record}/show-post'),
             'show-comment' => Pages\ShowComment::route('/{record}/show-comment'),
             'show-likes' => Pages\ShowLikes::route('/{record}/show-likes'),
             'show-comment-likes' => Pages\ShowCommentLikes::route('/{record}/show-comment-likes'),
+            'show-note-comment' => Pages\ShowNoteComment::route('/{record}/show-note-comment'),
         ];
     }    
 }

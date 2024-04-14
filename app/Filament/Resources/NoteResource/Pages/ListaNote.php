@@ -96,7 +96,7 @@ class ListaNote extends Page implements HasTable
      }
     protected function getTableRecordUrlUsing(): ?Closure
     {
-        return fn (Note $record): string => route('filament.resources.notes.edit', ['record' => $record]);
+        return fn (Note $record): string => route('filament.resources.notes.show-post', ['record' => $record]);
     }
 
     protected function getActions(): array

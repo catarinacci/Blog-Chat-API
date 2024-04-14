@@ -128,17 +128,8 @@ class CreateNote extends Page implements Forms\Contracts\HasForms
                 ->title('Created successfully')
                 ->success()
                 ->send();
-                return[];
-                //return[Redirect()->route('filament.resources.notes')];           
-                //return [Redirect()->route('filament.resources.users.view', ['record' => $newnote->id])];
-            // }else{
-            //     Notification::make()
-            //     ->title('Password error')
-            //     ->danger()
-            //     ->body('Password field does not match')
-            //     ->send();
-            //     return[];
-            // }
+        
+                return[Redirect()->route('filament.resources.notes.show-post',['record' => $newnote->id])];           
 
     }
 }
