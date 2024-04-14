@@ -11,6 +11,7 @@ use App\Models\Reactionm;
 use Filament\Forms\Components\Card;
 use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\Page;
+use Illuminate\Support\Facades\DB;
 
 class ShowPost extends Page
 {
@@ -30,11 +31,14 @@ class ShowPost extends Page
 
     public $tags;
 
+    public $array = [];
+
     public function mount(): void
     {
         $note = Note::where('id', $this->record)->first();
         //$comments
         $this->recordOld = $note->user_id;
+        //dd($note);
     }
 
     protected function getFormSchema(): array
@@ -43,8 +47,15 @@ class ShowPost extends Page
         //dd($note);
         $this->comments = Comment::where('note_id', $note->id)->get();
         $this->reactionms = Reactionm::where('reactionmable_id', $note->id)->get();
-        $this->tags = $note->tags;
-        //dd($this->tags);
+        $this->tags = DB::table('note_tag')->where('note_id',$note->id)->get();
+        $data = $this->tags->toArray();
+        
+        foreach ($data as $key ) {
+            $name = DB::table('tags')->where('id', $key->tag_id)->value('name');
+            array_push($this->array, $name);
+        }
+        //dd($this->array);
+
 
         return [
 
@@ -56,7 +67,7 @@ class ShowPost extends Page
                     PostCard::make()->itemsc($this->comments)
                         ->itemsl($this->reactionms)
                         ->items(['id'=>$note->id,'content' => $note->content, 'title' => $note->title, 'image_note_path' => $note->image_note_path])
-                        ->itemst($this->tags)
+                        ->itemst($this->array)
 
                 ]),
 

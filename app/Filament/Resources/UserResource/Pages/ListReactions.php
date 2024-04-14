@@ -19,6 +19,8 @@ class ListReactions extends Page implements HasTable
 
     protected static string $view = 'filament.resources.user-resource.pages.list-reactions';
 
+    protected static ?string $title = 'List Likes';
+
     public $record;
 
     public function mount(): void

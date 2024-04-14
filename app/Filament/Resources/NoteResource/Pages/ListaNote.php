@@ -5,6 +5,7 @@ namespace App\Filament\Resources\NoteResource\Pages;
 use App\Filament\Resources\NoteResource;
 use Filament\Resources\Pages\Page;
 use App\Models\Note;
+use App\Models\Reactionm;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Contracts\HasTable;
@@ -36,10 +37,22 @@ class ListaNote extends Page implements HasTable
         
         return [ 
             Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->sortable()->searchable(),
-            Tables\Columns\TextColumn::make('title')->limit(10)->sortable()->searchable(),
-            Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('title')->limit(5)->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('content')->limit(10)->sortable()->searchable(),
             Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
             Tables\Columns\TextColumn::make('status'),
+            Tables\Columns\TextColumn::make('Comments')->getStateUsing(function (Note $record) {
+                return $record->comments()->count();
+            }),
+            Tables\Columns\TextColumn::make('Reactionms')->getStateUsing(function (Note $record) {
+                return $record->reactionms()->count();
+            }),
+            Tables\Columns\TextColumn::make('Reactionms')->getStateUsing(function (Note $record) {
+                return Reactionm::where('reactionmable_id', $record->id)->count();
+            }),
+            Tables\Columns\TextColumn::make('Tags')->getStateUsing(function (Note $record) {
+                return $record->tags()->count();
+            }),
             Tables\Columns\TextColumn::make('updated_at')->date(),
 
         ]; 

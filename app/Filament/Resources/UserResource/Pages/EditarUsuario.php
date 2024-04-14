@@ -30,6 +30,8 @@ class EditarUsuario extends Page implements Forms\Contracts\HasForms
 
     protected static string $view = 'filament.resources.user-resource.pages.editar-usuario';
 
+    protected static ?string $title = 'Edit User';
+
     public User $user;
     
     public $record; 

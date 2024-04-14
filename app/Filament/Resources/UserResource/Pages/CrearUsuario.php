@@ -23,6 +23,8 @@ class CrearUsuario extends Page implements Forms\Contracts\HasForms
 
     protected static string $view = 'filament.resources.user-resource.pages.crear-usuario';
 
+    protected static ?string $title = 'Create User';
+
     public User $user;
     public Image $image;    
     public $record;
@@ -107,7 +109,7 @@ class CrearUsuario extends Page implements Forms\Contracts\HasForms
                 ->success()
                 ->send();
                                 
-                return [Redirect()->route('filament.resources.users.index')];
+                return [Redirect()->route('filament.resources.users.view', ['record' => $newuser->id])];
             }else{
                 Notification::make()
                 ->title('Password error')

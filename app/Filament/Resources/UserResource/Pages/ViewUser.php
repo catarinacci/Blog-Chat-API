@@ -21,6 +21,8 @@ class ViewUser extends Page
 
     protected static string $view = 'filament.resources.user-resource.pages.view-user';
 
+    protected static ?string $title = 'User Profile';
+
     public User $user;
 
     public $record;

@@ -22,6 +22,8 @@ class ListPosts extends Page implements HasTable
 
     protected static string $view = 'filament.resources.user-resource.pages.list-posts';
 
+    protected static ?string $title = 'List Post';
+
     public $record;
 
     public $a;

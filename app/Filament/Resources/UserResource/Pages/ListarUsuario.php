@@ -23,6 +23,8 @@ class ListarUsuario extends Page implements HasTable
 
     protected static string $view = 'filament.resources.user-resource.pages.listar-usuario';
 
+    protected static ?string $title = 'List Users';
+
 
     protected function getTableQuery(): Builder 
     {
@@ -39,6 +41,7 @@ class ListarUsuario extends Page implements HasTable
             Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->searchable(),
             Tables\Columns\TextColumn::make('name')->searchable()->wrap(),
             Tables\Columns\ImageColumn::make('profile_photo_path')->label('Profile photo')->disk('s3')->circular(),
+            Tables\Columns\TextColumn::make('status')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('Posts')->getStateUsing( function (User $record){
                 return $record->notes()->count();
              }),

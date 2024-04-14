@@ -5,26 +5,27 @@
     <div class="mt-6 text-2xl flex items-center">
         <div class="">
             <img class="w-12 h-12"
-                src="https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/logo_fondo_blanco.jpg"
+                src="{{ asset('/images/logo.png') }}"
                 alt="">
         </div>
-        Bienvenidos a NoteAPI
+        Bienvenidos a Blog-Chat-API
     </div>
 
     <div class="mt-6 leading-7 text-gray-500">
-        NoteApi es un sistema que realiza las funcionalidades de un blog.
+        Blog-Chat-API es un sistema que realiza las funcionalidades de un blog.
         Permite que las aplicaciones cliente vean y actualicen su contenido.
-        Su aplicación cliente puede usar NoteAPI para crear un perfil de usuario,
+        Su aplicación cliente puede usar Blog-Chat-API para crear un perfil de usuario,
         realizar nuevas publicaciones de blog, editar o eliminar publicaciones existentes.
         También permite realizar consultas mediante un criterio específico, comentar cualquier publicación
         y reaccionar a las publicaciones.
         Y si algún usuario comentó o reaccionó a alguna de sus publicaciones le llegará
         una notificación.
+        También contiene un sistema de chat para inetractuar entre los usuarios.
 
     </div>
 </div>
 
-<div class="p-6 sm:px-20 sm:rounded-b-lg bg-indigo-200 border-b border-gray-200 ">
+{{-- <div class="p-6 sm:px-20 sm:rounded-b-lg bg-indigo-200 border-b border-gray-200 ">
     <div class=" ">
         <div class="flex items-center">
             <div class="text-gray-600">
@@ -44,7 +45,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <style>
     .size {

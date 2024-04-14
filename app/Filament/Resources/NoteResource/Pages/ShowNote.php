@@ -5,9 +5,9 @@ namespace App\Filament\Resources\NoteResource\Pages;
 use App\Filament\Resources\NoteResource;
 use Filament\Resources\Pages\Page;
 
-class CrearNote extends Page
+class ShowNote extends Page
 {
     protected static string $resource = NoteResource::class;
 
-    protected static string $view = 'filament.resources.note-resource.pages.crear-note';
+    protected static string $view = 'filament.resources.note-resource.pages.show-note';
 }

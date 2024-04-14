@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Models\Contracts\FilamentUser;
 // use App\Models\Comment;
 // use App\Models\Like;
 
@@ -18,6 +19,9 @@ class Note extends Model
         'image_note_path',
         'status',
         'category_id'
+    ];
+    protected $casts = [
+        'tags' => 'array',
     ];
 
     // Relación uno a muchos

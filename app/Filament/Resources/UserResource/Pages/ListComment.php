@@ -20,6 +20,9 @@ class ListComment extends Page implements HasTable
     protected static string $resource = UserResource::class;
 
     protected static string $view = 'filament.resources.user-resource.pages.list-comment';
+
+    protected static ?string $title = 'List Comments';
+
     public $record;
 
     public function mount(): void
