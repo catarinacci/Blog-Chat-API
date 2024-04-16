@@ -94,21 +94,22 @@ class ViewUser extends Page
             Action::make('Back')->url(function () {
                 return route('filament.resources.users.index');
             }),
-            Action::make('Back')->url(function () {
-                return route('filament.resources.users.index');
-            }),
-        ];
-    }
-
-    protected function getFormActions(): array
-    {
-
-        return [
-
             Action::make('edit')
-                ->url(route('filament.resources.users.edit', ['record' => $this->record]))
-                ->color('success')
-                ->button()
+            ->url(route('filament.resources.users.edit', ['record' => $this->record]))
+            ->color('success')
+            ->button()
         ];
     }
+
+    // protected function getFormActions(): array
+    // {
+
+    //     return [
+
+    //         Action::make('edit')
+    //             ->url(route('filament.resources.users.edit', ['record' => $this->record]))
+    //             ->color('success')
+    //             ->button()
+    //     ];
+    // }
 }

@@ -36,6 +36,7 @@ class NoteResource extends Resource
             'show-likes' => Pages\ShowLikes::route('/{record}/show-likes'),
             'show-comment-likes' => Pages\ShowCommentLikes::route('/{record}/show-comment-likes'),
             'show-note-comment' => Pages\ShowNoteComment::route('/{record}/show-note-comment'),
+            
         ];
     }    
 }

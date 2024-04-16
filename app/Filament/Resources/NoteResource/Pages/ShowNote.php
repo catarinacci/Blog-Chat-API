@@ -35,13 +35,15 @@ class ShowNote extends Page
 
     public $array = [];
 
+    public $noteObject;
+
 
     public function mount(): void
     {
-        $note = Note::where('id', $this->record)->first();
+        $this->noteObject = Note::where('id', $this->record)->first();
         //$comments
         //$this->recordOld = $note->user_id;
-        //dd($note);
+        //dd($this->noteObject->id);
     }
 
     protected function getFormSchema(): array
@@ -66,7 +68,6 @@ class ShowNote extends Page
             // 
             Card::make()
                 ->schema([
-                    //PostCard::make()->items(['post' => $note], [$this->comments]),
                     NoteCard::make()->itemsc($this->comments)
                         ->itemsl($this->reactionms)
                         ->items(['id'=>$note->id,'content' => $note->content, 'title' => $note->title, 'image_note_path' => $note->image_note_path])
@@ -85,7 +86,25 @@ class ShowNote extends Page
             Action::make('back')
                 ->url(route('filament.resources.notes.index'))
                 //->color('success')
+                ->button(),
+
+                Action::make('edit')
+                ->url(route('filament.resources.notes.edit', ['record' => $this->noteObject->id]))
+                ->color('success')
                 ->button()
         ];
     }
+
+
+    // protected function getFormActions(): array
+    // {
+
+    //     return [
+
+    //         Action::make('edit')
+    //             ->url(route('filament.resources.users.edit', ['record' => $this->record]))
+    //             ->color('success')
+    //             ->button()
+    //     ];
+    // }
 }

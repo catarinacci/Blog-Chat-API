@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\NoteResource\Pages;
 
 use App\Filament\Resources\NoteResource;
+use App\Forms\Components\NoteComment;
 use App\Models\Comment;
 use App\Models\Note;
 use Filament\Forms\Components\Card;
@@ -33,11 +34,8 @@ class ShowNoteComment extends Page
 
     protected function getFormSchema(): array
     {
-        // $note = Comment::where('id', $this->record)->first();
         
         $this->comments = Comment::where('note_id', $this->record)->get();
-        //$this->reactionms = Reactionm::where('reactionmable_id', $this->comments->id)->get();
-        //dd($this->comments);
 
         return [
 
@@ -45,9 +43,8 @@ class ShowNoteComment extends Page
             // 
             Card::make()
                 ->schema([
-                    //PostCard::make()->items(['post' => $note], [$this->comments]),
-                    //PostComments::make()->itemsc($this->comments)
-                    //->itemsl($this->reactiomns)
+
+                    NoteComment::make()->itemsc($this->comments)
 
                 ]),
 
