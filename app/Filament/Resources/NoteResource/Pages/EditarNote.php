@@ -35,12 +35,13 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
     public array $data = [];
     public $path_image = '';
     public $array = [];
+    public $tags_add = [];
 
     public function mount($record): void
     {
         //dd($this->note);
         $this->note = Note::where('id', $this->record)->first();
-      
+
 
         $this->tags = $this->tags = DB::table('note_tag')->where('note_id', $this->note->id)->get();
         $data = $this->tags->toArray();
@@ -62,16 +63,16 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
     protected function getFormSchema(): array
     {
 
-        $tags = Tag::where('status', 1)->get();
-        $tags_array = [];
+        // $tags = Tag::where('status', 1)->get();
+        // //$this->tags_add = [];
 
-        foreach ($tags as $key) {
+        // foreach ($tags as $key) {
 
-            array_push($tags_array, $key->name);
-        }
+        //     array_push($this->tags_add, $key->name);
+        // }
 
         return [
-            
+
             Card::make()
                 ->schema([
                     TextInput::make('titulo')->required()->maxValue(30),
@@ -83,11 +84,16 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
 
                     Select::make('delete_tag')->label('Delete Tag')
                         ->multiple()
-                        ->options($this->array),
+                        ->options($this->note->tags()->get()->pluck('name', 'id'))
+                        ->searchable(),
 
-                    Select::make('add_tag')->label('Add Tag')
+                    Select::make('add_tag')
+                        ->searchable()
                         ->multiple()
-                        ->options($tags_array)
+                        ->options(Tag::all()->where('status', '1')->pluck('name', 'id'))
+                        ->searchable()
+                        //->getSearchResultsUsing(fn (string $search) => Tag::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id'))
+                        //->getOptionLabelUsing(fn ($value): ?string => Tag::find($value)?->name),
                 ]),
             Card::make()
                 ->schema([
@@ -132,7 +138,7 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
 
         $path_image = $data['image_note_path'];
 
-        
+
 
         if ($note->status == 1) {
 
@@ -148,16 +154,18 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
                 // ]);
 
                 $tags_add = $data['add_tag'];
-
+                //dd($tags_add);
                 if ($tags_add) {
 
                     foreach ($tags_add as $key) {
-                        $i = $key + 1;
-                        $tag_exist = DB::table('note_tag')->where('tag_id', $i)->where('note_id', $note->id)->first();
+                        //$i = $key + 1;
+                        //$tag_exist = DB::table('note_tag')->where('tag_id', $i)->where('note_id', $note->id)->first();
+                        $tag_exist = $note->tags()->where('tag_id', $key)->first();
+                        //dd($tag_exist);
                         if (!$tag_exist) {
                             DB::table('note_tag')->insert([
                                 'note_id' => $note->id,
-                                'tag_id' => $key + 1,
+                                'tag_id' => $key ,
                                 'created_at' => now(),
                                 'updated_at' => now()
                             ]);
@@ -166,22 +174,22 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
                 }
 
                 $tags_delete = $data['delete_tag'];
-                
-                if($tags_delete){
+                //dd($tags_delete);
+                if ($tags_delete) {
 
-                    foreach ($tags_delete as $key ) {
-                     
-                        $tag_id = Tag::where('name', $this->array[$key])->value('id');
-                        DB::table('note_tag')->where('tag_id', $tag_id)->where('note_id', $note->id)->delete();
+                    foreach ($tags_delete as $key) {
+
+                        //$tag_id = Tag::where('name', $this->array[$key])->value('id');
+                        DB::table('note_tag')->where('tag_id', $key)->where('note_id', $note->id)->delete();
                     }
                 }
 
-    
+
                 $note->update([
                     'title' => $data['titulo'],
                     'content' => $data['content'],
                     'image_note_path' => $paths3,
-                    
+
                 ]);
 
                 Notification::make()
@@ -192,16 +200,18 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
                 return [Redirect()->route('filament.resources.notes.show-post', ['record' => $this->record])];
             } else {
                 $tags_add = $data['add_tag'];
-
+                //dd($tags_add);
                 if ($tags_add) {
 
                     foreach ($tags_add as $key) {
-                        $i = $key + 1;
-                        $tag_exist = DB::table('note_tag')->where('tag_id', $i)->where('note_id', $note->id)->first();
+                        //$i = $key + 1;
+                        //$tag_exist = DB::table('note_tag')->where('tag_id', $i)->where('note_id', $note->id)->first();
+                        $tag_exist = $note->tags()->where('tag_id', $key)->first();
+                        //dd($tag_exist);
                         if (!$tag_exist) {
                             DB::table('note_tag')->insert([
                                 'note_id' => $note->id,
-                                'tag_id' => $key + 1,
+                                'tag_id' => $key ,
                                 'created_at' => now(),
                                 'updated_at' => now()
                             ]);
@@ -210,20 +220,20 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
                 }
 
                 $tags_delete = $data['delete_tag'];
+                //dd($tags_delete);
+                if ($tags_delete) {
 
-                if($tags_delete){
+                    foreach ($tags_delete as $key) {
 
-                    foreach ($tags_delete as $key ) {
-                     
-                        $tag_id = Tag::where('name', $this->array[$key])->value('id');
-                        DB::table('note_tag')->where('tag_id', $tag_id)->where('note_id', $note->id)->delete();
+                        //$tag_id = Tag::where('name', $this->array[$key])->value('id');
+                        DB::table('note_tag')->where('tag_id', $key)->where('note_id', $note->id)->delete();
                     }
                 }
-            
+
                 $note->update([
                     'title' => $data['titulo'],
                     'content' => $data['content'],
-                    
+
                 ]);
 
                 Notification::make()

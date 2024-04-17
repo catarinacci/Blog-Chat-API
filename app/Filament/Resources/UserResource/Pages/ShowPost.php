@@ -48,15 +48,16 @@ class ShowPost extends Page
        
         $this->comments = Comment::where('note_id', $note->id)->get();
         $this->reactionms = Reactionm::where('reactionmable_id', $note->id)->get();
-        $this->tags = DB::table('note_tag')->where('note_id',$note->id)->get();
-        $data = $this->tags->toArray();
+        $this->tags = $note->tags()->where('status', '1')->get();
+        //$this->tags = DB::table('note_tag')->where('note_id',$note->id)->get();
+        // $data = $this->tags->toArray();
         
-        foreach ($data as $key ) {
-            $name = DB::table('tags')->where('id', $key->tag_id)->where('status','1')->value('name');
-            if($name){
-                array_push($this->array, $name);
-            }
-        }
+        // foreach ($data as $key ) {
+        //     $name = DB::table('tags')->where('id', $key->tag_id)->where('status','1')->value('name');
+        //     if($name){
+        //         array_push($this->array, $name);
+        //     }
+        // }
         //dd($this->array);
 
 
@@ -70,7 +71,7 @@ class ShowPost extends Page
                     PostCard::make()->itemsc($this->comments)
                         ->itemsl($this->reactionms)
                         ->items(['id'=>$note->id,'content' => $note->content, 'title' => $note->title, 'image_note_path' => $note->image_note_path])
-                        ->itemst($this->array)
+                        ->itemst($this->tags)
 
                 ]),
 

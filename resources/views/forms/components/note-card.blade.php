@@ -82,15 +82,15 @@
             <x-filament::dropdown>
                 <x-slot name="trigger">
                     <x-filament::button>
-                        Tags ( {{ count($tags) }} )
+                        Tags ( {{ $tags->count() }} )
                     </x-filament::button>
                 </x-slot>
-                @if (count($tags) != 0)
+                @if ( $tags->count() != 0)
 
                     @foreach ($tags as $item)
                         <x-filament::dropdown.list>
                             <x-filament::dropdown.list.item>
-                                {{ $item }}
+                                {{ $item->name }}
                             </x-filament::dropdown.list.item>
                         </x-filament::dropdown.list>
                     @endforeach

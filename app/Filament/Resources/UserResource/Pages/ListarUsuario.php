@@ -41,14 +41,21 @@ class ListarUsuario extends Page implements HasTable
             Tables\Columns\TextColumn::make('id')->color('primary')->words(1)->searchable(),
             Tables\Columns\TextColumn::make('name')->searchable()->wrap(),
             Tables\Columns\ImageColumn::make('profile_photo_path')->label('Profile photo')->disk('s3')->circular(),
-            Tables\Columns\TextColumn::make('status')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('status')->getStateUsing(function (User $record) {
+                if ($record->status === "1") {
+                    $status = "Active";
+                } else {
+                    $status = "Loked";
+                }
+                return $status;
+            })->sortable()->searchable(),
             Tables\Columns\TextColumn::make('Posts')->getStateUsing( function (User $record){
                 return $record->notes()->count();
              }),
              Tables\Columns\TextColumn::make('Comments')->getStateUsing( function (User $record){
                 return $record->comments()->count();
              }),
-             Tables\Columns\TextColumn::make('Reactions')->getStateUsing( function (User $record){
+             Tables\Columns\TextColumn::make('Reactionms')->getStateUsing( function (User $record){
                 return $record->reactionms()->count();
              }),    
             //Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
