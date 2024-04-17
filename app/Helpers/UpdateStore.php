@@ -100,7 +100,7 @@ class UpdateStoreFiles{
                     'title' => $request->title,
                     'content' => $request->content,
                     'user_id' => Auth::user()->id,
-                    'category_id' => $request->category_id,
+                    
                     // 'image' => $url_image]);ultima modificacion
                     'image' => null]);
 
@@ -282,7 +282,7 @@ class UpdateStoreFiles{
             'content' => $request->content,
             'user_id' => Auth::user()->id,
             'image_note_path' => $path,
-            'category_id' => $request->category_id
+            
         ]);
 
         if($path){

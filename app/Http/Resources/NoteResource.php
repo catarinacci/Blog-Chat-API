@@ -7,7 +7,6 @@ use App\Models\Reactionm;
 use App\Models\Tag;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Helpers\FormatTime;
-use App\Models\Category;
 use App\Models\Note;
 use App\Models\TypeReaction;
 use Illuminate\Support\Facades\Auth;
@@ -78,7 +77,7 @@ class NoteResource extends JsonResource
         }
 
        // $reactions = $this->reactionms->user_id;
-        $category = Category::where('id',$this->category_id)->get();
+       
         $time = FormatTime::LongTimeFilter($this->created_at);
         $nota = Note::where('id', $this->id)->first();
         $tags= $nota->tags()->get();
@@ -91,7 +90,7 @@ class NoteResource extends JsonResource
             'title' => $this->title,
             'content'=> $this->content,
             'image_note_path' => $this->image_note_path,
-            'category' => $category,
+           
             'comentarios: ' => $comment1,
             'tags' => $tags,
             'status' => $status,

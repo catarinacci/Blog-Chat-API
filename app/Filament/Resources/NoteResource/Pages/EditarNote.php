@@ -36,11 +36,12 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
     public $path_image = '';
     public $array = [];
 
-
     public function mount($record): void
     {
         //dd($this->note);
         $this->note = Note::where('id', $this->record)->first();
+      
+
         $this->tags = $this->tags = DB::table('note_tag')->where('note_id', $this->note->id)->get();
         $data = $this->tags->toArray();
 
@@ -70,7 +71,7 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
         }
 
         return [
-
+            
             Card::make()
                 ->schema([
                     TextInput::make('titulo')->required()->maxValue(30),
@@ -131,7 +132,7 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
 
         $path_image = $data['image_note_path'];
 
-        //dd($data);
+        
 
         if ($note->status == 1) {
 
@@ -175,10 +176,12 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
                     }
                 }
 
+    
                 $note->update([
                     'title' => $data['titulo'],
                     'content' => $data['content'],
-                    'image_note_path' => $paths3
+                    'image_note_path' => $paths3,
+                    
                 ]);
 
                 Notification::make()
@@ -216,10 +219,11 @@ class EditarNote extends Page implements Forms\Contracts\HasForms
                         DB::table('note_tag')->where('tag_id', $tag_id)->where('note_id', $note->id)->delete();
                     }
                 }
-
+            
                 $note->update([
                     'title' => $data['titulo'],
                     'content' => $data['content'],
+                    
                 ]);
 
                 Notification::make()

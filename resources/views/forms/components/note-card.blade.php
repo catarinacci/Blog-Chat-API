@@ -93,7 +93,6 @@
                                 {{ $item }}
                             </x-filament::dropdown.list.item>
                         </x-filament::dropdown.list>
-                        
                     @endforeach
                 @else
                     <x-filament::dropdown.list>
@@ -107,4 +106,3 @@
         </div>
     </div>
 </div>
-

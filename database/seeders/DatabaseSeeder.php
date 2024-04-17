@@ -15,14 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TypeReactionSeeder::class,
-            CategorySeeder::class,
             TagSeeder::class,
             UserSeeder::class,
             NoteSeeder::class,
             CommentSeeder::class,
             ReactionmSeeder::class,
             ModuleSeeder::class,
-            MethodSeeder::class,
+            //MethodSeeder::class,
             ImageSeeder::class,
 
         ]);

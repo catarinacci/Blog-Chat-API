@@ -18,7 +18,7 @@ class Note extends Model
         'user_id',
         'image_note_path',
         'status',
-        'category_id'
+       
     ];
     protected $casts = [
         'tags' => 'array',
@@ -44,10 +44,7 @@ class Note extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Relación muchos a uno
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
+
 
     // Relación uno a uno polimorfica
     public function image(){

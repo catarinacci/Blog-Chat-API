@@ -20,10 +20,6 @@ class ModuleSeeder extends Seeder
                 'icon' => '<i class="bi bi-person-fill"></i>'
             ],
             [
-                'name' => 'Category',
-                'icon' => '<i class="bi bi-diagram-3-fill"></i>'
-            ],
-            [
                 'name' => 'Tag',
                 'icon' => '<i class="bi bi-tags-fill"></i>'
             ],

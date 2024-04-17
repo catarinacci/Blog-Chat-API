@@ -21,7 +21,7 @@ class NoteResource extends Resource
     
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $navigationLabel = 'Post';
+    protected static ?string $navigationLabel = 'Posts';
    
     
     public static function getPages(): array

@@ -14,7 +14,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Pages\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Category;
+
 use App\Models\Image;
 use App\Models\Tag;
 use Filament\Forms\Components\Select;
@@ -42,13 +42,12 @@ class CreateNote extends Page implements Forms\Contracts\HasForms
         $tags = Tag::all();
         $tags_array = [];
 
-        foreach ($tags as $key ) {
+        foreach ($tags as $key) {
 
             array_push($tags_array, $key->name);
-            
         }
         //dd($tags_array);
-      
+
 
         return [
 
@@ -58,10 +57,6 @@ class CreateNote extends Page implements Forms\Contracts\HasForms
                     TextInput::make('content')->maxLength(100)->required(),
                     FileUpload::make('image_path')->disk('s3')
                         ->image()->enableOpen()->imageResizeMode('cover'),
-                    Select::make('category_id')
-                        ->label('Category')
-                        ->options(Category::all()->pluck('name', 'id'))
-                        ->searchable()->required(),
                     Select::make('tags')
                         ->multiple()
                         ->options($tags_array)
@@ -88,48 +83,46 @@ class CreateNote extends Page implements Forms\Contracts\HasForms
             //->submit()
         ];
     }
-    public function save():array
+    public function save(): array
     {
         $data = $this->form->getState();
 
-    
-               
-                $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/'.$data['image_path'];
-                
-                $newnote = new Note();
 
-                $newnote->title = $data['titulo'];
-                $newnote->content = $data['content'];
-                $newnote->user_id = auth()->user()->id;
-                $newnote->category_id = $data['category_id'];
-                $newnote->status = 1;
 
-                $newnote->image_note_path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/DwiqqtzUfbAZjxxIObaR2IcfG1Z9L8-metaTWFpbkFmdGVyLndlYnA%3D-.webp';
-                if($data['image_path']){
-                    $newnote->image_note_path = $paths3;
-                }
-                $newnote->save();
+        $paths3 = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/' . $data['image_path'];
 
-                $tags = $data['tags'];
+        $newnote = new Note();
 
-                foreach ($tags as $key) {
-                    //dd($key +1);
-                    DB::table('note_tag')->insert([
-                      'note_id' => $newnote->id,
-                      'tag_id' => $key + 1,
-                      'created_at' => now(),
-                      'updated_at' => now()  
-                    ]);
-                }
+        $newnote->title = $data['titulo'];
+        $newnote->content = $data['content'];
+        $newnote->user_id = auth()->user()->id;
+        $newnote->status = 1;
 
-                $newnote->image()->create(['url' => $paths3]);
+        $newnote->image_note_path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/DwiqqtzUfbAZjxxIObaR2IcfG1Z9L8-metaTWFpbkFmdGVyLndlYnA%3D-.webp';
+        if ($data['image_path']) {
+            $newnote->image_note_path = $paths3;
+        }
+        $newnote->save();
 
-                Notification::make() 
-                ->title('Created successfully')
-                ->success()
-                ->send();
-        
-                return[Redirect()->route('filament.resources.notes.show-post',['record' => $newnote->id])];           
+        $tags = $data['tags'];
 
+        foreach ($tags as $key) {
+            //dd($key +1);
+            DB::table('note_tag')->insert([
+                'note_id' => $newnote->id,
+                'tag_id' => $key + 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+
+        $newnote->image()->create(['url' => $paths3]);
+
+        Notification::make()
+            ->title('Created successfully')
+            ->success()
+            ->send();
+
+        return [Redirect()->route('filament.resources.notes.show-post', ['record' => $newnote->id])];
     }
 }

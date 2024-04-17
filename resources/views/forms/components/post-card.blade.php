@@ -3,7 +3,7 @@
     $comments = $getItemsc();
     $reactions = $getItemsl();
     $tags = $getItemst();
-    //dd($a[0]->id)
+    //dd($getItems()['category'])
     //dd($tags)
     //dd(count($tags));
 @endphp
@@ -93,7 +93,6 @@
                                 {{ $item }}
                             </x-filament::dropdown.list.item>
                         </x-filament::dropdown.list>
-                        
                     @endforeach
                 @else
                     <x-filament::dropdown.list>
