@@ -21,39 +21,39 @@ class TagResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
-    }
+    // public static function form(Form $form): Form
+    // {
+    //     return $form
+    //         ->schema([
+    //             //
+    //         ]);
+    // }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('id')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+    // public static function table(Table $table): Table
+    // {
+    //     return $table
+    //         ->columns([
+    //             Tables\Columns\TextColumn::make('id')->sortable()->searchable(),
+    //             Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
+    //         ])
+    //         ->filters([
+    //             //
+    //         ])
+    //         ->actions([
+    //             Tables\Actions\EditAction::make(),
+    //         ])
+    //         ->bulkActions([
+    //             Tables\Actions\DeleteBulkAction::make(),
+    //         ]);
 
-    }
+    // }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+    // public static function getRelations(): array
+    // {
+    //     return [
+    //         //
+    //     ];
+    // }
 
     public static function getPages(): array
     {
@@ -61,6 +61,7 @@ class TagResource extends Resource
             'index' => Pages\ListTags::route('/'),
             'create' => Pages\CreateTag::route('/create'),
             'edit' => Pages\EditTag::route('/{record}/edit'),
+            'loked' => Pages\ShowTagsLoked::route('/loked'),
         ];
     }
 }

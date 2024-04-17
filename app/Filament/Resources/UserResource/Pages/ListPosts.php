@@ -46,7 +46,12 @@ class ListPosts extends Page implements HasTable
             Tables\Columns\TextColumn::make('title')->limit(10)->sortable()->searchable(),
             Tables\Columns\TextColumn::make('content')->limit(20)->sortable()->searchable(),
             Tables\Columns\ImageColumn::make('image_note_path')->label('Image Post')->disk('s3')->circular(),
-            Tables\Columns\TextColumn::make('status'),
+            Tables\Columns\TextColumn::make('status')->getStateUsing( function (Note $record){
+                if($record->status === "1"){
+                    $status = "Active";
+                }else{
+                    $status = "Loked";}
+                return $status;}),
             Tables\Columns\TextColumn::make('Comments')->getStateUsing(function (Note $record) {
                 return $record->comments()->count();
             }),
@@ -57,7 +62,7 @@ class ListPosts extends Page implements HasTable
                 return Reactionm::where('reactionmable_id', $record->id)->count();
             }),
             Tables\Columns\TextColumn::make('Tags')->getStateUsing(function (Note $record) {
-                return $record->tags()->count();
+                return ($record->tags()->where('status', '1')->get()->count());
             }),
             Tables\Columns\TextColumn::make('updated_at')->date(),
         ];

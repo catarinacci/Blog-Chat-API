@@ -11,7 +11,8 @@ class Tag extends Model
 
     protected $table = 'tags';
     protected $fillable = [
-        'name'
+        'name',
+        'status'
     ];
 
     //relación muchos a muchos

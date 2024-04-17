@@ -39,7 +39,7 @@ class CreateNote extends Page implements Forms\Contracts\HasForms
 
     protected function getFormSchema(): array
     {
-        $tags = Tag::all();
+        $tags = Tag::where('status',1)->get();
         $tags_array = [];
 
         foreach ($tags as $key) {

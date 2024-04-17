@@ -52,8 +52,10 @@ class ShowPost extends Page
         $data = $this->tags->toArray();
         
         foreach ($data as $key ) {
-            $name = DB::table('tags')->where('id', $key->tag_id)->value('name');
-            array_push($this->array, $name);
+            $name = DB::table('tags')->where('id', $key->tag_id)->where('status','1')->value('name');
+            if($name){
+                array_push($this->array, $name);
+            }
         }
         //dd($this->array);
 

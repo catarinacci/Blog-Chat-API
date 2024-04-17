@@ -36,7 +36,12 @@ class Locked extends Page implements HasTable
             Tables\Columns\ImageColumn::make('profile_photo_path')->label('Profile photo')->disk('s3')->circular(),
             Tables\Columns\TextColumn::make('updated_at')->sortable()->date(),
             Tables\Columns\TextColumn::make('email_verified_at')->date(),
-            Tables\Columns\TextColumn::make('status')->sortable()->searchable()
+            Tables\Columns\TextColumn::make('status')->getStateUsing( function (User $record){
+                if($record->status === "1"){
+                    $status = "Active";
+                }else{
+                    $status = "Loked";}
+                return $status;})->sortable()->searchable()
         ]; 
     }
     protected function getActions(): array

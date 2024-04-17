@@ -1,39 +1,38 @@
 <?php
 
-namespace App\Filament\Resources\NoteResource\Widgets;
+namespace App\Filament\Resources\TagResource\Widgets;
 
-use App\Models\Note;
+use App\Models\Tag;
 use Filament\Widgets\Widget;
 use Filament\Widgets\StatsOverviewWidget\Card;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
-
-class NotesOverview extends BaseWidget
+class TagOverview extends BaseWidget
 {
-    //protected static string $view = 'filament.resources.note-resource.widgets.notes-overview';
+    //protected static string $view = 'filament.resources.tag-resource.widgets.tag-overview';
+
     protected $listeners = [
-        'redirectNote' => 'redirecN',
+
         'redirectLoked' => 'redirecL'
     ];
-    public function redirecN(): array 
-    { 
-        return[Redirect()->route('filament.resources.notes.index')];
-    }
+
 
     public function redirecL(): array 
     { 
-        return[Redirect()->route('filament.resources.notes.locked')];
+        //return[];
+        return[Redirect()->route('filament.resources.tags.loked')];
     }
+
     protected function getCards(): array
     {
 
-        $notes = Note::count();
-        $notes_loked = Note::where('status', 2)->count();
+        $tags = Tag::count();
+        $tags_loked = Tag::where('status', 2)->count();
   
         return [
-            Card::make(label: 'Posts', value:$notes)
+            Card::make(label: 'Tags', value:$tags)
             ->icon(icon: 'heroicon-o-collection')
-            ->description(description: 'Total de posts en el sistema')
+            ->description(description: 'Total de tags en el sistema')
             ->descriptionIcon(icon: 'heroicon-o-trending-up')
             ->descriptionColor(color: 'success')
             ->color(color:'success' )
@@ -43,9 +42,9 @@ class NotesOverview extends BaseWidget
             //     'wire:click' => '$emitUp("redirectNote")',
             // ]),
 
-            Card::make(label: 'Posts Locked', value:$notes_loked)
+            Card::make(label: 'Tags Locked', value:$tags_loked)
             ->icon(icon: 'heroicon-o-collection')
-            ->description(description: 'Total de post bloqueados')
+            ->description(description: 'Total de tags bloqueados')
             ->descriptionIcon(icon: 'heroicon-o-trending-down')
             ->descriptionColor(color: 'danger')
             ->color(color:'danger' )
@@ -57,5 +56,4 @@ class NotesOverview extends BaseWidget
           
         ];
     }
-
 }
