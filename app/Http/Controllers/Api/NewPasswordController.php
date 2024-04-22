@@ -16,17 +16,18 @@ use Illuminate\Validation\Rules\Password as RulesPassword;
 use Illuminate\Validation\ValidationException;
 use App\Models\PassworReset;
 use App\Models\User;
-use App\Mail\ResetPassword;
+//use App\Mail\ResetPassword;
 
 use App\Http\Passwords\MyPasswordBroker;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class NewPasswordController extends Controller
 {
     public function forgotPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email:rfc,dns|exists:users',
         ]);
 
         $email = $request->email;
@@ -48,7 +49,8 @@ class NewPasswordController extends Controller
         ]);
 
         if ($password_reset) {
-            Mail::to($request->email)->send(new ResetPassword($user, $pin));
+            //event(new PasswordReset($user));
+            $user->sendPasswordResetNotification($pin);
             return [
                 'succes' => true,
                 'messaje' => ' Please check your email for a 6 digit pin '];
@@ -64,7 +66,7 @@ class NewPasswordController extends Controller
     {
         $request->validate([
             'token' => 'required',
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email:rfc,dns|exists:users',
             'password' => ['required', 'confirmed', RulesPassword::defaults()],
         ]);
 

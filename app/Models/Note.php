@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
 // use App\Models\Comment;
 // use App\Models\Like;
 
@@ -53,8 +55,11 @@ class Note extends Model
 
     // Relación polimórfica uno a mucho
 
-    public function reactionms(){
+    public function reactionms(): MorphMany
+    {
         return $this->morphMany(Reactionm::class, 'reactionmable');
     }
+
+
     use HasFactory;
 }

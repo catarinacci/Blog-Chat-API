@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Helpers;
+
 use App\Models\Note;
 use App\Models\Comment;
 use App\Models\Reaction;
@@ -17,38 +19,39 @@ use App\Http\Resources\UserResource;
 
 
 
-class UpdateStoreFiles{
+class UpdateStoreFiles
+{
 
-    public static function UpdateNote($request, $nota_object){
+    public static function UpdateNote($request, $nota_object)
+    {
 
         // pregunta si tiene publicaciones
         $user_notes = Note::where('user_id', Auth::user()->id)->get();
 
-        if(!$user_notes->count() == 0){
-            foreach($user_notes as $user_note){
+        if (!$user_notes->count() == 0) {
+            foreach ($user_notes as $user_note) {
 
-                if($user_note->id == $nota_object->id){
+                if ($user_note->id == $nota_object->id) {
 
                     //$url_image = $user_note->image->url; ultima modificacion
                     $prop_note = true;
                     break;
-
-                }else{
+                } else {
                     $prop_note = false;
                 }
             }
-             //return $nota_object;
-            if($prop_note){
+            //return $nota_object;
+            if ($prop_note) {
 
-                if($request->image_note_path){
+                if ($request->image_note_path) {
                     $path_defecto = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg';
 
                     $image_object =  Image::where('imageable_id', $user_note->id)
-                                            ->where('imageable_type', 'App\Models\Note')->first();
+                        ->where('imageable_type', 'App\Models\Note')->first();
 
                     // if($path_defecto = $url_image){ultima modificacion
-                        $path_defecto = false;//ultima modificacion
-                        if($path_defecto){
+                    $path_defecto = false; //ultima modificacion
+                    if ($path_defecto) {
                         // Guardo la imagen en s3
                         $image_object_save = $request->file('image_note_path')->store('noteapi', 's3');
                         $imagen = Storage::disk('s3')->url($image_object_save);
@@ -61,14 +64,15 @@ class UpdateStoreFiles{
                             'title' => $request->title,
                             'content' => $request->content,
                             'user_id' => Auth::user()->id,
-                            'image_note_path' => $imagen]);
+                            'image_note_path' => $imagen
+                        ]);
 
-                            // return new NoteResource($nota_object);
-                            return (new NoteResource($nota_object))->additional([
-                                'res' => true,
-                                'msj' => 'updated note'
-                            ]);
-                    }else{
+                        // return new NoteResource($nota_object);
+                        return (new NoteResource($nota_object))->additional([
+                            'res' => true,
+                            'msj' => 'updated note'
+                        ]);
+                    } else {
                         // Borro la imagen en s3
                         // $path_filter = Url::filterUrl($url_image);ultima modificacion
                         // Storage::disk('s3')->delete($path_filter);ultima modificacion
@@ -84,67 +88,65 @@ class UpdateStoreFiles{
                             'content' => $request->content,
                             'user_id' => Auth::user()->id,
                             // 'image_note_path' => $imagen]);ultima modificacion
-                            'image_note_path' => null]);
+                            'image_note_path' => null
+                        ]);
 
-                            return (new NoteResource($nota_object))->additional([
-                                'res' => true,
-                                'msj' => 'updated note'
-                            ]);
-
+                        return (new NoteResource($nota_object))->additional([
+                            'res' => true,
+                            'msj' => 'updated note'
+                        ]);
                     }
+                } else {
+                    // Actualizo la nota
+                    $nota_object->update([
+                        'title' => $request->title,
+                        'content' => $request->content,
+                        'user_id' => Auth::user()->id,
 
-
-                }else{
-                // Actualizo la nota
-                $nota_object->update([
-                    'title' => $request->title,
-                    'content' => $request->content,
-                    'user_id' => Auth::user()->id,
-                    
-                    // 'image' => $url_image]);ultima modificacion
-                    'image' => null]);
+                        // 'image' => $url_image]);ultima modificacion
+                        'image' => null
+                    ]);
 
                     return (new NoteResource($nota_object))->additional([
                         'res' => true,
                         'msj' => 'updated note'
                     ]);
                 }
-            }else{
+            } else {
                 return response()->json([
                     'res' => 'Usted no es el propietario de ésta publicación'
                 ], 400);
             }
-
-        }else{
+        } else {
             return response()->json([
                 'res' => 'Usted no tiene ninguna publicación'
             ], 400);
         }
-
     }
 
 
-     public static function UpdateUser($request, $user){
+    public static function UpdateUser($request, $user)
+    {
 
 
-        if($request->password && $request->password_confirmation){
+        if ($request->password && $request->password_confirmation) {
 
-            if($request->password == $request->password_confirmation){
+            if ($request->password == $request->password_confirmation) {
 
                 $validated = $request->validate([
-                    'password' => ['required','confirmed', RulesPassword::defaults()]
+                    'password' => ['required', 'confirmed', RulesPassword::defaults()]
                 ]);
 
-                if($validated){
+                if ($validated) {
 
                     //$image_object = Image::where('imageable_id', $user->id)->first();
 
-                    if($request->hasFile('profile_photo_path')){
+                    if ($request->hasFile('profile_photo_path')) {
 
                         $path_defecto = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg';
                         $image_object =  Image::where('imageable_id', $user->id)
-                                            ->where('imageable_type', 'App\Models\User')->first();
-                        if($path_defecto = $user->image->url){
+                            ->where('imageable_type', 'App\Models\User')->first();
+                        if ($path_defecto = $user->image->url) {
 
                             // Guardo la imagen nueva en s3
                             $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
@@ -169,39 +171,37 @@ class UpdateStoreFiles{
                                 'msj' => 'updated user'
                             ]);
                             // return 'imagen defecto';
-                        }else{
+                        } else {
 
-                                // borro la imagen antigua en s3
-                                $oldimage_path = $image_object->url;
-                                $path_filter = Url::filterUrl($oldimage_path );
-                                Storage::disk('s3')->delete($path_filter);
+                            // borro la imagen antigua en s3
+                            $oldimage_path = $image_object->url;
+                            $path_filter = Url::filterUrl($oldimage_path);
+                            Storage::disk('s3')->delete($path_filter);
 
-                                 // Guardo la imagen nueva en s3
-                                 $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
-                                 $path = Storage::disk('s3')->url($documentPath);
+                            // Guardo la imagen nueva en s3
+                            $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
+                            $path = Storage::disk('s3')->url($documentPath);
 
-                                 // Actualizo la URL de la imagen en la tabla images
-                                 $image_object->update([
-                                     'url' => $path
-                                 ]);
+                            // Actualizo la URL de la imagen en la tabla images
+                            $image_object->update([
+                                'url' => $path
+                            ]);
 
-                                 // Actualizo el usuario
-                                 $user->update([
-                                     'name' => $request->name,
-                                     'surname' => $request->surname,
-                                     'nickname' => $request->nickname,
-                                     'password' => Hash::make($request->password),
-                                     'profile_photo_path' => $path
-                                 ]);
-                                 return (new UserResource($user))->additional([
-                                     'res' => true,
-                                     'updated_password' => true,
-                                     'msj' => 'updated user'
-                                 ]);
-
+                            // Actualizo el usuario
+                            $user->update([
+                                'name' => $request->name,
+                                'surname' => $request->surname,
+                                'nickname' => $request->nickname,
+                                'password' => Hash::make($request->password),
+                                'profile_photo_path' => $path
+                            ]);
+                            return (new UserResource($user))->additional([
+                                'res' => true,
+                                'updated_password' => true,
+                                'msj' => 'updated user'
+                            ]);
                         }
-
-                    }else{
+                    } else {
                         $path = $user->image->url;
                     }
 
@@ -218,20 +218,20 @@ class UpdateStoreFiles{
                         'msj' => 'updated user'
                     ]);
                 }
-            }else{
+            } else {
                 return response()->json([
                     'res' => 'Los campos password y password_confirmation no coinciden',
-                ],400);
+                ], 400);
             }
-        }else{
+        } else {
 
             $image_object = Image::where('imageable_id', $user->id)->first();
 
-            if($request->hasFile('profile_photo_path')){
+            if ($request->hasFile('profile_photo_path')) {
 
                 //borro la imagen antigua en s3
                 $oldimage_path = $image_object->url;
-                $path_filter = Url::filterUrl($oldimage_path );
+                $path_filter = Url::filterUrl($oldimage_path);
                 Storage::disk('s3')->delete($path_filter);
 
                 // Guardo la imagen nueva en s3
@@ -242,8 +242,7 @@ class UpdateStoreFiles{
                 $image_object->update([
                     'url' => $path
                 ]);
-
-            }else{
+            } else {
                 $path = $image_object->url;
             }
 
@@ -260,19 +259,18 @@ class UpdateStoreFiles{
                 'msj' => 'updated user'
             ]);
         };
+    }
 
-     }
 
-
-     public static function storeNote($request){
+    public static function storeNote($request)
+    {
 
         $base_location = 'noteapi';
 
-        if($request->hasFile('image_note_path')) {
+        if ($request->hasFile('image_note_path')) {
 
             $documentPath = $request->file('image_note_path')->store('noteapi', 's3');
             $path = Storage::disk('s3')->url($documentPath);
-
         } else {
             $path = null;
         }
@@ -282,20 +280,20 @@ class UpdateStoreFiles{
             'content' => $request->content,
             'user_id' => Auth::user()->id,
             'image_note_path' => $path,
-            
+
         ]);
 
-        if($path){
+        if ($path) {
             $nota->image()->create(['url' => $path]);
         }
 
-        $nota_creada= new NoteResource($nota);
+        $nota_creada = new NoteResource($nota);
         return response()->json([
             'nota' => $nota_creada,
             'res' => true,
             'msg' => 'Nota Creada Correctamente',
-        ],200);
-     }
+        ], 200);
+    }
 
     //  public static function UpdateComment($request, $comment_id){
 

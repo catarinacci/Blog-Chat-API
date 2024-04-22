@@ -16,7 +16,7 @@ class ReactionmFactory extends Factory
      */
     public function definition()
     {
-        $array=["App\Model\Note","App\Model\Comment"];
+        $array=["App\Models\Note","App\Models\Comment"];
         return [
             'user_id' => User::all()->random(),
             'mensaje' => TypeReaction::all()->random()->name,

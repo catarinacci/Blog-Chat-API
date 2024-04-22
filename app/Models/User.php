@@ -14,6 +14,7 @@ use MohamedGaber\SanctumRefreshToken\Traits\HasApiTokens;
 use App\Notifications\ResetPasswordNotification;
 use App\Models\Note;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
@@ -22,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use CanResetPassword;
 
 
     /**

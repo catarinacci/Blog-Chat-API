@@ -21,7 +21,7 @@ Route::post('register', [AutenticateController::class, 'register']);
 Route::post('login', [AutenticateController::class, 'login']);
 
 Route::post('verify-email', [EmailVerificationController::class, 'verify'])->middleware('auth:sanctum');
-Route::post('send-verify-email', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware('auth:sanctum');
+Route::post('resend-verify-email', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware('auth:sanctum');
 
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
@@ -72,8 +72,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('notifications/{notification_id}', [NotificationController::class, 'maskasread']);
 
     //Categories
-    Route::get('categories',[CategoryCotroller::class, 'show']);
-    Route::get('categories/{category_id}',[CategoryCotroller::class, 'searchCategory']);
+    //Route::get('categories',[CategoryCotroller::class, 'show']);
+    //Route::get('categories/{category_id}',[CategoryCotroller::class, 'searchCategory']);
 
     //Tags
     Route::get('tags',[TagController::class, 'show']);

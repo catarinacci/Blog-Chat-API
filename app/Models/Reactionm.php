@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Notifications\Notifiable;
 
 class Reactionm extends Model
@@ -21,10 +22,14 @@ class Reactionm extends Model
         'status'
     ];
 
+    protected $guarded = [];
+
     //relación polimórfica
-    public function reactionmable(){
+    public function reactionmable(): MorphTo
+    {
         return $this->morphTo();
     }
+    
     // Relación uno a muchos inversa
     public function user(){
         return $this->belongsTo(User::class);

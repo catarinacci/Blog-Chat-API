@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+//use App\Mail\ResetPassword;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Auth\Events\Verified;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use App\Models\User;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -42,18 +44,32 @@ class AuthServiceProvider extends ServiceProvider
         //         ->action('Verify Email Address', $spaUrl);
         // });
 
-        VerifyEmail::$toMailCallback = function($notifiable, $verificationUrl){
+        // VerifyEmail::$createUrlCallback = function ($notifiable) {
 
-         return (new MailMessage)
+        //     $code_string = Str::random(6);
+        //     $code = mb_strtoupper($code_string);
 
-        ->subject(Lang::get('Verify Email Address'))
-        ->line(Lang::get('You are receiving this email to verify your email address.'))
-        ->greeting(Lang::get("Hello ") . $notifiable->name)
-        ->line(Lang::get('Verify Email Address Code: '). $verificationUrl)
-        ->line(Lang::get('If you did not create an account, no further action is required.'));
+        //     $user = User::where('id', $notifiable->id)->first();
+
+        //     $user->forceFill([
+        //         'code_verify_email' => $code,
+        //     ])->save();
+
+        //     return $code;
+        // };
+
+        VerifyEmail::$toMailCallback = function ($notifiable, $verificationUrl) {
+
+            return (new MailMessage)
+
+                ->subject(Lang::get('Verify Email Address'))
+                ->line(Lang::get('You are receiving this email to verify your email address.'))
+                ->greeting(Lang::get("Hello ") . $notifiable->name)
+                ->line(Lang::get('Verify Email Address Code: ') . $verificationUrl)
+                ->line(Lang::get('If you did not create an account, no further action is required.'));
         };
 
-        VerifyEmail::$createUrlCallback = function($notifiable){
+        VerifyEmail::$createUrlCallback = function ($notifiable) {
 
             $code_string = Str::random(6);
             $code = mb_strtoupper($code_string);
@@ -64,9 +80,7 @@ class AuthServiceProvider extends ServiceProvider
                 'code_verify_email' => $code,
             ])->save();
 
-            return $code ;
+            return $code;
         };
-
-
     }
 }

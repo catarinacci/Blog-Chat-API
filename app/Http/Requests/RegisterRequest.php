@@ -25,10 +25,12 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'regex:/^[\pL\s\-]+$/u',
-            'surname' => 'regex:/^[\pL\s\-]+$/u',
-            'email' => 'required|email|unique:users,email',
-            'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'name' => 'required|regex:/^[\pL\s\-]+$/u|max:30',
+            'surname' => 'nullable|regex:/^[\pL\s\-]+$/u|max:30',
+            'nickname' => 'nullable|regex:/^[\pL\s\-]+$/u|max:30',
+            'email' => 'required|email:rfc,dns|unique:users,email',
+            'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'password' => ['required', 'confirmed', RulesPassword::defaults()],
         ];
     }
 }

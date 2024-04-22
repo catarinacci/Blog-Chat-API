@@ -28,71 +28,35 @@ class UserController extends Controller
         );
     }
 
-    // public function create(RegisterRequest $request){
-
-        
-    //     if($request->hasFile('profile_photo_path')) {
-
-    //         $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
-
-    //         $path = Storage::disk('s3')->url($documentPath);
-
-    //     } else {
-            
-    //         $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg';
-    //     }
-
-    //     $request->validate([
-    //         'password' => ['required', 'confirmed', RulesPassword::defaults()],
-    //     ]);
-        
-    //     $user = new User();
-    //     $user->name = $request->name;
-    //     $user->surname = $request->surname;
-    //     $user->nickname = $request->nickname;
-    //     $user->email = $request->email;
-    //     $user->profile_photo_path = $path;
-    //     $user->email_verified_at = $request->email_verified_at;
-    //     $user->password = bcrypt($request->password);
-    //     $user->save();
-    //     if($path){
-    //         $user->image()->create(['url' => $path]);
-    //     }
-        
-    //     event(new Registered($user));
-
-    //     $user_authtoken = $user->createAuthToken('api',20);
-
-    //     return response()->json([
-    //         'user'=> $user,
-    //         'user_authtoken'=> $user_authtoken,
-    //         'res' => true,
-    //         'msg' => 'Usuario registrado correctamente',
-    //         'send_email_verification' => 'Se envió un email con un código de verificación'
-    //     ],200);
-    // }
-
     public function update(ActualizarUserRequest $request)
     {
-        // return $request;
-        $user_object = Auth::user();
+        //return $request;
+        $user = Auth::user();
+        //return $user;
+        if ($user->email === $request->email) {
+            // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
+            $updated_user = UpdateStoreFiles::UpdateUser($request, $user);
 
+            if ($updated_user) {
 
-        // Utilizo un helper que tiene los metodos para actualizar y crear el objeto
-        $updated_user = UpdateStoreFiles::UpdateUser($request, $user_object);
-
-        if ($updated_user) {
-
-            return $updated_user;
-
+                return $updated_user;
+            }
+            return response()->json(
+                [
+                    "msg" => "Error de datos",
+                    "res" => "false"
+                ],
+                400
+            );
+        }else{
+            return response()->json(
+                [
+                    "msg" => "Email incorrecto",
+                    "res" => "false"
+                ],
+                200
+            );
         }
-        return response()->json(
-            [
-                "msg" => "Error de datos",
-                "res" => "false"
-            ],
-            400
-        );
     }
 
     public function destroy(Request $request, User $user)
@@ -102,11 +66,11 @@ class UserController extends Controller
         $user->update(
             ['status' => 2]
         );
-         $notes = Note::where('user_id', $user->id)->get();
-         //return $notes;
-         foreach($notes as $note){
+        $notes = Note::where('user_id', $user->id)->get();
+        //return $notes;
+        foreach ($notes as $note) {
             $note->update(
-                ['status' =>2]
+                ['status' => 2]
             );
         }
         return response()->json(
@@ -115,6 +79,5 @@ class UserController extends Controller
             ],
             200
         );
-
     }
 }

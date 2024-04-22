@@ -24,9 +24,11 @@ class ActualizarUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|regex:/^[\pL\s\-]+$/u',
-            'surname' => 'nullable|regex:/^[\pL\s\-]+$/u',
-            'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'name' => 'regex:/^[\pL\s\-]+$/u|max:30|required',
+            'surname' => 'nullable|regex:/^[\pL\s\-]+$/u|max:30',
+            'nickname' => 'nullable|regex:/^[\pL\s\-]+$/u|max:30',
+            'email' => 'required|email:rfc,dns|unique:users,email',
+            'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];
     }

@@ -73,47 +73,6 @@ class NoteController extends Controller
     {
         // $nota = Note::where('id', $nota_id)->first();
         $nota = Note::find($nota_id);
-        // $comment = Comment::find(1);
-        // // return $nota->reactionms;
-        // return $comment->reactionms;
-        // return $nota;
-        //Reaction note
-        // $reactions_note = Reactionm::where('reactionmable_id',$nota_id)
-        //                         ->where('reactionmable_type', 'App\Model\Note')
-        //                         ->get();
-        // $reactions_comment = Reactionm::where('reactionmable_id',$nota_id)
-        //                     ->where('reactionmable_type', 'App\Model\Comment')
-        //                     ->get();
-
-        // $comments = Comment::where('note_id', $nota_id)->get();
-        //$comments = Comment::find(13);
-        //return $comments;
-        //return $reactions_comment;
-
-                //    foreach ($comments as $comment){
-                //        foreach($reactions_comment as $Rc){
-                        //$r = Reactionm::where('reactionmable_id', $comment->id)->get();
-                        //$c = $comment[]=['reacciones' => $Rc];
-                        // $comments[]
-                        // = [
-                        //     //'msj' => $comment,
-                        //     // 'usuario' => $comment->user->name,
-                        //     // 'user_id' => $comment->user_id,
-                        //     //'comentario' => $comment->content,
-                        //     //'id' => $comment->id,
-                        //     //'reaction' => $Rc,
-                        //  $reacciones = Reactionm::where('reactionmable_id', $comment->id)
-                        //  ->where('reactionmable_type', 'App\Model\Comment')
-                        //  ->get();
-                        // ];
-                        //$comment[] =['msj' => $Rc];
-                    //     $comment1 []= [
-                    //         array('comment' => $comment, array('reacciones_comentarios' => $reacciones))
-                    //     ];
-                    //   }
-
-                    // }
-                    //return $comment1;
 
         if ($nota){
             $status = $nota->status;

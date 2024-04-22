@@ -34,9 +34,9 @@ class AutenticateController extends Controller
             $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.jpg';
         }
 
-        $request->validate([
-            'password' => ['required', 'confirmed', RulesPassword::defaults()],
-        ]);
+        // $request->validate([
+        //     'password' => ['required', 'confirmed', RulesPassword::defaults()],
+        // ]);
         
         $user = new User();
         $user->name = $request->name;

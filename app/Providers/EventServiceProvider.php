@@ -10,7 +10,7 @@ use App\Events\CommentEvent;
 use App\Listeners\CommentListener;
 use App\Events\ReactionEvent;
 use App\Listeners\ReactionListener;
-
+use Illuminate\Auth\Events\PasswordReset;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        // PasswordReset::class => [
+
+        //     sendPasswordResetNotification::class,
+        // ],
         CommentEvent::class =>[
             CommentListener::class,
         ],
