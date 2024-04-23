@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEndPointsTable extends Migration
+class CreateLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateEndPointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('end_points', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('method_id');
-            $table->foreign('method_id')->references('id')->on('methods');
+
+            $table->string('country');
+            
+            $table->bigInteger('profile_id')->unsigned()->nullable();
+            $table->foreign('profile_id')->references('id')->on('profiles')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ class CreateEndPointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('end_points');
+        Schema::dropIfExists('locations');
     }
 }

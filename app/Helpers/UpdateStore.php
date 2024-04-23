@@ -128,7 +128,7 @@ class UpdateStoreFiles
     public static function UpdateUser($request, $user)
     {
 
-
+        return $user->image;
         if ($request->password && $request->password_confirmation) {
 
             if ($request->password == $request->password_confirmation) {
@@ -143,10 +143,12 @@ class UpdateStoreFiles
 
                     if ($request->hasFile('profile_photo_path')) {
 
-                        $path_defecto = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg';
-                        $image_object =  Image::where('imageable_id', $user->id)
-                            ->where('imageable_type', 'App\Models\User')->first();
-                        if ($path_defecto = $user->image->url) {
+                        
+                $path_defecto = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png';
+
+                        // $image_object =  Image::where('imageable_id', $user->id)
+                        //     ->where('imageable_type', 'App\Models\User')->first();
+                        if ($path_defecto === $user->image->url) {
 
                             // Guardo la imagen nueva en s3
                             $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');

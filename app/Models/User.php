@@ -33,6 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
      */
 
     protected $table = 'users';
+
     protected $fillable = [
         'name',
         'surname',
@@ -50,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
      * @var array
      */
     protected $hidden = [
-        'password',
+        //'password',
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
@@ -70,48 +71,48 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
      *
      * @var array
      */
-   /*  protected $appends = [
+    /*  protected $appends = [
         'profile_photo_url',
     ]; */
+
 
     public function canAccessFilament(): bool
     {
         //return true;
         return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
         //return str_ends_with($this->email, '@gmail.com');
-    
-        
-    }
 
-        //Relacion de uno a muchos
-    public function notes(){
-        return $this->hasMany(Note::class);
     }
-
-    // Relación uno a uno polimorfica
-    public function image(){
-        return $this->morphOne(Image::class, 'imageable');
-    }
-
 
     public function sendPasswordResetNotification($token)
     {
-        // $token_id = makeRandomToken();
         $url =  $token;
-        // dd($url);
-        //return $url;
-        // $code_string = Str::random(6);
-        // $code = mb_strtoupper($code_string);
 
         $this->notify(new ResetPasswordNotification($url));
     }
 
+
+    //Relacion de uno a muchos
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    // Relación uno a uno polimorfica
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     // Relación de uno a muchos
-    public function reactionms(){
+    public function reactionms()
+    {
         return $this->hasMany(Reactionm::class);
     }
+
     // Relación de uno a muchos
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
@@ -120,8 +121,25 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         return $this->belongsToMany('App\Models\Chat');
     }
 
-    public function messages() {
+    public function messages()
+    {
         return $this->hasMany('App\Models\Message');
     }
 
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+    
+    // relación uno a uno
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    // relación uno a uno a través de 
+    public function location()
+    {
+        return $this->hasOneThrough(Location::class, Profile::class);
+    }
 }

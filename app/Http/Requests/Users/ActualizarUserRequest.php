@@ -27,7 +27,7 @@ class ActualizarUserRequest extends FormRequest
             'name' => 'regex:/^[\pL\s\-]+$/u|max:30|required',
             'surname' => 'nullable|regex:/^[\pL\s\-]+$/u|max:30',
             'nickname' => 'nullable|regex:/^[\pL\s\-]+$/u|max:30',
-            'email' => 'required|email:rfc,dns|unique:users,email',
+            'email' => 'required|email:rfc,dns',
             'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];

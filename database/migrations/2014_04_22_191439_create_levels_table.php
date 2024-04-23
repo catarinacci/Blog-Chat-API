@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameImageInUsersTable extends Migration
+class CreateLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class RenameImageInUsersTable extends Migration
      */
     public function up()
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->renameColumn('image','image_profile_path');
-        // });
+        Schema::create('levels', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,8 +27,6 @@ class RenameImageInUsersTable extends Migration
      */
     public function down()
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->renameColumn('image_profile_path','image');
-        // });
+        Schema::dropIfExists('levels');
     }
 }

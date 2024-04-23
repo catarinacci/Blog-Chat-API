@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentEndPointsTable extends Migration
+class CreateResponsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateContentEndPointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('content_end_points', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->id();
+            $table->text('content');
+
+            $table->unsignedBigInteger('comment_id')->unsigned();
+            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+           
+
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateContentEndPointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content_end_points');
+        Schema::dropIfExists('responses');
     }
 }

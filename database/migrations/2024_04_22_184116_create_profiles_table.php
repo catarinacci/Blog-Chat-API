@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReactionmsTable extends Migration
+class CreateProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,15 @@ class CreateReactionmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reactionms', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-
-            $table->bigInteger('typereaction_id')->unsigned()->nullable();
-            $table->foreign('typereaction_id')->references('id')->on('typereactions')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
-            $table->unsignedBigInteger('reactionmable_id');
-
-            $table->string('reactionmable_type');
-
-            $table->unsignedBigInteger('user_id');
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('github')->nullable();
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
@@ -41,6 +33,6 @@ class CreateReactionmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reactionms');
+        Schema::dropIfExists('profiles');
     }
 }
