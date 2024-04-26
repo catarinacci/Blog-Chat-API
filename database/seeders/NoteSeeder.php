@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Note;
 use App\Models\Category;
 use App\Helpers\orem;
+use App\Models\Image;
 use Illuminate\Support\Str;
 
 
@@ -19,164 +20,22 @@ class NoteSeeder extends Seeder
      */
     public function run()
     {
-        $notes = Note::factory(100)->create();
+        Note::factory(100)->create()->each(function ($note) {
 
-        foreach($notes as $note){
-            $note->tags()->attach([
-                rand(1,3),
-                rand(4,5)
-            ]);
-        }
-    //   $notes = [
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '1',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '1',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '1',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '1',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '1',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '2',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '2',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '2',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '2',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '2',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '3',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '3',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '3',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '3',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '3',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '4',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '4',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '4',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '4',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //                 [
-    //                     'category_id' => Category::all()->random()->id,
-    //                     'user_id' => '4',
-    //                     'title' => implode(" ", Lorem::words(3)) ,
-    //                     'content' => implode(" ", Lorem::sentences(3)),
-    //                     'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
-    //                 ],
-    //             ];
+            $note->image()->save(Image::factory()->make());
 
-    //             foreach($notes as $note){
-    //                 Note::create($note);
-    //             }
+
+            $note->tags()->attach($this->array(rand(1, 24)));
+        });
     }
- }
 
 
-
-
-
+    public function array($max)
+    {
+        $values = [];
+        for ($i=1; $i < $max  ; $i++) { 
+          $values[] = $i; 
+        }
+        return $values;
+    }
+}

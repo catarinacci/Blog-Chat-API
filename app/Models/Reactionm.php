@@ -15,7 +15,7 @@ class Reactionm extends Model
     protected $table = 'reactionms';
 
     protected $fillable = [
-        'mensaje',
+        'typereaction_id',
         'reactionmable_id',
         'reactionmable_type',
         'user_id',

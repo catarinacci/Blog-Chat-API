@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Comment;
-use App\Models\Response;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
-class ResponseFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,13 +14,14 @@ class ResponseFactory extends Factory
      * @return array
      */
 
-    protected $model = Response::class;
+     protected $model = Image::class;
+
 
     public function definition()
     {
         return [
-            'content' => $this->faker->text(),
-            'comment_id' => Comment::all()->random()->id,
+            
+            'url' => 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/photo-books-on-white.jpg',
         ];
     }
 }

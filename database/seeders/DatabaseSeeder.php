@@ -14,15 +14,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            TypeReactionSeeder::class,
-            TagSeeder::class,
+            LevelSeeder::class,
+            ImageSeeder::class,
             UserSeeder::class,
+            TagSeeder::class,
             NoteSeeder::class,
             CommentSeeder::class,
+            ResponseSeeder::class,
+            TypeReactionSeeder::class,
             ReactionmSeeder::class,
-            ModuleSeeder::class,
+            //ModuleSeeder::class,
             //MethodSeeder::class,
-            ImageSeeder::class,
+            
 
         ]);
     }

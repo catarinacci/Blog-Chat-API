@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Note;
@@ -13,6 +14,9 @@ class CommentFactory extends Factory
      *
      * @return array
      */
+
+     protected $model = Comment::class;
+
     public function definition()
     {
         return [

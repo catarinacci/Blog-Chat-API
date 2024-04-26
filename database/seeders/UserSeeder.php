@@ -6,8 +6,14 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Note;
 use App\Models\Comment;
+use App\Models\Image;
+use App\Models\Location;
+use App\Models\Profile;
 use App\Models\TypeReaction;
 use App\Models\Reaction;
+use App\Models\Tag;
+use BladeUI\Icons\Factory;
+use Faker\Generator as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -21,55 +27,69 @@ class UserSeeder extends Seeder
 
         $users = [
             [
+                'level_id' => 1,
                 'name' => 'Gabriel',
-                'surname' => 'catarinacci',
-                'nickname'=>'gabi',
-                'email'=> 'systemredsys@gmail.com',
-                'password'=> bcrypt(31340423),
-                'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
-                'email_verified_at' => now()
-            ],
-            [
-                'name' => 'gabriel',
-                'surname' => 'catarinacci',
-                'nickname'=>'gabi',
+                'surname' => 'Catarinacci',
+                'nickname'=>'Gabi',
                 'email'=> 'catarinacci@gmail.com',
                 'password'=> bcrypt(12345678),
-                'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                //'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
                 'email_verified_at' => now()
             ],
             [
+                'level_id' => 2,
+                'name' => 'Rodrigo',
+                'surname' => 'Alvera',
+                'nickname'=>'Rodri',
+                'email'=> 'systemredsys@gmail.com',
+                'password'=> bcrypt(12345678),
+                //'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                'email_verified_at' => now()
+            ],
+            [
+                'level_id' => 3,
                 'name' => 'ignacio daniel',
                 'surname' => 'carrillo',
                 'nickname'=>'nacho',
                 'email'=> 'carrillo@gmail.com',
                 'password'=> bcrypt(12345678),
-                'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                //'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
                 'email_verified_at' => now()
             ],
             [
+                'level_id' => 3,
                 'name' => 'alberto',
                 'surname' => 'diaz alvarez',
                 'nickname'=>'toto',
                 'email'=> 'alvarez@gmail.com',
                 'password'=> bcrypt(12345678),
-                'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                //'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
                 'email_verified_at' => now()
             ],
             [
+                'level_id' => 3,
                 'name' => 'kevin',
                 'surname' => 'romero',
                 'nickname'=>'keven',
                 'email'=> 'keven@gmail.com',
                 'password'=> bcrypt(12345678),
-                'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
+                //'profile_photo_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png',
                 'email_verified_at' => now()
             ],
         ];
 
         foreach($users as $user){
-            User::create($user);
+            $users_object = User::create($user);
         }
+
+        $users_object->each(function($user){
+            $profile = $user->profile()->save(Profile::factory()->make());
+            $profile->location()->save(Location::factory()->make());
+            //$user->tags()->attach(Tag::all()->random()->id);
+            $user->image()->save(Image::factory()->make([
+                'url' => 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/blank-profile-picture.jpg'
+            ]));
+        });
         // User::factory()
         // ->count(10)
         // ->hasNotes(2)

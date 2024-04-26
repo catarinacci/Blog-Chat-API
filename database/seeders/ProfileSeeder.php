@@ -13,6 +13,6 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

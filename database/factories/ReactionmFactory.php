@@ -16,12 +16,13 @@ class ReactionmFactory extends Factory
      */
     public function definition()
     {
-        $array=["App\Models\Note","App\Models\Comment"];
+        $array=["App\Models\Note","App\Models\Comment", "App\Models\Response"];
         return [
             'user_id' => User::all()->random(),
-            'mensaje' => TypeReaction::all()->random()->name,
+            'typereaction_id' => TypeReaction::all()->random(),
+            //'mensaje' => TypeReaction::all()->random()->name,
             'reactionmable_id' => rand(1,100),
-            'reactionmable_type' => $array[ mt_rand(0,1)]
+            'reactionmable_type' => $array[ mt_rand(0,2)]
         ];
     }
 }

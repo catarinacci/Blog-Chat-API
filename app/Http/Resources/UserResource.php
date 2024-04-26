@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Str;
 
 class UserResource extends JsonResource
 {
@@ -15,25 +14,29 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-
+        //return parent::toArray($request);
         if($this->status == 1){
             $status = 'ACTIVE';
         }else{
             $status = 'LOCKED';
         }
-
+        //dd($this->image);
+        //return ['aaaa'=>$this->location];
         return [
             'user' => [
                 'id'=>$this->id,
-                'name'=>Str::upper($this->name),
-                'surname'=>Str::upper($this->surname),
-                'nick_name'=>Str::ucfirst($this->nickname),
+                'name'=>$this->name,
+                'surname'=>$this->surname,
+                'nick_name'=>$this->nickname,
+                'country' => $this->location->country,
                 'email'=>$this->email,
                 'email_verified_at'=> $this->email_verified_at,
-                'profile_photo_path'=> $this->profile_photo_path,
+                'profile_photo_path'=> $this->image->url,
+                'profile' => $this->profile()->select('instagram','facebook', 'youtube')->first(),
                 'created_at'=> $this->created_at,
                 'updated_at'=> $this->updated_at,
-                'user_status' => $status
+                'user_status' => $status,
+                
             ]
         ];
     }

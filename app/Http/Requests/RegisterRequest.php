@@ -31,6 +31,10 @@ class RegisterRequest extends FormRequest
             'email' => 'required|email:rfc,dns|unique:users,email',
             'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'password' => ['required', 'confirmed', RulesPassword::defaults()],
+            'instagram' => 'nullable|regex:/^[\pL\s\-]+$/u|max:50',
+            'facebook' => 'nullable|regex:/^[\pL\s\-]+$/u|max:50',
+            'youtube' => 'nullable|regex:/^[\pL\s\-]+$/u|max:50',
+            'country' => 'required|regex:/^[\pL\s\-]+$/u|max:50',
         ];
     }
 }

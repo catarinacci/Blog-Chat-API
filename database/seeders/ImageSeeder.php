@@ -15,21 +15,21 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
+        // $users = User::all();
 
-        foreach($users as $user){
-            $user->image()->create([
-                'url' => $user->profile_photo_path,
-                'imageable_id' =>$user->id
-            ]);
-        }
+        // foreach($users as $user){
+        //     $user->image()->create([
+        //         'url' => $user->profile_photo_path,
+        //         'imageable_id' =>$user->id
+        //     ]);
+        // }
 
-        $notes = Note::all();
-        foreach($notes as $note){
-            $note->image()->create([
-                'url' => $note->image_note_path,
-                'imageable_id' =>$note->id
-            ]);
-        }
+        // $notes = Note::all();
+        // foreach($notes as $note){
+        //     $note->image()->create([
+        //         'url' => $note->image_note_path,
+        //         'imageable_id' =>$note->id
+        //     ]);
+        // }
     }
 }

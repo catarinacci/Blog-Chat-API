@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Level;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Provider\Lorem;
 
 class LevelFactory extends Factory
 {
@@ -11,10 +13,14 @@ class LevelFactory extends Factory
      *
      * @return array
      */
+
+     protected $model = Level::class;
+
+
     public function definition()
     {
         return [
-            //
+            
         ];
     }
 }

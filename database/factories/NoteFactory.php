@@ -25,7 +25,7 @@ class NoteFactory extends Factory
                 'user_id' => User::all()->random()->id,
                 'title' => implode(" ", Lorem::words(3)) ,
                 'content' => implode(" ", Lorem::sentences(3)),
-                'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
+                //'image_note_path'=> 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/image_note_prueba.jpg'
 
         ];
 

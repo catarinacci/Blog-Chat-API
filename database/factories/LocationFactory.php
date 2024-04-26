@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocationFactory extends Factory
@@ -11,10 +12,14 @@ class LocationFactory extends Factory
      *
      * @return array
      */
+
+    protected $model = Location::class;
+
+
     public function definition()
     {
         return [
-            //
+            'country' => $this->faker->country
         ];
     }
 }

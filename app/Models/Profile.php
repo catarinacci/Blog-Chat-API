@@ -9,6 +9,14 @@ class Profile extends Model
 {
     use HasFactory;
 
+    protected $table = 'profiles';
+
+    protected $fillable = [
+       'instagram',
+       'facebook',
+       'youtube'
+    ];
+
     public function location()
     {
         return $this->hasOne(Location::class);
