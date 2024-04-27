@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
             'instagram' => 'nullable|regex:/^[\pL\s\-]+$/u|max:50',
             'facebook' => 'nullable|regex:/^[\pL\s\-]+$/u|max:50',
             'youtube' => 'nullable|regex:/^[\pL\s\-]+$/u|max:50',
-            'country' => 'required|regex:/^[\pL\s\-]+$/u|max:50',
+            'country_id' => 'required |exists:countries,id',
         ];
     }
 }

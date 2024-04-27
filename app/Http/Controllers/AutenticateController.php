@@ -35,21 +35,16 @@ class AutenticateController extends Controller
             $path = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/blank-profile-picture.jpg';
         }
 
-        // $request->validate([
-        //     'password' => ['required', 'confirmed', RulesPassword::defaults()],
-        // ]);
-
         $user = new User();
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->nickname = $request->nickname;
         $user->email = $request->email;
-        //$user->profile_photo_path = $path;
         $user->email_verified_at = $request->email_verified_at;
         $user->password = bcrypt($request->password);
         $user->status = 1;
         $user->save();
-        //dd($user->email);
+        
         if ($path) {
             $user->image()->create(['url' => $path]);
         }
@@ -60,18 +55,20 @@ class AutenticateController extends Controller
             'youtube' => $request->youtube
         ]);
 
-
         $profile->location()->create([
-            //'profile_id' => $user->id,
-            'country' => $request->country
+            'country_id' => $request->country_id
         ]);
 
-
+        //dd($location);
         event(new Registered($user));
 
-        $user_authtoken = $user->createAuthToken('api', 20);
+        $user_authtoken = $user->createAuthToken('api', 60 * 24);
+        $cookie = cookie('cookie_token', $user_authtoken->plainTextToken, 60 * 24);
 
-        return (new UserResource($user))->additional([
+        $user_object = new UserResource($user);
+
+        return response([
+            'data' => $user_object,
             'user_authtoken' => [
                 'token' => $user_authtoken->plainTextToken,
                 'expired_at' => $user_authtoken->accessToken->expired_at
@@ -79,7 +76,7 @@ class AutenticateController extends Controller
             'res' => true,
             'msg' => 'Usuario registrado correctamente',
             'send_email_verification' => 'Se envió un email con un código de verificación'
-        ]);
+        ])->withoutCookie($cookie);
     }
 
     public function login(LoginRequest $request)
@@ -96,14 +93,22 @@ class AutenticateController extends Controller
                     ]);
                 }
                 $status = 'ACTIVE';
-                $user_authtoken = $user->createAuthToken('api', 20);
-                $user_refreshtoken = $user->createRefreshToken('api', 120);
-
-                return (new UserResource($user))->additional([
-                    'res' => true,
-                    'user_authtoken' => $user_authtoken,
-                    'user_refreshtoken' => $user_refreshtoken
-                ]);
+                $user_authtoken = $user->createAuthToken('api', 60 * 24);
+                $user_refreshtoken = $user->createRefreshToken('api', 60 * 48);
+                $cookie = cookie('cookie_token', $user_authtoken->plainTextToken, 60 * 24);
+                $user_object = new UserResource($user);
+                return response([
+                    'data' => $user_object,
+                    'user_authtoken' => [
+                        'token' => $user_authtoken->plainTextToken,
+                        'expired_at' => $user_authtoken->accessToken->expired_at
+                    ],
+                    'user_refreshtoken' => [
+                        'token' => $user_refreshtoken->plainTextToken,
+                        'expired_at' => $user_refreshtoken->accessToken->expired_at
+                    ],              
+                
+                ],200)->withoutCookie($cookie);
             }
 
             $status = 'LOCKED';
@@ -112,22 +117,23 @@ class AutenticateController extends Controller
                 'res' => false,
                 'user_status' => $status,
                 'msg' => 'Esta cuenta se encuentra bloqueada'
-            ], 400);
+            ], 403);
         }
         return response()->json([
             'res' => false,
             'msg' => 'No existe el usuario'
-        ], 400);
+        ], 404);
     }
 
     public function logout(Request $request)
     {
 
         $request->user()->currentAccessToken()->delete();
-
-        return response()->json([
+        $cookie = cookie('cookie_token', "", -1);
+        
+        return response([
             'res' => true,
             'msg' => 'Token Eliminado Correctamente'
-        ], 200);
+        ],200)->withoutCookie($cookie);
     }
 }

@@ -128,7 +128,8 @@ class UpdateStoreFiles
     public static function UpdateUser($request, $user)
     {
 
-        return $user->image;
+        //return $request->image_profile_path;
+
         if ($request->password && $request->password_confirmation) {
 
             if ($request->password == $request->password_confirmation) {
@@ -138,82 +139,55 @@ class UpdateStoreFiles
                 ]);
 
                 if ($validated) {
+                    if ($request->hasFile('image_profile_path')) {
 
-                    //$image_object = Image::where('imageable_id', $user->id)->first();
+                        // Borro la imagen antigua en s3
+                        $oldimage_path = $user->image->url;
+                        $path_filter = Url::filterUrl($oldimage_path);
+                        Storage::disk('s3')->delete($path_filter);
 
-                    if ($request->hasFile('profile_photo_path')) {
+                        // Guardo la imagen nueva en s3
+                        $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
+                        $path = Storage::disk('s3')->url($documentPath);
 
-                        
-                $path_defecto = 'https://note-api-catarinacci.s3.sa-east-1.amazonaws.com/noteapi/blank-profile-picture.png';
-
-                        // $image_object =  Image::where('imageable_id', $user->id)
-                        //     ->where('imageable_type', 'App\Models\User')->first();
-                        if ($path_defecto === $user->image->url) {
-
-                            // Guardo la imagen nueva en s3
-                            $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
-                            $path = Storage::disk('s3')->url($documentPath);
-
-                            // Actualizo la URL de la imagen en la tabla images
-                            $image_object->update([
-                                'url' => $path
-                            ]);
-
-                            // Actualizo el usuario
-                            $user->update([
-                                'name' => $request->name,
-                                'surname' => $request->surname,
-                                'nickname' => $request->nickname,
-                                'password' => Hash::make($request->password),
-                                'profile_photo_path' => $path
-                            ]);
-                            return (new UserResource($user))->additional([
-                                'res' => true,
-                                'updated_password' => true,
-                                'msj' => 'updated user'
-                            ]);
-                            // return 'imagen defecto';
-                        } else {
-
-                            // borro la imagen antigua en s3
-                            $oldimage_path = $image_object->url;
-                            $path_filter = Url::filterUrl($oldimage_path);
-                            Storage::disk('s3')->delete($path_filter);
-
-                            // Guardo la imagen nueva en s3
-                            $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
-                            $path = Storage::disk('s3')->url($documentPath);
-
-                            // Actualizo la URL de la imagen en la tabla images
-                            $image_object->update([
-                                'url' => $path
-                            ]);
-
-                            // Actualizo el usuario
-                            $user->update([
-                                'name' => $request->name,
-                                'surname' => $request->surname,
-                                'nickname' => $request->nickname,
-                                'password' => Hash::make($request->password),
-                                'profile_photo_path' => $path
-                            ]);
-                            return (new UserResource($user))->additional([
-                                'res' => true,
-                                'updated_password' => true,
-                                'msj' => 'updated user'
-                            ]);
-                        }
-                    } else {
-                        $path = $user->image->url;
+                        // Actualizo la URL de la imagen en la tabla images
+                        $user->image()->update([
+                            'url' => $path,
+                        ]);
+                    }
+                    //Actualizo el perfil
+                    if ($request->instagram) {
+                        $user->profile()->update([
+                            'instagram' => $request->instagram
+                        ]);
+                    }
+                    if ($request->facebook) {
+                        $user->profile()->update([
+                            'facebook' => $request->facebook
+                        ]);
+                    }
+                    if ($request->youtube) {
+                        $user->profile()->update([
+                            'youtube' => $request->youtube
+                        ]);
                     }
 
+                    //Actualizo la localización
+                    if ($request->country_id) {
+                        $user->location()->update([
+                            'country_id' => $request->country_id
+                        ]);
+                    }
+
+                    // Actualizo el usuario
                     $user->update([
                         'name' => $request->name,
                         'surname' => $request->surname,
                         'nickname' => $request->nickname,
                         'password' => Hash::make($request->password),
-                        'profile_photo_path' => $path
+
                     ]);
+
                     return (new UserResource($user))->additional([
                         'res' => true,
                         'updated_password' => true,
@@ -223,46 +197,65 @@ class UpdateStoreFiles
             } else {
                 return response()->json([
                     'res' => 'Los campos password y password_confirmation no coinciden',
-                ], 400);
+                ], 401);
             }
         } else {
+            if ($request->hasFile('image_profile_path')) {
 
-            $image_object = Image::where('imageable_id', $user->id)->first();
-
-            if ($request->hasFile('profile_photo_path')) {
-
-                //borro la imagen antigua en s3
-                $oldimage_path = $image_object->url;
+                // Borro la imagen antigua en s3
+                $oldimage_path = $user->image->url;
                 $path_filter = Url::filterUrl($oldimage_path);
                 Storage::disk('s3')->delete($path_filter);
 
                 // Guardo la imagen nueva en s3
-                $documentPath = $request->file('profile_photo_path')->store('noteapi', 's3');
+                $documentPath = $request->file('image_profile_path')->store('noteapi', 's3');
                 $path = Storage::disk('s3')->url($documentPath);
 
                 // Actualizo la URL de la imagen en la tabla images
-                $image_object->update([
-                    'url' => $path
+                $user->image()->update([
+                    'url' => $path,
                 ]);
-            } else {
-                $path = $image_object->url;
+            }
+            //Actualizo el perfil
+            if ($request->instagram) {
+                $user->profile()->update([
+                    'instagram' => $request->instagram
+                ]);
+            }
+            if ($request->facebook) {
+                $user->profile()->update([
+                    'facebook' => $request->facebook
+                ]);
+            }
+            if ($request->youtube) {
+                $user->profile()->update([
+                    'youtube' => $request->youtube
+                ]);
             }
 
+            //Actualizo la localización
+            if ($request->country_id) {
+                $user->location()->update([
+                    'country_id' => $request->country_id
+                ]);
+            }
+
+            // Actualizo el usuario
             $user->update([
                 'name' => $request->name,
                 'surname' => $request->surname,
                 'nickname' => $request->nickname,
+                //'password' => Hash::make($request->password),
 
-                'profile_photo_path' => $path
             ]);
+
             return (new UserResource($user))->additional([
                 'res' => true,
-                'updated_password' => false,
+                //'updated_password' => true,
                 'msj' => 'updated user'
             ]);
-        };
+        }
     }
-
 
     public static function storeNote($request)
     {

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LevelSeeder::class,
             ImageSeeder::class,
+            CountrySeeder::class,
             UserSeeder::class,
             TagSeeder::class,
             NoteSeeder::class,

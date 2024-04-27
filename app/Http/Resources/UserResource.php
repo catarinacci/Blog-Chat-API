@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Country;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -22,16 +23,18 @@ class UserResource extends JsonResource
         }
         //dd($this->image);
         //return ['aaaa'=>$this->location];
+        $country = Country::where('id', $this->location->country_id)->first();
+        $image = $this->image()->select('url')->first();
         return [
             'user' => [
                 'id'=>$this->id,
                 'name'=>$this->name,
                 'surname'=>$this->surname,
                 'nick_name'=>$this->nickname,
-                'country' => $this->location->country,
+                'country' => $country->name,
                 'email'=>$this->email,
                 'email_verified_at'=> $this->email_verified_at,
-                'profile_photo_path'=> $this->image->url,
+                'profile_photo_path'=> $image->url,
                 'profile' => $this->profile()->select('instagram','facebook', 'youtube')->first(),
                 'created_at'=> $this->created_at,
                 'updated_at'=> $this->updated_at,

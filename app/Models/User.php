@@ -142,4 +142,10 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     {
         return $this->hasOneThrough(Location::class, Profile::class);
     }
+
+     // relación uno a uno a través de 
+    //  public function country()
+    //  {
+    //      return $this->hasOneThrough(Country::class, Location::class,);
+    //  }
 }

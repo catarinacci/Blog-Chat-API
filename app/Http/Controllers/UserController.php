@@ -21,6 +21,7 @@ class UserController extends Controller
     public function show()
     {
         $user_auth = Auth::user();
+
         return (new UserResource($user_auth))->additional(
             [
                 'res' => true
@@ -46,7 +47,7 @@ class UserController extends Controller
                     "msg" => "Error de datos",
                     "res" => "false"
                 ],
-                400
+                500
             );
         }else{
             return response()->json(
@@ -54,7 +55,7 @@ class UserController extends Controller
                     "msg" => "Email incorrecto",
                     "res" => "false"
                 ],
-                200
+                404
             );
         }
     }
